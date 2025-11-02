@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq66k3la0er8b"]
+[gd_scene load_steps=9 format=3 uid="uid://bq66k3la0er8b"]
 
-[ext_resource type="Texture2D" uid="uid://fx8fcpsa30l3" path="res://assets/Enemies-Sheet.png" id="1_c57h8"]
 [ext_resource type="Script" uid="uid://c0yyrn5g4xhml" path="res://crab_game/crab_game.gd" id="1_her5s"]
-[ext_resource type="Script" uid="uid://ba2id172aul0q" path="res://crab_game/crab.gd" id="2_jwypb"]
+[ext_resource type="PackedScene" uid="uid://crpukwr6khuic" path="res://crab_game/crab.tscn" id="2_her5s"]
 
 [sub_resource type="Animation" id="Animation_her5s"]
 resource_name = "wave_animation"
@@ -169,45 +168,6 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7abox"]
 size = Vector2(1152, 520)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_25fay"]
-atlas = ExtResource("1_c57h8")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tcxbp"]
-atlas = ExtResource("1_c57h8")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5w1r"]
-atlas = ExtResource("1_c57h8")
-region = Rect2(32, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbqpu"]
-atlas = ExtResource("1_c57h8")
-region = Rect2(48, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r4hym"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_25fay")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tcxbp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_b5w1r")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbqpu")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_wmagh"]
-radius = 16.0
-
 [sub_resource type="LabelSettings" id="LabelSettings_jwypb"]
 font_size = 64
 
@@ -218,6 +178,10 @@ script = ExtResource("1_her5s")
 offset_right = 1152.0
 offset_bottom = 648.0
 color = Color(0.89411765, 0.83137256, 0.58431375, 1)
+
+[node name="Crab" parent="." node_paths=PackedStringArray("spawn_point") instance=ExtResource("2_her5s")]
+position = Vector2(456, 72)
+spawn_point = NodePath("../CrabSpawnPoint")
 
 [node name="Water" type="ColorRect" parent="."]
 offset_top = 496.0
@@ -239,21 +203,6 @@ shape = SubResource("RectangleShape2D_7abox")
 
 [node name="CrabSpawnPoint" type="Marker2D" parent="."]
 position = Vector2(576, 64)
-
-[node name="Crab" type="CharacterBody2D" parent="." node_paths=PackedStringArray("spawn_point")]
-position = Vector2(112, 56)
-script = ExtResource("2_jwypb")
-spawn_point = NodePath("../CrabSpawnPoint")
-metadata/_edit_group_ = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Crab"]
-scale = Vector2(3, 3)
-sprite_frames = SubResource("SpriteFrames_r4hym")
-autoplay = "default"
-frame_progress = 0.068098694
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Crab"]
-shape = SubResource("CircleShape2D_wmagh")
 
 [node name="LossScreen" type="ColorRect" parent="."]
 visible = false

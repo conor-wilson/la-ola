@@ -6,17 +6,18 @@ const SPEED = 300.0
 @export var spawn_point:Marker2D
 
 var active:bool = true
-
+var burried:bool = false
 
 
 func reset():
 	position = spawn_point.position
 	active = true
+	burried = false
 	show()
 
 func _process(delta: float) -> void:
 	
-	if !active:
+	if !active || burried:
 		return
 
 	# Get the input direction and handle the movement/deceleration.
@@ -40,3 +41,19 @@ func _process(delta: float) -> void:
 func die():
 	active = false
 	hide()
+
+
+func dig():
+	burried = true
+	$BurriedTexture.show()
+
+func emerge():
+	burried = false
+	$BurriedTexture.hide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		dig()
+	
+	if event.is_action_released("ui_accept"):
+		emerge()
