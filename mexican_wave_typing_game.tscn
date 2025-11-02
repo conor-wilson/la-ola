@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bubjsiara3vsa"]
+[gd_scene load_steps=9 format=3 uid="uid://bubjsiara3vsa"]
 
 [ext_resource type="Script" uid="uid://3edx4sgh8mdf" path="res://mexican_wave_typing_game.gd" id="1_d7iiw"]
 [ext_resource type="PackedScene" uid="uid://def43p88jt0ty" path="res://crowd_line.tscn" id="1_yqivm"]
@@ -8,6 +8,16 @@ font_size = 64
 
 [sub_resource type="LabelSettings" id="LabelSettings_d7iiw"]
 font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_bo84o"]
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yqivm"]
+border_width_top = 16
+border_width_bottom = 16
+
+[sub_resource type="LabelSettings" id="LabelSettings_paypl"]
+font_size = 32
 
 [sub_resource type="LabelSettings" id="LabelSettings_r0hlr"]
 font_size = 64
@@ -80,7 +90,48 @@ vertical_alignment = 1
 [node name="BlinkTimer" type="Timer" parent="GO"]
 wait_time = 0.5
 
+[node name="WelcomeScreen" type="ColorRect" parent="."]
+offset_left = 264.0
+offset_top = 128.0
+offset_right = 880.0
+offset_bottom = 504.0
+color = Color(0, 1, 1, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="WelcomeScreen"]
+layout_mode = 0
+offset_right = 616.0
+offset_bottom = 376.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WelcomeScreen/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="WelcomeScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "How fast do you reckon you can do it?"
+label_settings = SubResource("LabelSettings_bo84o")
+
+[node name="HScrollBar" type="HScrollBar" parent="WelcomeScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/scroll = SubResource("StyleBoxFlat_yqivm")
+min_value = 1.0
+max_value = 10.0
+step = 1.0
+value = 5.0
+
+[node name="InputLabel" type="Label" parent="WelcomeScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "5.0 seconds"
+label_settings = SubResource("LabelSettings_paypl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyButton" type="Button" parent="WelcomeScreen/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Submit"
+
 [node name="WinScreen" type="ColorRect" parent="."]
+visible = false
 offset_left = 264.0
 offset_top = 128.0
 offset_right = 880.0
@@ -100,12 +151,13 @@ layout_mode = 2
 text = "YOU WIN!"
 label_settings = SubResource("LabelSettings_r0hlr")
 
-[node name="Button" type="Button" parent="WinScreen/CenterContainer/VBoxContainer"]
+[node name="RetryButton" type="Button" parent="WinScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Retry"
 
 [node name="LossScreen" type="ColorRect" parent="."]
+visible = false
 offset_left = 264.0
 offset_top = 128.0
 offset_right = 880.0
@@ -125,7 +177,7 @@ layout_mode = 2
 text = "YOU LOSE :("
 label_settings = SubResource("LabelSettings_r0hlr")
 
-[node name="Button" type="Button" parent="LossScreen/CenterContainer/VBoxContainer"]
+[node name="RetryButton" type="Button" parent="LossScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Retry"
@@ -134,5 +186,7 @@ text = "Retry"
 [connection signal="go" from="PlayerCrowdLine" to="." method="_on_player_crowd_line_go"]
 [connection signal="done_auto_wave" from="EnemyCrowdLine" to="." method="_on_enemy_crowd_line_done_auto_wave"]
 [connection signal="timeout" from="GO/BlinkTimer" to="." method="_on_blink_timer_timeout"]
-[connection signal="pressed" from="WinScreen/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="LossScreen/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="WelcomeScreen/CenterContainer/VBoxContainer/HScrollBar" to="." method="_on_h_scroll_bar_value_changed"]
+[connection signal="pressed" from="WelcomeScreen/CenterContainer/VBoxContainer/ReadyButton" to="." method="_on_ready_button_pressed"]
+[connection signal="pressed" from="WinScreen/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="LossScreen/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
