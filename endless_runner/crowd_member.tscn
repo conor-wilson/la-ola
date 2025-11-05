@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://tes5qvvjxl1f"]
+
+[ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://crowd_member.gd" id="1_m4o6s"]
+[ext_resource type="Texture2D" uid="uid://da3hlf8u7y4em" path="res://icon.svg" id="2_o5k55"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_q7wum"]
+font_size = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vlwg"]
+size = Vector2(96, 80)
+
+[node name="CrowdMember" type="Node2D"]
+script = ExtResource("1_m4o6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.536743e-07, 9.536743e-07)
+scale = Vector2(0.37499997, 0.37499997)
+texture = ExtResource("2_o5k55")
+
+[node name="HeldSign" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -69.0
+offset_right = 24.0
+offset_bottom = -24.0
+text = "L"
+label_settings = SubResource("LabelSettings_q7wum")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7vlwg")
+
+[node name="StandupTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="StandupTimer" to="." method="_on_standup_timer_timeout"]

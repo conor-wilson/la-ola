@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4jfm050tml0n"]
+
+[ext_resource type="Script" uid="uid://bq81ey38r328m" path="res://endless_runner/crowd_row.gd" id="1_56fbp"]
+[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://endless_runner/crowd_member.tscn" id="2_hccud"]
+
+[node name="CrowdRow" type="Parallax2D"]
+repeat_size = Vector2(576, 0)
+script = ExtResource("1_56fbp")
+
+[node name="CrowdMember1" parent="." instance=ExtResource("2_hccud")]
+
+[node name="CrowdMember2" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(64, 0)
+
+[node name="CrowdMember3" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(128, 0)
+
+[node name="CrowdMember4" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(192, 0)
+
+[node name="CrowdMember5" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(256, 0)
+
+[node name="CrowdMember6" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(320, 0)
+
+[node name="CrowdMember7" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(384, 0)
+
+[node name="CrowdMember8" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(448, 0)
+
+[node name="CrowdMember9" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(512, 0)
+
+[node name="CrowdMember10" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(576, 0)
+
+[node name="CrowdMember11" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(640, 0)
+
+[node name="CrowdMember12" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(704, 0)
+
+[node name="CrowdMember13" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(768, 0)
+
+[node name="CrowdMember14" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(832, 0)
+
+[node name="CrowdMember15" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(896, 0)
+
+[node name="CrowdMember16" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(960, 0)
+
+[node name="CrowdMember17" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(1024, 0)
+
+[node name="CrowdMember18" parent="." instance=ExtResource("2_hccud")]
+position = Vector2(1088, 0)

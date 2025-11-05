@@ -23,6 +23,12 @@ SceneSwitcher="*res://scene_switcher.tscn"
 
 window/stretch/mode="canvas_items"
 
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="CrowdMembers"
+2d_physics/layer_3="TriggerZones"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

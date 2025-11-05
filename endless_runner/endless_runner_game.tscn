@@ -1,12 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://cisneqfww647r"]
+[gd_scene load_steps=6 format=3 uid="uid://cisneqfww647r"]
 
 [ext_resource type="Script" uid="uid://dqawqmt513ssa" path="res://endless_runner/endless_runner_game.gd" id="1_5t2nf"]
 [ext_resource type="PackedScene" uid="uid://bo6kiemh8lvuy" path="res://endless_runner/scrolling_background.tscn" id="2_n27rk"]
+[ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://endless_runner/crowd_row.tscn" id="3_cl8m1"]
+[ext_resource type="Texture2D" uid="uid://jg8h5gp7b2h7" path="res://assets/StadiumBackRailings.png" id="5_m6dsr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m6dsr"]
+size = Vector2(224, 776)
 
 [node name="EndlessRunnerGame" type="Node2D"]
 script = ExtResource("1_5t2nf")
 
 [node name="ScrollingBackground" parent="." instance=ExtResource("2_n27rk")]
 
+[node name="CrowdRow7" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.62, 1)
+scroll_offset = Vector2(0, 88)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow8" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.63, 1)
+scroll_offset = Vector2(0, 120)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow5" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.64, 1)
+scroll_offset = Vector2(0, 152)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow6" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.65, 1)
+scroll_offset = Vector2(0, 184)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow4" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.66, 1)
+scroll_offset = Vector2(0, 216)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow3" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.67, 1)
+scroll_offset = Vector2(0, 248)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow2" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.68, 1)
+scroll_offset = Vector2(0, 280)
+camera = NodePath("../Camera2D")
+
+[node name="CrowdRow1" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+scroll_scale = Vector2(0.69, 1)
+scroll_offset = Vector2(0, 312)
+camera = NodePath("../Camera2D")
+
+[node name="BackRails" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumBackRailings" type="Sprite2D" parent="BackRails"]
+position = Vector2(1152, 324)
+texture = ExtResource("5_m6dsr")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
+position_smoothing_enabled = true
+
+[node name="Area2D" type="Area2D" parent="Camera2D"]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_m6dsr")
