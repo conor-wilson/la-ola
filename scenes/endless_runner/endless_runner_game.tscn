@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cisneqfww647r"]
+[gd_scene load_steps=8 format=3 uid="uid://cisneqfww647r"]
 
 [ext_resource type="Script" uid="uid://dqawqmt513ssa" path="res://scenes/endless_runner/endless_runner_game.gd" id="1_5t2nf"]
 [ext_resource type="PackedScene" uid="uid://bo6kiemh8lvuy" path="res://scenes/endless_runner/scrolling_background.tscn" id="2_n27rk"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/endless_runner/crowd_row.tscn" id="3_cl8m1"]
 [ext_resource type="PackedScene" uid="uid://bieikntjwrqn8" path="res://scenes/endless_runner/typable_crowd_row.tscn" id="4_8vx36"]
 [ext_resource type="Texture2D" uid="uid://jg8h5gp7b2h7" path="res://assets/StadiumBackRailings.png" id="5_m6dsr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8vx36"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_46c3i"]
+font_size = 64
 
 [node name="EndlessRunnerGame" type="Node2D"]
 script = ExtResource("1_5t2nf")
@@ -89,3 +95,24 @@ texture = ExtResource("5_m6dsr")
 position = Vector2(576, 323)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
+
+[node name="Ready" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "READY...."
+label_settings = SubResource("LabelSettings_8vx36")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GO" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "GO!"
+label_settings = SubResource("LabelSettings_46c3i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BlinkTimer" type="Timer" parent="GO"]
+wait_time = 0.5
+
+[connection signal="timeout" from="GO/BlinkTimer" to="." method="_on_blink_timer_timeout"]
