@@ -4,6 +4,5 @@
 [ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/endless_runner/crowd_member.tscn" id="2_hccud"]
 
 [node name="CrowdRow" type="Parallax2D"]
-visible = false
 script = ExtResource("1_56fbp")
 crowd_member_scene = ExtResource("2_hccud")

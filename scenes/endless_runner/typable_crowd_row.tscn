@@ -1,7 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bieikntjwrqn8"]
+[gd_scene load_steps=3 format=3 uid="uid://bieikntjwrqn8"]
 
-[ext_resource type="Script" uid="uid://bq81ey38r328m" path="res://scenes/endless_runner/crowd_row.gd" id="1_cb8x4"]
+[ext_resource type="Script" uid="uid://dj8naanu0vtc6" path="res://scenes/endless_runner/typable_crowd_row.gd" id="1_1py2f"]
+[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/endless_runner/crowd_member.tscn" id="2_fkjvd"]
 
 [node name="TypableCrowdRow" type="Parallax2D"]
-script = ExtResource("1_cb8x4")
+script = ExtResource("1_1py2f")
+crowd_member_scene = ExtResource("2_fkjvd")
 metadata/_custom_type_script = "uid://bq81ey38r328m"

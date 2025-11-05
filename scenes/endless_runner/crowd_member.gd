@@ -20,7 +20,7 @@ func _ready() -> void:
 
 func reset():
 	
-	if has_sign:
+	if has_sign && letter != "" && letter != " ":
 		held_sign_label.text = letter
 		held_sign.show()
 	else:
@@ -30,7 +30,6 @@ func reset():
 
 
 func _process(delta: float) -> void:
-	
 	if abs(camera.global_position.x - global_position.x) < 64:
 		stand_up()
 

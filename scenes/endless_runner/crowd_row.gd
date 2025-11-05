@@ -26,7 +26,7 @@ func reset():
 		_spawn_new_crowd_member()
 
 
-func _spawn_new_crowd_member():
+func _spawn_new_crowd_member() -> CrowdMember:
 	var new_crowd_member = crowd_member_scene.instantiate() as CrowdMember
 	add_child(new_crowd_member)
 	new_crowd_member.camera = camera
@@ -34,6 +34,8 @@ func _spawn_new_crowd_member():
 	new_crowd_member.exited_screen.connect(_on_crowd_member_exited_screen)
 	new_crowd_member.reset()
 	spawn_buffer += spacing_between_crowd_members
+	
+	return new_crowd_member
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
