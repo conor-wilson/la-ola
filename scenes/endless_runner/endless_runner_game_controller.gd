@@ -2,7 +2,6 @@ class_name EndlessRunnerGameController extends Node2D # TODO: Should this extend
 
 @export var sample_letter_queue:String = ""
 
-
 enum State {
 	READY,
 	PLAYING,
@@ -23,11 +22,6 @@ func reset(reuse_existing_crowd:bool = false) -> void:
 	
 	# Reset the visuals
 	screen_view.reset(sample_letter_queue, reuse_existing_crowd)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if state == State.PLAYING:
-		screen_view.move_camera(delta)
 
 func start():
 	if state != State.READY:

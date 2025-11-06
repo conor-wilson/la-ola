@@ -5,10 +5,8 @@ signal retry
 
 const STARTING_CAMERA_SPEED:float = 200
 const CAMERA_ACCELERATION:float = 5
-var camera_speed:float = STARTING_CAMERA_SPEED
-@onready var camera: Camera2D = $Camera2D
 
-@onready var end_screen: ColorRect = $Camera2D/EndScreen
+@onready var end_screen: ColorRect = $GameCamera/EndScreen
 @onready var letter_row: EndlessRunnerRow = $LetterRow
 @onready var non_letter_rows: Array[EndlessRunnerRow] = [
 	$BackgroundRows/CrowdRow9, 
@@ -20,6 +18,7 @@ var camera_speed:float = STARTING_CAMERA_SPEED
 	$ForegroundRows/CrowdRow2, 
 	$ForegroundRows/CrowdRow1,
 ]
+@onready var game_camera: GameCamera = $GameCamera
 
 # TODO: Maybe this belongs in the game controller?
 @export var letter_queue:String
@@ -32,26 +31,33 @@ func reset(new_letter_queue:String, reuse_existing_crowd:bool = false) -> void:
 	
 	# TODO: Fix the reset mechanic when restarting the game
 	
-	# Reset the state
-	camera_speed = STARTING_CAMERA_SPEED
+	# Reset the people
 	letter_queue = new_letter_queue
 	letter_row.reset()
 	
-	# Reset the visuals
+	# Reset the popups
 	$Ready.show()
 	$GO.hide()
 	end_screen.hide()
+	
+	# Reset the camera
+	game_camera.stop_auto_scrolling()
 
-func move_camera(delta:float) -> void:
-	# Increase camera speed according to the acceslleration
-	# TODO: Should we have a maximum speed?
-	camera_speed += delta*CAMERA_ACCELERATION
-	camera.position += Vector2(1,0)*delta*camera_speed
+#func move_camera(delta:float) -> void:
+	## Increase camera speed according to the acceslleration
+	## TODO: Should we have a maximum speed?
+	#camera_speed += delta*CAMERA_ACCELERATION
+	#camera.position += Vector2(1,0)*delta*camera_speed
 
 func start() -> void:
+	
+	# Update the popups
 	$Ready.hide()
 	$GO.show()
 	$GO/BlinkTimer.start()
+	
+	# Update the camera
+	game_camera.start_auto_scrolling(Vector2.RIGHT, STARTING_CAMERA_SPEED, CAMERA_ACCELERATION)
 
 func show_end_popup():
 	end_screen.show()
@@ -72,9 +78,6 @@ func stand_up_next_person_column():
 
 func _on_blink_timer_timeout() -> void:
 	$GO.hide()
-
-func _on_letter_row_loss() -> void:
-	loss.emit()
 
 func _on_retry_button_pressed() -> void:
 	retry.emit()
@@ -98,6 +101,7 @@ func _on_letter_row_new_person_spawned(person:CrowdMember) -> void:
 
 func _on_letter_row_person_exited_screen(EndlessRunnerRow, person:CrowdMember) -> void:
 	if person == letter_row.get_next_person_in_wave():
+		game_camera.stop_auto_scrolling() # TODO: Should this be somewhere else?
 		loss.emit()
 	_on_row_person_exited_screen(letter_row, person)
 
