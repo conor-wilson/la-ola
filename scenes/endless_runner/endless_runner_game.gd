@@ -32,6 +32,5 @@ func _input(event: InputEvent) -> void:
 		start()
 
 
-
 func _on_blink_timer_timeout() -> void:
 	$GO.hide()
