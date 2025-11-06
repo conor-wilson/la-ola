@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cbsfelqtvbj2"]
+[gd_scene load_steps=12 format=3 uid="uid://cbsfelqtvbj2"]
 
 [ext_resource type="Script" uid="uid://b8o57ocny684l" path="res://scenes/endless_runner/endless_runner_screen_view.gd" id="1_cdxfl"]
 [ext_resource type="Texture2D" uid="uid://denuexkmv7lvw" path="res://assets/StadiumBackWall.png" id="2_yfp3g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bhubk7qgbpjcc" path="res://assets/StadiumFrontRailings.png" id="5_lnw58"]
 [ext_resource type="Texture2D" uid="uid://24p8rwbj4rif" path="res://assets/StadiumPitch.png" id="6_2xeil"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/endless_runner/endless_runner_row.tscn" id="7_lt3xr"]
+[ext_resource type="PackedScene" uid="uid://bn7hl6e1ussx0" path="res://scenes/game_camera.tscn" id="8_yfp3g"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_yfp3g"]
 font_size = 64
@@ -139,32 +140,30 @@ repeat_size = Vector2(1152, 0)
 position = Vector2(1152, 324)
 texture = ExtResource("3_6cmjg")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 323)
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
+[node name="GameCamera" parent="." instance=ExtResource("8_yfp3g")]
+position = Vector2(576, 324)
 
-[node name="EndScreen" type="ColorRect" parent="Camera2D"]
+[node name="EndScreen" type="ColorRect" parent="GameCamera"]
 offset_left = -312.0
-offset_top = -195.0
+offset_top = -196.0
 offset_right = 304.0
-offset_bottom = 181.0
+offset_bottom = 180.0
 color = Color(0, 1, 1, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="Camera2D/EndScreen"]
+[node name="CenterContainer" type="CenterContainer" parent="GameCamera/EndScreen"]
 layout_mode = 0
 offset_right = 616.0
 offset_bottom = 376.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/EndScreen/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="GameCamera/EndScreen/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Camera2D/EndScreen/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="GameCamera/EndScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "GAME OVER!"
 label_settings = SubResource("LabelSettings_yfp3g")
 
-[node name="RetryButton" type="Button" parent="Camera2D/EndScreen/CenterContainer/VBoxContainer"]
+[node name="RetryButton" type="Button" parent="GameCamera/EndScreen/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Retry"
@@ -198,5 +197,5 @@ wait_time = 0.5
 [connection signal="person_exited_screen" from="ForegroundRows/CrowdRow3" to="." method="_on_row_person_exited_screen"]
 [connection signal="person_exited_screen" from="ForegroundRows/CrowdRow2" to="." method="_on_row_person_exited_screen"]
 [connection signal="person_exited_screen" from="ForegroundRows/CrowdRow1" to="." method="_on_row_person_exited_screen"]
-[connection signal="pressed" from="Camera2D/EndScreen/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
+[connection signal="pressed" from="GameCamera/EndScreen/CenterContainer/VBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="timeout" from="GO/BlinkTimer" to="." method="_on_blink_timer_timeout"]
