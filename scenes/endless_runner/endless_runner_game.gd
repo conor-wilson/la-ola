@@ -1,6 +1,8 @@
 extends Node2D
 
-var CAMERA_SPEED = 200
+const STARTING_CAMERA_SPEED:float = 200
+const CAMERA_ACCELLERATION:float = 5
+var camera_speed:float = STARTING_CAMERA_SPEED
 
 @onready var camera: Camera2D = $Camera2D
 @onready var typing_row: TypableCrowdRow = $CrowdRows/TypingRow
@@ -28,13 +30,18 @@ func _ready() -> void:
 
 func reset() -> void:
 	state = State.READY
+	camera_speed = STARTING_CAMERA_SPEED
 	$Ready.show()
 	$GO.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if state == State.PLAYING:
-		camera.position += Vector2(1,0)*delta*CAMERA_SPEED
+		
+		# Increase camera speed according to the acceslleration
+		# TODO: Should we have a maximum speed?
+		camera_speed += delta*CAMERA_ACCELLERATION
+		camera.position += Vector2(1,0)*delta*camera_speed
 
 func start():
 	if state != State.READY:
