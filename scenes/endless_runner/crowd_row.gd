@@ -15,9 +15,18 @@ var spawn_buffer:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	reset()
+	reset(false)
 
-func reset():
+func reset(reuse_existing_crowd_members:bool = false):
+	
+	# If we're reusing the existing crowd members, just sit them down
+	# TODO: Maybe this should be its own function (address before merging)
+	if reuse_existing_crowd_members:
+		for child in get_children():
+			if child is CrowdMember:
+				child.sit_down()
+				child.reset()
+		return
 	
 	# Clear out any existing crowd members
 	for child in get_children():

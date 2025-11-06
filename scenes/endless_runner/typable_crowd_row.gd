@@ -1,5 +1,6 @@
 class_name TypableCrowdRow extends CrowdRow
 
+signal loss
 signal impossible_index
 
 @export var letter_queue:String
@@ -7,14 +8,45 @@ signal impossible_index
 var visible_crowd_members: Array[CrowdMember] = []
 var next_crowd_member_index:int = 0
 
-func reset_with_new_letter_queue(new_letter_queue:String):
+func reset_with_new_letter_queue(new_letter_queue:String, reuse_existing_crowd_members:bool):
 	letter_queue = new_letter_queue
-	reset()
+	reset(reuse_existing_crowd_members)
 
-func reset():
-	visible_crowd_members = []
-	next_crowd_member_index = 0
-	super.reset()
+func reset(reuse_existing_crowd_members:bool=false):
+	
+	# TODO: This should be its own function and be cleaned up (address before merging)
+	if reuse_existing_crowd_members:
+		next_crowd_member_index = 3
+		for i in range(0, len(visible_crowd_members)):
+			if i < next_crowd_member_index:
+				visible_crowd_members[i].letter = ""
+			else:
+				visible_crowd_members[i].letter = _pop_letter_from_queue()
+	else:
+		next_crowd_member_index = 0
+		visible_crowd_members = []
+	
+	super.reset(reuse_existing_crowd_members)
+
+func _spawn_new_crowd_member():
+	var new_crowd_member:CrowdMember = super._spawn_new_crowd_member()
+	
+	if letter_queue == "":
+		# TODO: Here we could generate new letters for the queue
+		return
+	
+	# Setup the new CrowdMember's sign visuals
+	new_crowd_member.has_sign = true
+	new_crowd_member.letter = _pop_letter_from_queue()
+	new_crowd_member.reset()
+	
+	# Add the new CrowdMember to the queue
+	visible_crowd_members.append(new_crowd_member)
+
+func _pop_letter_from_queue() -> String:
+	var letter:String = letter_queue[0]
+	letter_queue = letter_queue.substr(1)
+	return letter
 
 func receive_typed_input(input:String) -> CrowdMember:
 	
@@ -30,25 +62,10 @@ func receive_typed_input(input:String) -> CrowdMember:
 	next_crowd_member_index += 1
 	return visible_crowd_members[next_crowd_member_index]
 
-func _spawn_new_crowd_member():
-	var new_crowd_member:CrowdMember = super._spawn_new_crowd_member()
-	
-	if letter_queue == "":
-		# TODO: Here we could generate new letters for the queue
-		return
-	
-	# Setup the new CrowdMember's sign visuals
-	new_crowd_member.has_sign = true
-	new_crowd_member.letter = letter_queue[0]
-	new_crowd_member.reset()
-	
-	# Pop the letter off of the queue
-	letter_queue = letter_queue.substr(1)
-	
-	# Add the new CrowdMember to the queue
-	visible_crowd_members.append(new_crowd_member)
-
 func _on_crowd_member_exited_screen(crowd_member:CrowdMember):
+	
+	if crowd_member == visible_crowd_members[next_crowd_member_index]:
+		loss.emit()
 	
 	if crowd_member != visible_crowd_members[0]:
 		print_debug("TypableCrowdRow: an unexpected crowd member exited the screen. CrowdMember's letter: ", crowd_member.letter)

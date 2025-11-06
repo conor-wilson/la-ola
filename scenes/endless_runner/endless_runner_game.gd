@@ -1,7 +1,9 @@
 extends Node2D
 
+@export var sample_letter_queue:String = ""
+
 const STARTING_CAMERA_SPEED:float = 200
-const CAMERA_ACCELLERATION:float = 5
+const CAMERA_ACCELERATION:float = 5
 var camera_speed:float = STARTING_CAMERA_SPEED
 
 @onready var camera: Camera2D = $Camera2D
@@ -16,6 +18,7 @@ var camera_speed:float = STARTING_CAMERA_SPEED
 	$CrowdRows/CrowdRow2, 
 	$CrowdRows/CrowdRow1
 ]
+@onready var end_screen: ColorRect = $Camera2D/EndScreen
 
 enum State {
 	READY,
@@ -26,13 +29,19 @@ var state:State
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	reset()
+	reset(false)
 
-func reset() -> void:
+func reset(reuse_existing_crowd:bool = false) -> void:
+	
+	# Reset the state
 	state = State.READY
 	camera_speed = STARTING_CAMERA_SPEED
+	typing_row.reset_with_new_letter_queue(sample_letter_queue, reuse_existing_crowd)
+	
+	# Reset the visuals
 	$Ready.show()
 	$GO.hide()
+	end_screen.hide()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,7 +49,7 @@ func _process(delta: float) -> void:
 		
 		# Increase camera speed according to the acceslleration
 		# TODO: Should we have a maximum speed?
-		camera_speed += delta*CAMERA_ACCELLERATION
+		camera_speed += delta*CAMERA_ACCELERATION
 		camera.position += Vector2(1,0)*delta*camera_speed
 
 func start():
@@ -81,6 +90,14 @@ func _process_correct_letter(stood_up_crowd_member:CrowdMember):
 	for crowd_row in non_typing_rows:
 		crowd_row.stand_up_at_global_pos_x(stood_up_crowd_member.position.x)
 
+func _process_loss():
+	if state != State.PLAYING:
+		return
+	
+	state = State.OVER
+	await get_tree().create_timer(1).timeout
+	end_screen.show()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if state != State.READY && state != State.PLAYING:
 		return
@@ -91,3 +108,14 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_blink_timer_timeout() -> void:
 	$GO.hide()
+
+
+func _on_typing_row_loss() -> void:
+	if state != State.PLAYING:
+		return
+	
+	_process_loss()
+
+
+func _on_retry_button_pressed() -> void:
+	reset(true)
