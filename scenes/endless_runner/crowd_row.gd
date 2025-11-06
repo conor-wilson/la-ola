@@ -1,5 +1,9 @@
 class_name CrowdRow extends Parallax2D
 
+# TODO: Clean this up before merging
+
+const GLOBAL_POS_X_TOLERANCE:float = 32
+
 @export var camera:Camera2D
 @export var first_member_offset:float
 
@@ -25,6 +29,13 @@ func reset():
 	for letter in range(0, num_crowd_members):
 		_spawn_new_crowd_member()
 
+func stand_up_at_global_pos_x(global_pos_x:float):
+	for child in get_children():
+		if (
+			child is CrowdMember && 
+			abs(child.global_position.x - global_pos_x+32) < GLOBAL_POS_X_TOLERANCE
+			):
+			child.stand_up()
 
 func _spawn_new_crowd_member() -> CrowdMember:
 	var new_crowd_member = crowd_member_scene.instantiate() as CrowdMember

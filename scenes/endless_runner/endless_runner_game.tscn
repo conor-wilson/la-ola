@@ -26,14 +26,14 @@ camera = NodePath("../../Camera2D")
 first_member_offset = 256.0
 num_crowd_members = 22
 
-[node name="CrowdRow7" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+[node name="CrowdRow8" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
 scroll_scale = Vector2(1, 1.538)
 scroll_offset = Vector2(0, 88)
 camera = NodePath("../../Camera2D")
 first_member_offset = 284.0
 num_crowd_members = 22
 
-[node name="CrowdRow8" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
+[node name="CrowdRow7" parent="CrowdRows" node_paths=PackedStringArray("camera") instance=ExtResource("3_cl8m1")]
 scroll_scale = Vector2(1, 1.538)
 scroll_offset = Vector2(0, 120)
 camera = NodePath("../../Camera2D")
@@ -94,7 +94,7 @@ texture = ExtResource("5_m6dsr")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 323)
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 10.0
 
 [node name="Ready" type="Label" parent="."]
 offset_right = 1152.0
