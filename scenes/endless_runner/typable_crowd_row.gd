@@ -1,5 +1,7 @@
 class_name TypableCrowdRow extends CrowdRow
 
+signal impossible_index
+
 @export var letter_queue:String
 
 var visible_crowd_members: Array[CrowdMember] = []
@@ -14,18 +16,19 @@ func reset():
 	next_crowd_member_index = 0
 	super.reset()
 
-func receive_typed_input(input:String) -> bool:
+func receive_typed_input(input:String) -> CrowdMember:
 	
-	if next_crowd_member_index >= len(visible_crowd_members):
+	if next_crowd_member_index >= len(visible_crowd_members) || next_crowd_member_index < 0:
 		print_debug("TypableCrowdRow: Attempted to stand-up a CrowdMember that is not visible. (next_crowd_member_index=", next_crowd_member_index, ")")
-		return false
+		impossible_index.emit() # TODO: Use this to recover the game
+		return null
 	
 	if input != visible_crowd_members[next_crowd_member_index].letter:
-		return false
+		return null
 	
 	visible_crowd_members[next_crowd_member_index].stand_up()
 	next_crowd_member_index += 1
-	return true
+	return visible_crowd_members[next_crowd_member_index]
 
 func _spawn_new_crowd_member():
 	var new_crowd_member:CrowdMember = super._spawn_new_crowd_member()

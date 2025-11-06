@@ -32,7 +32,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="StandupTimer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.5
 one_shot = true
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

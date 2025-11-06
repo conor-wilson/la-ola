@@ -39,7 +39,7 @@ func _process(delta: float) -> void:
 
 func stand_up():
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y + STANDING_DIFF), 0.1)
+	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y + STANDING_DIFF), 0.15)
 	
 	if camera.global_position.x < global_position.x:
 		camera.global_position.x = global_position.x
@@ -48,7 +48,7 @@ func stand_up():
 
 func sit_down():
 	var tween = create_tween()
-	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y), 0.1)
+	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y), 0.15)
 
 
 func _on_standup_timer_timeout() -> void:
