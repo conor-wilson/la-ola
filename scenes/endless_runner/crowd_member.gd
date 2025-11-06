@@ -30,12 +30,20 @@ func reset():
 
 
 func _process(delta: float) -> void:
-	if abs(camera.global_position.x - global_position.x) < 64:
-		stand_up()
+	
+	# NOTE: Uncomment if you want the crowd members in the middle of the screen to stand up
+	#if abs(camera.global_position.x - global_position.x) < 64:
+		#stand_up()
+	
+	pass
 
 func stand_up():
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y + STANDING_DIFF), 0.1)
+	
+	if camera.global_position.x < global_position.x:
+		camera.global_position.x = global_position.x
+	
 	standup_timer.start()
 
 func sit_down():
