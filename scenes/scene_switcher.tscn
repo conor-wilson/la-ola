@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c43u3na8uqkhj" path="res://scenes/scene_switcher.gd" id="1_6uhv1"]
 [ext_resource type="PackedScene" uid="uid://bklubkulutqyb" path="res://scenes/main.tscn" id="2_xn3vj"]
-[ext_resource type="PackedScene" uid="uid://cisneqfww647r" path="res://scenes/endless_runner/endless_runner_game.tscn" id="3_0bfbf"]
+[ext_resource type="PackedScene" uid="uid://cisneqfww647r" path="res://scenes/endless_runner/endless_runner_game_controller.tscn" id="3_0bfbf"]
 
 [node name="SceneSwitcher" type="Node2D"]
 script = ExtResource("1_6uhv1")
