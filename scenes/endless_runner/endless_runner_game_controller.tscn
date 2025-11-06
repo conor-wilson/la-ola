@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cisneqfww647r"]
+[gd_scene load_steps=4 format=3 uid="uid://cisneqfww647r"]
 
 [ext_resource type="Script" uid="uid://dqawqmt513ssa" path="res://scenes/endless_runner/endless_runner_game_controller.gd" id="1_qb58y"]
 [ext_resource type="PackedScene" uid="uid://cbsfelqtvbj2" path="res://scenes/endless_runner/endless_runner_screen_view.tscn" id="2_fgpf3"]
+[ext_resource type="PackedScene" uid="uid://btv8ja7btrtx7" path="res://scenes/input_system.tscn" id="3_od7i5"]
 
 [node name="EndlessRunnerGameController" type="Node2D"]
 script = ExtResource("1_qb58y")
@@ -9,5 +10,8 @@ sample_letter_queue = "According to all known laws of aviation, there is no way 
 
 [node name="ScreenView" parent="." instance=ExtResource("2_fgpf3")]
 
+[node name="InputSystem" parent="." instance=ExtResource("3_od7i5")]
+
 [connection signal="loss" from="ScreenView" to="." method="_on_screen_view_loss"]
 [connection signal="retry" from="ScreenView" to="." method="_on_screen_view_retry"]
+[connection signal="letter_input_received" from="InputSystem" to="." method="_on_input_system_letter_input_received"]

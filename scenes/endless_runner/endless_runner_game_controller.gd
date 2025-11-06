@@ -39,19 +39,6 @@ func start():
 	# Update the visuals
 	screen_view.start()
 
-func _process_key_input_event(event: InputEventKey) -> void:
-	if state != State.READY && state != State.PLAYING:
-		return
-	
-	# Cast the input to a string
-	var letter_input:String = PackedByteArray([event.unicode]).get_string_from_utf8()
-	
-	# Determine if it's the correct input
-	if letter_input == screen_view.get_next_letter():
-		_process_correct_letter()
-	#else:
-		#process_incorrect_letter(letter_input)
-
 func _process_correct_letter():
 	if state != State.READY && state != State.PLAYING:
 		return
@@ -71,13 +58,6 @@ func _process_loss():
 	await get_tree().create_timer(1).timeout
 	screen_view.show_end_popup()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if state != State.READY && state != State.PLAYING:
-		return
-	
-	if event.is_pressed() && event is InputEventKey:
-		_process_key_input_event(event)
-
 func _on_screen_view_loss() -> void:
 	if state != State.PLAYING:
 		return
@@ -86,3 +66,15 @@ func _on_screen_view_loss() -> void:
 
 func _on_screen_view_retry() -> void:
 	reset(true)
+
+
+func _on_input_system_letter_input_received(letter_input:String) -> void:
+	if state != State.READY && state != State.PLAYING:
+		return
+
+	# Determine if it's the correct input
+	if letter_input == screen_view.get_next_letter():
+		_process_correct_letter()
+	# TODO:
+	#else:
+		#process_incorrect_letter(letter_input)
