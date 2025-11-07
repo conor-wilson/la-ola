@@ -35,8 +35,4 @@ vertical_alignment = 1
 wait_time = 0.5
 one_shot = true
 
-[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-rect = Rect2(-24, -24, 48, 48)
-
 [connection signal="timeout" from="StandupTimer" to="." method="_on_standup_timer_timeout"]
-[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

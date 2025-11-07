@@ -70,7 +70,3 @@ func sit_down():
 ## Triggered when the StandupTimer times out.
 func _on_standup_timer_timeout() -> void:
 	sit_down()
-
-## Triggered when the Person exits the screen
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	exited_screen.emit(self)

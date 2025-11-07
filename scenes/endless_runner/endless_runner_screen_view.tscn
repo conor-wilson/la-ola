@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://yb6wwp4i6kd7" path="res://assets/StadiumLowerWall.png" id="4_ixoc1"]
 [ext_resource type="Texture2D" uid="uid://bhubk7qgbpjcc" path="res://assets/StadiumFrontRailings.png" id="5_lnw58"]
 [ext_resource type="Texture2D" uid="uid://24p8rwbj4rif" path="res://assets/StadiumPitch.png" id="6_2xeil"]
-[ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/endless_runner/endless_runner_row.tscn" id="7_lt3xr"]
+[ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/endless_runner/crowd.tscn" id="7_lt3xr"]
 
 [node name="EndlessRunnerScreenView" type="Node2D"]
 script = ExtResource("1_cdxfl")
@@ -63,62 +63,9 @@ repeat_size = Vector2(1152, 0)
 position = Vector2(1152, 324)
 texture = ExtResource("6_2xeil")
 
-[node name="BackgroundRows" type="Node2D" parent="."]
-
-[node name="CrowdRow9" parent="BackgroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 56)
-first_member_offset = 256.0
-num_crowd_members = 22
-
-[node name="CrowdRow8" parent="BackgroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 88)
+[node name="Crowd" parent="." instance=ExtResource("7_lt3xr")]
 first_member_offset = 284.0
-num_crowd_members = 22
-
-[node name="CrowdRow7" parent="BackgroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 120)
-first_member_offset = 256.0
-num_crowd_members = 22
-
-[node name="CrowdRow6" parent="BackgroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 152)
-first_member_offset = 284.0
-num_crowd_members = 22
-
-[node name="CrowdRow5" parent="BackgroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 184)
-first_member_offset = 256.0
-num_crowd_members = 22
-
-[node name="LetterRow" parent="." instance=ExtResource("7_lt3xr")]
-scroll_offset = Vector2(0, 216)
-first_member_offset = 284.0
-num_crowd_members = 22
-
-[node name="ForegroundRows" type="Node2D" parent="."]
-
-[node name="CrowdRow3" parent="ForegroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 248)
-first_member_offset = 256.0
-num_crowd_members = 22
-
-[node name="CrowdRow2" parent="ForegroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 280)
-first_member_offset = 284.0
-num_crowd_members = 22
-
-[node name="CrowdRow1" parent="ForegroundRows" instance=ExtResource("7_lt3xr")]
-scroll_scale = Vector2(1, 1.538)
-scroll_offset = Vector2(0, 312)
-first_member_offset = 256.0
-num_crowd_members = 22
+num_columns = 22
 
 [node name="ScrollingForeground" type="Node2D" parent="."]
 
@@ -130,13 +77,5 @@ repeat_size = Vector2(1152, 0)
 position = Vector2(1152, 324)
 texture = ExtResource("3_6cmjg")
 
-[connection signal="person_exited_screen" from="BackgroundRows/CrowdRow9" to="." method="_on_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="BackgroundRows/CrowdRow8" to="." method="_on_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="BackgroundRows/CrowdRow7" to="." method="_on_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="BackgroundRows/CrowdRow6" to="." method="_on_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="BackgroundRows/CrowdRow5" to="." method="_on_row_person_exited_screen"]
-[connection signal="new_person_spawned" from="LetterRow" to="." method="_on_letter_row_new_person_spawned"]
-[connection signal="person_exited_screen" from="LetterRow" to="." method="_on_letter_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="ForegroundRows/CrowdRow3" to="." method="_on_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="ForegroundRows/CrowdRow2" to="." method="_on_row_person_exited_screen"]
-[connection signal="person_exited_screen" from="ForegroundRows/CrowdRow1" to="." method="_on_row_person_exited_screen"]
+[connection signal="column_exited_screen" from="Crowd" to="." method="_on_crowd_column_exited_screen"]
+[connection signal="new_column_spawned" from="Crowd" to="." method="_on_crowd_new_column_spawned"]

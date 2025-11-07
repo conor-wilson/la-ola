@@ -1,22 +1,14 @@
-class_name EndlessRunnerScreenView extends ScreenView # TODO: Should this extend an "interface"?
+class_name EndlessRunnerScreenView extends ScreenView
 
+const LETTER_ROW_INDEX:int = 5
 const STARTING_CAMERA_SPEED:float = 200
 const CAMERA_ACCELERATION:float = 5
 
-@onready var letter_row: EndlessRunnerRow = $LetterRow
-@onready var non_letter_rows: Array[EndlessRunnerRow] = [
-	$BackgroundRows/CrowdRow9, 
-	$BackgroundRows/CrowdRow8, 
-	$BackgroundRows/CrowdRow7, 
-	$BackgroundRows/CrowdRow6, 
-	$BackgroundRows/CrowdRow5,
-	$ForegroundRows/CrowdRow3, 
-	$ForegroundRows/CrowdRow2, 
-	$ForegroundRows/CrowdRow1,
-]
+@onready var crowd: Crowd = $Crowd
 
 # TODO: Maybe this belongs in the game controller?
 var letter_queue:String
+var wave_column_queue:Array[CrowdColumn] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,11 +22,10 @@ func reset() -> void:
 	
 	# TODO: Fix the reset mechanic when restarting the game
 	
-	# Reset the people
-	#letter_queue = new_letter_queue
-	letter_row.reset()
+	# Reset the crowd
+	wave_column_queue = []
+	crowd.reset()
 	
-	# Reset the camera
 	super.reset()
 
 func start() -> void:
@@ -42,18 +33,15 @@ func start() -> void:
 	game_camera.start_auto_scrolling(Vector2.RIGHT, STARTING_CAMERA_SPEED, CAMERA_ACCELERATION)
 
 func get_next_person_in_wave() -> Person:
-	return letter_row.get_next_person_in_wave()
+	return wave_column_queue[0].get_person_at_index(LETTER_ROW_INDEX)
 
 func advance_wave():
 	
 	# TODO: Protect against the off chance that one of the rows could go out-of-sync?
 	
-	# Acquire the next person and make them stand
-	letter_row.stand_up_next_person_in_wave()
+	# Acquire the next column and make them stand
+	wave_column_queue.pop_front().stand_up()
 	
-	# Stand up all the people in line with that person
-	for crowd_row in non_letter_rows:
-		crowd_row.stand_up_next_person_in_wave()
 
 func _pop_letter_from_queue() -> String:
 	
@@ -65,19 +53,21 @@ func _pop_letter_from_queue() -> String:
 	return letter
 
 
-func _on_letter_row_new_person_spawned(person:Person) -> void:
+func _on_crowd_new_column_spawned(column:CrowdColumn) -> void:
 	
-	# Setup the new Person's sign visuals
-	person.has_sign = true
-	person.letter = _pop_letter_from_queue()
-	person.reset()
+	# Setup the new Column's sign visuals
+	column.get_person_at_index(LETTER_ROW_INDEX).give_letter(_pop_letter_from_queue())
+	
+	# Append to the wave queue
+	wave_column_queue.append(column)
 
-func _on_letter_row_person_exited_screen(EndlessRunnerRow, person:Person) -> void:
-	if person == letter_row.get_next_person_in_wave():
+func _on_crowd_column_exited_screen(column:CrowdColumn) -> void:
+	
+	# Check for loss
+	if column == wave_column_queue[0]:
 		game_camera.stop_auto_scrolling() # TODO: Should this be somewhere else?
 		loss.emit()
-	_on_row_person_exited_screen(letter_row, person)
-
-func _on_row_person_exited_screen(row:EndlessRunnerRow, person:Person) -> void:
-	person.queue_free()
-	row.spawn_new_crowd_member()
+	
+	# Shift the crowd over by one
+	column.queue_free()
+	crowd.spawn_new_column()
