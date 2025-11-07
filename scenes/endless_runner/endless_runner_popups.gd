@@ -1,4 +1,4 @@
-class_name EndlessRunnerPopups extends CanvasLayer
+class_name EndlessRunnerPopups extends Popups
 
 signal retry
 
