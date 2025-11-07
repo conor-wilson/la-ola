@@ -1,6 +1,4 @@
-class_name EndlessRunnerScreenView extends Node2D # TODO: Should this extend an "interface"?
-
-signal loss
+class_name EndlessRunnerScreenView extends ScreenView # TODO: Should this extend an "interface"?
 
 const STARTING_CAMERA_SPEED:float = 200
 const CAMERA_ACCELERATION:float = 5
@@ -16,40 +14,37 @@ const CAMERA_ACCELERATION:float = 5
 	$ForegroundRows/CrowdRow2, 
 	$ForegroundRows/CrowdRow1,
 ]
-@export var game_camera: GameCamera
 
 # TODO: Maybe this belongs in the game controller?
 var letter_queue:String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	reset("", false)
+	reset()
 
-func reset(new_letter_queue:String, reuse_existing_crowd:bool = false) -> void:
+func fill_row_with_letters(new_letter_queue:String) -> void:
+	letter_queue = new_letter_queue
+	reset()
+
+func reset() -> void:
 	
 	# TODO: Fix the reset mechanic when restarting the game
 	
 	# Reset the people
-	letter_queue = new_letter_queue
+	#letter_queue = new_letter_queue
 	letter_row.reset()
 	
 	# Reset the camera
-	game_camera.stop_auto_scrolling()
-
-#func move_camera(delta:float) -> void:
-	## Increase camera speed according to the acceslleration
-	## TODO: Should we have a maximum speed?
-	#camera_speed += delta*CAMERA_ACCELERATION
-	#camera.position += Vector2(1,0)*delta*camera_speed
+	super.reset()
 
 func start() -> void:
 	# Update the camera
 	game_camera.start_auto_scrolling(Vector2.RIGHT, STARTING_CAMERA_SPEED, CAMERA_ACCELERATION)
 
-func get_next_letter() -> String:
-	return letter_row.get_next_person_in_wave().letter
+func get_next_person_in_wave() -> CrowdMember:
+	return letter_row.get_next_person_in_wave()
 
-func stand_up_next_person_column():
+func advance_wave():
 	
 	# TODO: Protect against the off chance that one of the rows could go out-of-sync?
 	
