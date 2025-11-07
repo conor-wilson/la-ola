@@ -41,7 +41,7 @@ func start() -> void:
 	# Update the camera
 	game_camera.start_auto_scrolling(Vector2.RIGHT, STARTING_CAMERA_SPEED, CAMERA_ACCELERATION)
 
-func get_next_person_in_wave() -> CrowdMember:
+func get_next_person_in_wave() -> Person:
 	return letter_row.get_next_person_in_wave()
 
 func advance_wave():
@@ -65,19 +65,19 @@ func _pop_letter_from_queue() -> String:
 	return letter
 
 
-func _on_letter_row_new_person_spawned(person:CrowdMember) -> void:
+func _on_letter_row_new_person_spawned(person:Person) -> void:
 	
-	# Setup the new CrowdMember's sign visuals
+	# Setup the new Person's sign visuals
 	person.has_sign = true
 	person.letter = _pop_letter_from_queue()
 	person.reset()
 
-func _on_letter_row_person_exited_screen(EndlessRunnerRow, person:CrowdMember) -> void:
+func _on_letter_row_person_exited_screen(EndlessRunnerRow, person:Person) -> void:
 	if person == letter_row.get_next_person_in_wave():
 		game_camera.stop_auto_scrolling() # TODO: Should this be somewhere else?
 		loss.emit()
 	_on_row_person_exited_screen(letter_row, person)
 
-func _on_row_person_exited_screen(row:EndlessRunnerRow, person:CrowdMember) -> void:
+func _on_row_person_exited_screen(row:EndlessRunnerRow, person:Person) -> void:
 	person.queue_free()
 	row.spawn_new_crowd_member()

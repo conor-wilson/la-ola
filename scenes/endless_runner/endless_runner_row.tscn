@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b4jfm050tml0n"]
 
 [ext_resource type="Script" uid="uid://bq81ey38r328m" path="res://scenes/endless_runner/endless_runner_row.gd" id="1_6gdmw"]
-[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/endless_runner/crowd_member.tscn" id="2_bn5yl"]
+[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/endless_runner/person.tscn" id="2_bn5yl"]
 
 [node name="EndlessRunnerRow" type="Parallax2D"]
 script = ExtResource("1_6gdmw")

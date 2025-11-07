@@ -16,7 +16,7 @@ func start() -> void:
 	print_debug("start() function is unimplemented")
 	pass
 
-func get_next_person_in_wave() -> CrowdMember:
+func get_next_person_in_wave() -> Person:
 	# TODO: Maybe there's a good generic way to implement this?
 	print_debug("get_next_person_in_wave() function is unimplemented")
 	return null

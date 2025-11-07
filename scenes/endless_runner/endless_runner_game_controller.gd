@@ -13,7 +13,7 @@ func _process_letter_input(letter_input:String):
 		return
 	
 	# Determine if it's the correct input
-	var next_person:CrowdMember = screen_view.get_next_person_in_wave()
+	var next_person:Person = screen_view.get_next_person_in_wave()
 	if next_person == null:
 		push_error("ScreenView.get_next_person_in_wave() returned a null person")
 	if letter_input != next_person.letter:
