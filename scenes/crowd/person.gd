@@ -7,9 +7,12 @@ class_name Person extends Node2D
 @export var has_sign:bool = false
 @export var letter:String = ""
 @export var camera:Camera2D
+@export var peopleSprites:Array[Texture2D] = []
+@export var sprite2d:Sprite2D
 
 var sitting_pos_y:float
 const STANDING_DIFF:float = -16
+var rng = RandomNumberGenerator.new()
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -22,10 +25,15 @@ func _setup():
 	sitting_pos_y = position.y
 	
 	# Set up the visuals
+	_set_random_sprite()
 	if has_sign:
 		give_letter(letter)
 	else:
 		remove_sign()
+		
+func _set_random_sprite():
+	var randomIndex = rng.randi_range(0, len(peopleSprites) - 1) #0-base
+	sprite2d.texture = peopleSprites[randomIndex]
 
 ## Gives the Person a sign holding the provided letter.
 func give_letter(new_letter:String) -> void:
