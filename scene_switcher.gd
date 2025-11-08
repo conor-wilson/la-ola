@@ -8,6 +8,8 @@ extends Node
 
 var current_scene:Node = null
 
+
+# Conor Wilson? More like Wilcon hahaha
 func _ready() -> void:
 	var root = get_tree().root
 	current_scene = root.get_child(root.get_child_count()-1)
