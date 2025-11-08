@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://def43p88jt0ty"]
-
-[ext_resource type="Script" uid="uid://bt6s23qnkrrr0" path="res://pocs/mexican_wave_game/old_crowd_line.gd" id="1_u82pk"]
-[ext_resource type="PackedScene" uid="uid://carguwelo5gat" path="res://pocs/mexican_wave_game/old_crowd_member.tscn" id="2_weqys"]
-
-[node name="OldCrowdLine" type="Node2D"]
-script = ExtResource("1_u82pk")
-crowd_member_scene = ExtResource("2_weqys")
