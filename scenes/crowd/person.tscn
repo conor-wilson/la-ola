@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://tes5qvvjxl1f"]
 
-[ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://scenes/endless_runner/person.gd" id="1_31ckc"]
+[ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://scenes/crowd/person.gd" id="1_31ckc"]
 [ext_resource type="Texture2D" uid="uid://da3hlf8u7y4em" path="res://icon.svg" id="2_1ml0p"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7wum"]

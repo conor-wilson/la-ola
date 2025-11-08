@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbc2qny7183bf"]
 
-[ext_resource type="Script" uid="uid://bvf1boyqq7pm5" path="res://scenes/endless_runner/crowd_column.gd" id="1_fyjm1"]
-[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/endless_runner/person.tscn" id="2_g1iyf"]
+[ext_resource type="Script" uid="uid://bvf1boyqq7pm5" path="res://scenes/crowd/crowd_column.gd" id="1_fyjm1"]
+[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/crowd/person.tscn" id="2_g1iyf"]
 
 [node name="CrowdColumn" type="Node2D"]
 script = ExtResource("1_fyjm1")

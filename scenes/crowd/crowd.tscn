@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4jfm050tml0n"]
+
+[ext_resource type="Script" uid="uid://bq81ey38r328m" path="res://scenes/crowd/crowd.gd" id="1_axrbu"]
+[ext_resource type="PackedScene" uid="uid://bbc2qny7183bf" path="res://scenes/crowd/crowd_column.tscn" id="2_axrbu"]
+
+[node name="Crowd" type="Node2D"]
+script = ExtResource("1_axrbu")
+crowd_column_scene = ExtResource("2_axrbu")

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://cisneqfww647r" path="res://scenes/endless_runner/endless_runner_game_controller.tscn" id="1_q7adk"]
 [ext_resource type="PackedScene" uid="uid://cbsfelqtvbj2" path="res://scenes/endless_runner/endless_runner_screen_view.tscn" id="2_8vx36"]
-[ext_resource type="PackedScene" uid="uid://btv8ja7btrtx7" path="res://scenes/input_system.tscn" id="2_46c3i"]
+[ext_resource type="PackedScene" uid="uid://btv8ja7btrtx7" path="res://scenes/input/input_system.tscn" id="2_46c3i"]
 [ext_resource type="PackedScene" uid="uid://ogocgp6mobke" path="res://scenes/endless_runner/endless_runner_popups.tscn" id="3_46c3i"]
-[ext_resource type="PackedScene" uid="uid://bn7hl6e1ussx0" path="res://scenes/game_camera.tscn" id="4_04xik"]
+[ext_resource type="PackedScene" uid="uid://bn7hl6e1ussx0" path="res://scenes/camera/game_camera.tscn" id="4_04xik"]
 
 [node name="EndlessRunnerGame" type="Node2D"]
 

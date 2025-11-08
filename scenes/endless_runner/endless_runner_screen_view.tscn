@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://yb6wwp4i6kd7" path="res://assets/StadiumLowerWall.png" id="4_ixoc1"]
 [ext_resource type="Texture2D" uid="uid://bhubk7qgbpjcc" path="res://assets/StadiumFrontRailings.png" id="5_lnw58"]
 [ext_resource type="Texture2D" uid="uid://24p8rwbj4rif" path="res://assets/StadiumPitch.png" id="6_2xeil"]
-[ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/endless_runner/crowd.tscn" id="7_lt3xr"]
+[ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="7_lt3xr"]
 
 [node name="EndlessRunnerScreenView" type="Node2D"]
 script = ExtResource("1_cdxfl")
