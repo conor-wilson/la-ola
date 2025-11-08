@@ -70,7 +70,11 @@ func advance_wave():
 	
 	# Snap the camera if required
 	if next_column.global_position.x - game_camera.global_position.x > CAMERA_SNAP_THRESHOLD:
-		game_camera.global_position.x = next_column.global_position.x - CAMERA_SNAP_THRESHOLD
+		var new_camera_global_pos := Vector2(
+			next_column.global_position.x - CAMERA_SNAP_THRESHOLD,
+			game_camera.global_position.y
+		)
+		game_camera.snap_to(new_camera_global_pos)
 
 ## Pops the first letter from the letter queue. Returns an empty string if there
 ## are no more letters in the queue.

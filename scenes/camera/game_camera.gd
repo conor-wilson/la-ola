@@ -29,8 +29,8 @@ func start_auto_scrolling(direction:Vector2, starting_speed:float, accelleration
 func stop_auto_scrolling():
 	_auto_scrolling = false
 
-## Immediately moves the camera to the specified new position
-func move_to(new_pos:Vector2) -> void:
+## Immediately snaps the camera to the specified new position
+func snap_to(new_pos:Vector2) -> void:
 	position = new_pos
 
 ## Calculates new speed based on accelleration and delta time, and updates
