@@ -12,10 +12,10 @@ func _process(delta: float) -> void:
 		return
 	
 	if movement_accelleration != 0:
-		_calculate_new_speed(delta)
+		_update_speed(delta)
 	
 	if movement_speed != 0 && movement_direction != Vector2.ZERO:
-		_apply_speed(delta)
+		_move(delta)
 
 ## Starts auto-scrolling the camera at the specified direction and speed with
 ## optional accelleration.
@@ -35,10 +35,9 @@ func move_to(new_pos:Vector2) -> void:
 
 ## Calculates new speed based on accelleration and delta time, and updates
 ## accordingly.
-func _calculate_new_speed(delta:float):
+func _update_speed(delta:float):
 	movement_speed += movement_accelleration*delta
 
-## Calculates new position based on speed and delta time, and moves the camera
-## accordingly.
-func _apply_speed(delta:float):
+## Moves the camera's position based on speed and delta time.
+func _move(delta:float):
 	position += movement_direction.normalized()*delta*movement_speed
