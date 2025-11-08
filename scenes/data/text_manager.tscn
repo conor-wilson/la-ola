@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh016vbs6vjbs"]
+
+[ext_resource type="Script" uid="uid://chtbaofn1exvj" path="res://scenes/data/text_manager.gd" id="1_1oojv"]
+
+[node name="TextManager" type="Node2D"]
+script = ExtResource("1_1oojv")

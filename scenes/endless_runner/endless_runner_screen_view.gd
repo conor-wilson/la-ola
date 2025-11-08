@@ -1,5 +1,7 @@
 class_name EndlessRunnerScreenView extends ScreenView
 
+@export var _text_manager:TextManager
+
 @export var _letter_row_index:int = 5
 @export var _first_letter_column_index:int = 4
 @export var _starting_camera_speed:float = 200
@@ -14,7 +16,8 @@ class_name EndlessRunnerScreenView extends ScreenView
 @onready var _crowd: Crowd = $Crowd
 
 # TODO: Maybe this belongs in the game controller?
-var _letter_queue:String
+#var _letter_queue:String
+var _next_rendered_char_index:int = 0
 var _wave_column_queue:Array[CrowdColumn] = []
 
 ## Called when the node enters the scene tree for the first time.
@@ -24,10 +27,14 @@ func _ready() -> void:
 ## Populates the crowd with the provided letters. Here, it fills the letter row
 ## with the first few letters (a number equal to the number of crowd members), 
 ## and adds the rest of the letters to the letter queue.
-func populate_letters(new_letter_queue:String) -> void:
-	_letter_queue = new_letter_queue
-	for column in _wave_column_queue:
-		column.get_person_at_index(_letter_row_index).give_letter(_pop_letter_from_queue())
+func _fill_crowd_with_text(from_column:int = 0) -> void:
+	_next_rendered_char_index = 0
+	for i in range(from_column, len(_wave_column_queue)):
+		_render_char_in_column(_wave_column_queue[i])
+
+func _render_char_in_column(column:CrowdColumn):
+	column.get_person_at_index(_letter_row_index).give_letter(_text_manager.get_char(_next_rendered_char_index))
+	_next_rendered_char_index += 1
 
 ## Resets the game visuals to the very beginning state. Does not reuse any
 ## existing visual components (eg: deletes any existing crowd members instead of
@@ -38,15 +45,22 @@ func reset() -> void:
 	_wave_column_queue = []
 	_crowd.reset()
 	
+	# Reset the letters
+	_fill_crowd_with_text(0)
 	super.reset()
 
 ## Restarts the game visuals, reusing any existing visual components (eg: reuses
 ## existing crowd members)
 func restart() -> void:
+	
+	# Reset the crowd
 	var all_columns:Array[CrowdColumn] = _crowd.get_sorted_columns()
 	for column in all_columns:
 		column.reset()
 	_wave_column_queue = all_columns.slice(_first_letter_column_index, all_columns.size())
+	
+	# Reset the letters
+	_fill_crowd_with_text(_first_letter_column_index)
 
 ## Starts the game visuals.
 func start() -> void:
@@ -75,16 +89,16 @@ func advance_wave():
 		)
 		game_camera.snap_to(new_camera_global_pos)
 
-## Pops the first letter from the letter queue. Returns an empty string if there
-## are no more letters in the queue.
-func _pop_letter_from_queue() -> String:
-	
-	if len(_letter_queue) == 0:
-		return ""
-	
-	var letter:String = _letter_queue[0]
-	_letter_queue = _letter_queue.substr(1)
-	return letter
+### Pops the first letter from the letter queue. Returns an empty string if there
+### are no more letters in the queue.
+#func _pop_letter_from_queue() -> String:
+	#
+	#if len(_letter_queue) == 0:
+		#return ""
+	#
+	#var letter:String = _letter_queue[0]
+	#_letter_queue = _letter_queue.substr(1)
+	#return letter
 
 ## Returns the Camera threshold as a number of pixels. If the wave gets that many pixels to the
 ## right of the centre of the screen, we snap the camera to catch up.
@@ -95,7 +109,7 @@ func _camera_snap_threshold() -> float:
 func _on_crowd_new_column_spawned(column:CrowdColumn) -> void:
 	
 	# Setup the new Column's sign visuals
-	column.get_person_at_index(_letter_row_index).give_letter(_pop_letter_from_queue())
+	_render_char_in_column(column)
 	
 	# Append to the wave queue
 	_wave_column_queue.append(column)

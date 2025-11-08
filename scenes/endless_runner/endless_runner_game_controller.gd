@@ -1,19 +1,19 @@
 class_name EndlessRunnerGameController extends GameController
 
-# TODO: Remove this whene we have letter-generation
-@export var _sample_letter_queue:String = ""
+## TODO: Remove this whene we have letter-generation
+#@export var _sample_letter_queue:String = ""
 
-## Resets the game to the very beginning state. Does not reuse any existing
-## visuals (eg: deletes any existing crowd members instead of reusing them).
-func _reset():
-	super._reset()
-	_screen_view.populate_letters(_sample_letter_queue)
-
-## Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
-## members)
-func _restart() -> void:
-	super._restart()
-	_screen_view.populate_letters(_sample_letter_queue)
+### Resets the game to the very beginning state. Does not reuse any existing
+### visuals (eg: deletes any existing crowd members instead of reusing them).
+#func _reset():
+	#super._reset()
+	##_screen_view.populate_letters(_sample_letter_queue)
+#
+### Restarts the game, reusing any existing visuals (eg: reuses existing crowd 
+### members)
+#func _restart() -> void:
+	#super._restart()
+	##_screen_view.populate_letters(_sample_letter_queue)
 
 ## Handles what happens when the game receives a letter input.
 func _process_letter_input(letter_input:String):

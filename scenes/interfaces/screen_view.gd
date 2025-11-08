@@ -27,11 +27,6 @@ func restart() -> void:
 @abstract
 func start() -> void
 
-## Populates the crowd with the provided letters (whatever that might mean for 
-## this game mode)
-@abstract
-func populate_letters(new_letters:String)
-
 ## Returns the central person in the next column of the wave.
 @abstract
 func get_next_person_in_wave() -> Person
