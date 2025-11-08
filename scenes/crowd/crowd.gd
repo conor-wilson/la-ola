@@ -8,7 +8,7 @@ const GLOBAL_POS_X_TOLERANCE:float = 32
 
 @export var first_member_offset:float
 @export var crowd_column_scene:PackedScene
-@export var spacing_between_crowd_columns:int = 48+8
+@export var spacing_between_crowd_columns:int = 54+8
 @export var num_columns:int = 5
 
 # TODO: The spawn_buffer is a bit of a jankey solution and is essentially the 
