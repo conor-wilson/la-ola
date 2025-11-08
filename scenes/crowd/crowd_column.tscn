@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbc2qny7183bf"]
+
+[ext_resource type="Script" uid="uid://bvf1boyqq7pm5" path="res://scenes/crowd/crowd_column.gd" id="1_fyjm1"]
+[ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/crowd/person.tscn" id="2_g1iyf"]
+
+[node name="CrowdColumn" type="Node2D"]
+script = ExtResource("1_fyjm1")
+
+[node name="People" type="Node2D" parent="."]
+
+[node name="Person0" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(0, 56)
+has_sign = true
+
+[node name="Person1" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(24, 88)
+has_sign = true
+
+[node name="Person2" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(0, 120)
+has_sign = true
+
+[node name="Person3" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(24, 152)
+has_sign = true
+
+[node name="Person4" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(0, 184)
+has_sign = true
+
+[node name="Person5" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(24, 216)
+has_sign = true
+
+[node name="Person6" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(0, 248)
+has_sign = true
+
+[node name="Person7" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(24, 280)
+has_sign = true
+
+[node name="Person8" parent="People" instance=ExtResource("2_g1iyf")]
+position = Vector2(0, 312)
+has_sign = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 56)
+rect = Rect2(-24, -24, 72, 304)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

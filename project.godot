@@ -17,11 +17,17 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-SceneSwitcher="*res://scene_switcher.tscn"
+SceneSwitcher="*res://scenes/scene_switcher.tscn"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[layer_names]
+
+2d_physics/layer_1="Terrain"
+2d_physics/layer_2="CrowdMembers"
+2d_physics/layer_3="TriggerZones"
 
 [rendering]
 

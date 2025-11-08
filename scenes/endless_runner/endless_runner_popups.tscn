@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://ogocgp6mobke"]
+
+[ext_resource type="Script" uid="uid://cubpfrr44642v" path="res://scenes/endless_runner/endless_runner_popups.gd" id="1_sqbng"]
+[ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="2_yywdt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sqbng"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_onapr"]
+font_size = 64
+
+[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("_go_screen", "_go_screen_hide_timer", "_ready_screen", "_hud", "_game_over_menu")]
+script = ExtResource("1_sqbng")
+_go_screen = NodePath("GoScreen")
+_go_screen_hide_timer = NodePath("GoScreen/HideTimer")
+_ready_screen = NodePath("ReadyScreen")
+_hud = NodePath("HUD")
+_game_over_menu = NodePath("GameOverMenu")
+
+[node name="ReadyScreen" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "READY...."
+label_settings = SubResource("LabelSettings_sqbng")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GoScreen" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+text = "GO!!!"
+label_settings = SubResource("LabelSettings_sqbng")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HideTimer" type="Timer" parent="GoScreen"]
+wait_time = 0.5
+one_shot = true
+
+[node name="HUD" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+label_settings = SubResource("LabelSettings_sqbng")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOverMenu" type="ColorRect" parent="." node_paths=PackedStringArray("_retry_button")]
+offset_left = 232.0
+offset_top = 128.0
+offset_right = 848.0
+offset_bottom = 504.0
+color = Color(0, 1, 1, 1)
+script = ExtResource("2_yywdt")
+_retry_button = NodePath("CenterContainer/VBoxContainer/RetryButton")
+
+[node name="CenterContainer" type="CenterContainer" parent="GameOverMenu"]
+layout_mode = 0
+offset_right = 616.0
+offset_bottom = 376.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOverMenu/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOverMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_onapr")
+
+[node name="RetryButton" type="Button" parent="GameOverMenu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+
+[connection signal="timeout" from="GoScreen/HideTimer" to="." method="_on_screen_text_hide_timer_timeout"]
