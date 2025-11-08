@@ -1,16 +1,16 @@
 class_name EndlessRunnerScreenView extends ScreenView
 
-const LETTER_ROW_INDEX:int = 5
-const FIRST_LETTER_COLUMN_INDEX:int = 4
-const STARTING_CAMERA_SPEED:float = 200
-const CAMERA_ACCELERATION:float = 5
+@export var _letter_row_index:int = 5
+@export var _first_letter_column_index:int = 4
+@export var _starting_camera_speed:float = 200
+@export var _camera_acceleration:float = 5
 
 ## If the wave gets to this many pixels to the right of the centre of the 
 ## screen, we snap the camera to catch up.
 # TODO: Play around with this value
 # TODO: Remove this feature to simulate the user going REALLY fast, and insure 
 # the game doesn't completely break when the player gets past the screen.
-const CAMERA_SNAP_THRESHOLD:int = 384
+@export var _camera_snap_threshold:int = 384
 
 @onready var crowd: Crowd = $Crowd
 
@@ -28,7 +28,7 @@ func _ready() -> void:
 func populate_letters(new_letter_queue:String) -> void:
 	letter_queue = new_letter_queue
 	for column in wave_column_queue:
-		column.get_person_at_index(LETTER_ROW_INDEX).give_letter(_pop_letter_from_queue())
+		column.get_person_at_index(_letter_row_index).give_letter(_pop_letter_from_queue())
 
 ## Resets the game visuals to the very beginning state. Does not reuse any
 ## existing visual components (eg: deletes any existing crowd members instead of
@@ -47,12 +47,12 @@ func restart() -> void:
 	var all_columns:Array[CrowdColumn] = crowd.get_sorted_columns()
 	for column in all_columns:
 		column.reset()
-	wave_column_queue = all_columns.slice(FIRST_LETTER_COLUMN_INDEX, all_columns.size())
+	wave_column_queue = all_columns.slice(_first_letter_column_index, all_columns.size())
 
 ## Starts the game visuals.
 func start() -> void:
 	# Update the camera
-	game_camera.start_auto_scrolling(Vector2.RIGHT, STARTING_CAMERA_SPEED, CAMERA_ACCELERATION)
+	game_camera.start_auto_scrolling(Vector2.RIGHT, _starting_camera_speed, _camera_acceleration)
 
 ## Returns the letter-holding person in the next column of the wave.
 func get_next_person_in_wave() -> Person:
@@ -61,7 +61,7 @@ func get_next_person_in_wave() -> Person:
 		push_error("No columns left in the wave column queue")
 		return null
 	
-	return wave_column_queue[0].get_person_at_index(LETTER_ROW_INDEX)
+	return wave_column_queue[0].get_person_at_index(_letter_row_index)
 
 ## Advances the wave by one column.
 func advance_wave():
@@ -69,9 +69,9 @@ func advance_wave():
 	next_column.stand_up()
 	
 	# Snap the camera if required
-	if next_column.global_position.x - game_camera.global_position.x > CAMERA_SNAP_THRESHOLD:
+	if next_column.global_position.x - game_camera.global_position.x > _camera_snap_threshold:
 		var new_camera_global_pos := Vector2(
-			next_column.global_position.x - CAMERA_SNAP_THRESHOLD,
+			next_column.global_position.x - _camera_snap_threshold,
 			game_camera.global_position.y
 		)
 		game_camera.snap_to(new_camera_global_pos)
@@ -91,7 +91,7 @@ func _pop_letter_from_queue() -> String:
 func _on_crowd_new_column_spawned(column:CrowdColumn) -> void:
 	
 	# Setup the new Column's sign visuals
-	column.get_person_at_index(LETTER_ROW_INDEX).give_letter(_pop_letter_from_queue())
+	column.get_person_at_index(_letter_row_index).give_letter(_pop_letter_from_queue())
 	
 	# Append to the wave queue
 	wave_column_queue.append(column)
