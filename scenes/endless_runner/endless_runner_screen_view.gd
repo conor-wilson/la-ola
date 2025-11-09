@@ -79,9 +79,7 @@ func get_crowd_column_ids(from_index:int = 0) -> Array[int]:
 	return _crowd.get_column_ids()
 
 func stand_up_column(column_id:int) -> void:
-	print("YO!!")
 	var column := _crowd.get_column_with_id(column_id)
-	print(column)
 	column.stand_up()
 
 ### Returns the central person in the next column of the wave.
