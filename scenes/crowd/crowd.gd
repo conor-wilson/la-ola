@@ -1,7 +1,7 @@
 class_name Crowd extends Node2D
 
-signal new_column_spawned(CrowdColumn)
-signal column_exited_screen(CrowdColumn)
+signal new_column_spawned(int)
+signal column_exited_screen(int)
 
 # TODO: Reintroduce this functionality?
 const GLOBAL_POS_X_TOLERANCE:float = 32
@@ -39,6 +39,12 @@ func reset():
 	for i in range(0, num_columns):
 		spawn_new_column()
 
+## Returns the array of column IDs currently in the crowd. Optionally, the IDs
+## are returned sorted from the left to the right of the screen.
+func get_column_ids(sort_left_to_right:bool = false) -> Array[int]:
+	# TODO: Implement sorting option
+	return _column_pool.get_columns().keys()
+
 ## Spawns a new column to the right of the existing columns. Uses spawn_buffer 
 ## to keep track of where the next column should be.
 func spawn_new_column() -> void:
@@ -49,34 +55,19 @@ func spawn_new_column() -> void:
 	if new_column.get_parent() != self:
 		add_child(new_column)
 		new_column.exited_screen.connect(_on_crowd_column_exited_screen)
-	move_child(new_column, 0)
 	
-	# Move the column to the right position
+	# Spawn the column to the right position
+	move_child(new_column, 0)
 	new_column.spawn(Vector2(spawn_buffer, 0))
 	spawn_buffer += spacing_between_crowd_columns
 	
-	# Signal that 
-	new_column_spawned.emit(new_column)
-
-
-## Returns the existing crowd columns as a sorted array (from the left of the
-## screen to the right of the screen).
-##
-## NOTE: This is quite a heavy computation, but it's only really used for
-## resetting things. If we end up using it a lot, let's look into storing the
-## columns in an array (although that brings with it its own challenges). 
-func get_sorted_columns() -> Array[CrowdColumn]:
-	var columns:Array[CrowdColumn] = []
-	for child in get_children():
-		if child is CrowdColumn:
-			columns.append(child)
-	
-	columns.sort_custom(_sort_columns_func)
-	return columns
-
-func _sort_columns_func(a:CrowdColumn, b:CrowdColumn) -> bool:
-	return a.position.x < b.position.x
+	# Signal that the new column has been spawned
+	new_column_spawned.emit(new_column.get_instance_id())
 
 ## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column:CrowdColumn):
-	column_exited_screen.emit(column)
+	column_exited_screen.emit(column.get_instance_id())
+
+## Returns the column from the crowd with the provided ID.
+func get_column_with_id(column_id:int) -> CrowdColumn:
+	return _column_pool.get_crowd_column_with_id(column_id)

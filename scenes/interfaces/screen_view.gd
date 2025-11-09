@@ -3,8 +3,8 @@ class_name ScreenView
 extends Node
 
 signal loss
-signal new_column_spawned(CrowdColumn)
-signal existing_column_despawned(CrowdColumn)
+signal new_column_spawned(int)
+signal existing_column_despawned(int)
 
 @export var game_camera: GameCamera
 
@@ -34,10 +34,10 @@ func start() -> void
 func stop() -> void
 
 @abstract
-func check_for_camera_snap(column:CrowdColumn) -> void
+func check_for_camera_snap(column_id:int) -> void
 
 @abstract
-func get_crowd_columns(from_index:int = 0) -> Array[CrowdColumn]
+func get_crowd_column_ids(from_index:int = 0) -> Array[int]
 
 ### Returns the central person in the next column of the wave.
 #@abstract

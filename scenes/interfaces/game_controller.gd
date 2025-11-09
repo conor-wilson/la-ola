@@ -110,24 +110,24 @@ func _on_input_system_letter_input_received(letter_input:String) -> void:
 	#_process_game_over()
 
 ## Triggered when the ScreenView signals that a new column has spawned.
-func _on_screen_view_new_column_spawned(new_column:CrowdColumn) -> void:
+func _on_screen_view_new_column_spawned(new_column_id:int) -> void:
 	#if _state != State.PLAYING:
 		#return
-	_process_new_column_spawned(new_column)
+	_process_new_column_spawned(new_column_id)
 
 ## Triggered when the ScreenView signals that an existing column has despawned.
-func _on_screen_view_existing_column_spawned(column:CrowdColumn) -> void:
+func _on_screen_view_existing_column_spawned(column_id:int) -> void:
 	#if _state != State.PLAYING:
 		#return
-	_process_existing_column_despawned(column)
+	_process_existing_column_despawned(column_id)
 
 ## Handles what happens when a new column spawns.
 @abstract
-func _process_new_column_spawned(new_column:CrowdColumn) -> void
+func _process_new_column_spawned(new_column_id:int) -> void
 
 ## Handles what happens when an existing column desspawns.
 @abstract
-func _process_existing_column_despawned(column:CrowdColumn) -> void
+func _process_existing_column_despawned(column_id:int) -> void
 
 ## Handles what happens when the game receives a letter input.
 @abstract
