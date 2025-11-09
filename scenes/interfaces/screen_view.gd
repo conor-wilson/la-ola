@@ -2,16 +2,21 @@
 class_name ScreenView
 extends Node
 
+# TODO: Basically this whole layer of abstraction should be reviewed at some
+# point. What should be in here, and what should be in the implementations of
+# this? I think this will be much clearer if and when we start doing a second
+# game mode.
+
 signal new_column_spawned(int)
 signal existing_column_despawned(int)
 
 @export var game_camera: GameCamera
 
-# TODO: Maybe we should have the Crowd node in here? Think about this if and 
-# when we introduce other game modes.
-# TODO: Same goes for TextManager
+## The index of the first (ie:left-most) crowd column to be fillable with
+## letters.
+@export var first_letter_column_index:int = 4
 
-# Called when the node enters the scene tree for the first time.
+## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reset()
 

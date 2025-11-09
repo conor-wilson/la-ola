@@ -3,7 +3,6 @@ class_name EndlessRunnerScreenView extends ScreenView
 @export var _text_manager:TextManager
 
 @export var _letter_row_index:int = 5
-@export var _first_letter_column_index:int = 4
 @export var _starting_camera_speed:float = 200
 @export var _camera_acceleration:float = 5
 

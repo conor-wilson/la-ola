@@ -7,15 +7,15 @@ var _wave_column_id_queue:Array[int] = []
 func _reset() -> void:
 	_text_manager.reset()
 	super._reset()
-	_screen_view.fill_crowd_with_text(4) # TODO: Make this floating 4 go away
+	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
 func _restart() -> void:
 	_text_manager.reset()
 	super._restart()
-	_screen_view.fill_crowd_with_text(4) # TODO: Make this floating 4 go away
+	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
 func _start():
-	_wave_column_id_queue = _screen_view.get_crowd_column_ids(4) # TODO: Make this floating 4 go away
+	_wave_column_id_queue = _screen_view.get_crowd_column_ids(_screen_view.first_letter_column_index)
 	super._start()
 
 ## Handles what happens when an existing column desspawns:
