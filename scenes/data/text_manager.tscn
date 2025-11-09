@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bh016vbs6vjbs"]
+[gd_scene load_steps=3 format=3 uid="uid://bh016vbs6vjbs"]
 
 [ext_resource type="Script" uid="uid://chtbaofn1exvj" path="res://scenes/data/text_manager.gd" id="1_1oojv"]
+[ext_resource type="PackedScene" uid="uid://dpetj0joui3on" path="res://scenes/data/text_generator.tscn" id="2_hvvtn"]
 
-[node name="TextManager" type="Node2D"]
+[node name="TextManager" type="Node2D" node_paths=PackedStringArray("_text_generator")]
 script = ExtResource("1_1oojv")
+_text_generator = NodePath("TextGenerator")
+
+[node name="TextGenerator" parent="." instance=ExtResource("2_hvvtn")]

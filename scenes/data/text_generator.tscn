@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpetj0joui3on"]
+
+[ext_resource type="Script" uid="uid://ce1uhog4otmxb" path="res://scenes/data/text_generator.gd" id="1_tro2j"]
+
+[node name="TextGenerator" type="Node2D"]
+script = ExtResource("1_tro2j")

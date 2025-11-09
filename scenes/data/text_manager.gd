@@ -1,6 +1,6 @@
 class_name TextManager extends Node2D
 
-@export var _sample_text:String
+@export var _text_generator:TextGenerator
 
 var _text:String
 var _currently_selected_char_index:int
@@ -24,13 +24,14 @@ func get_char(index:int) -> String:
 	
 	return _text[index]
 
+## Returns the current character selection (based on _currently_selected_char_index)
 func get_currently_selected_char() -> String:
 	return get_char(_currently_selected_char_index)
 
+## Advances the selected character index by one. 
 func advance_selected_char() -> void:
 	_currently_selected_char_index += 1
 
+## Uses the TextGenerator to generate new text.
 func _generate_new_text():
-	
-	# TODO: Add actual implementatio here
-	_text += _sample_text
+	_text += _text_generator.generate_sentence()

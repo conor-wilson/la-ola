@@ -14,6 +14,17 @@ func _restart() -> void:
 	super._restart()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
+func _wait_for_ready_components() -> void:
+	
+	# Wait for TextManager
+	if _text_manager != null:
+		if !_text_manager.is_node_ready():
+			await _text_manager.ready
+	else:
+		push_error("no InputSystem defined")
+	
+	super._wait_for_ready_components()
+
 func _start():
 	_wave_column_id_queue = _screen_view.get_crowd_column_ids(_screen_view.first_letter_column_index)
 	super._start()
