@@ -3,6 +3,7 @@ class_name Person extends Node2D
 @export var held_sign: Control
 @export var held_sign_label: Label
 @export var standup_timer: Timer
+@export var waddle_timer: Timer
 
 @export var has_sign:bool = false
 @export var letter:String = ""
@@ -12,6 +13,9 @@ class_name Person extends Node2D
 
 var sitting_pos_y:float
 const STANDING_DIFF:float = -16
+
+var waddle_diff:Vector2 = Vector2(0,0) # TODO: This is just a stand-in implementation to see what stuff looks like
+
 var rng = RandomNumberGenerator.new()
 
 ## Called when the node enters the scene tree for the first time.
@@ -71,6 +75,20 @@ func sit_down():
 	var tween = create_tween()
 	tween.tween_property(self, "position", Vector2(position.x, sitting_pos_y), 0.15)
 
+func waddle():
+	var tween = create_tween()
+	waddle_diff = Vector2(rng.randf_range(-4, 4), rng.randf_range(-4, 4))
+	tween.tween_property(self, "position", position + waddle_diff, 0.5)
+	waddle_timer.start()
+
+func unwaddle():
+	var tween = create_tween()
+	tween.tween_property(self, "position", position - waddle_diff, 0.5)
+
 ## Triggered when the StandupTimer times out.
 func _on_standup_timer_timeout() -> void:
 	sit_down()
+
+## Triggered when the WaddleTimer times out.
+func _on_waddle_timer_timeout() -> void:
+	unwaddle()

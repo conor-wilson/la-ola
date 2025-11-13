@@ -10,11 +10,12 @@
 font_size = 32
 font_color = Color(0, 0, 0, 1)
 
-[node name="Person" type="Node2D" node_paths=PackedStringArray("held_sign", "held_sign_label", "standup_timer", "sprite2d")]
+[node name="Person" type="Node2D" node_paths=PackedStringArray("held_sign", "held_sign_label", "standup_timer", "waddle_timer", "sprite2d")]
 script = ExtResource("1_31ckc")
 held_sign = NodePath("HeldSign")
 held_sign_label = NodePath("HeldSign/Label")
 standup_timer = NodePath("StandupTimer")
+waddle_timer = NodePath("WaddleTimer")
 peopleSprites = Array[Texture2D]([ExtResource("2_s48cp"), ExtResource("3_6i1j1"), ExtResource("4_bf855"), ExtResource("5_04m24")])
 sprite2d = NodePath("Sprite2D")
 
@@ -45,4 +46,8 @@ vertical_alignment = 1
 wait_time = 0.5
 one_shot = true
 
+[node name="WaddleTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="StandupTimer" to="." method="_on_standup_timer_timeout"]
+[connection signal="timeout" from="WaddleTimer" to="." method="_on_waddle_timer_timeout"]

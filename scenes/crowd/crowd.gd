@@ -72,6 +72,10 @@ func spawn_new_column() -> void:
 	# Signal that the new column has been spawned
 	new_column_spawned.emit(new_column.get_instance_id())
 
+func waddle(num_waddling:int) -> void:
+	for i in num_waddling:
+		_column_pool.get_random_column().get_random_person().waddle()
+
 ## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column:CrowdColumn):
 	column_exited_screen.emit(column.get_instance_id())

@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://b1h3cupiwur5n"]
+
+[ext_resource type="Script" uid="uid://h0wgsgw15tqi" path="res://scenes/main_menu/main_menu_popups.gd" id="1_2fv8m"]
+[ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="2_1v5la"]
+
+[node name="MainMenuPopups" type="CanvasLayer" node_paths=PackedStringArray("_ready_screen", "_hud", "_game_over_menu")]
+script = ExtResource("1_2fv8m")
+_ready_screen = NodePath("Ready")
+_hud = NodePath("HUD")
+_game_over_menu = NodePath("GameOver")
+
+[node name="Ready" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Ready"
+
+[node name="HUD" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "HUD"
+
+[node name="GameOver" type="Label" parent="." node_paths=PackedStringArray("_retry_button")]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "GAMEOVER"
+script = ExtResource("2_1v5la")
+_retry_button = NodePath("Retry")
+
+[node name="Retry" type="Button" parent="GameOver"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

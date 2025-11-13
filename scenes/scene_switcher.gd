@@ -1,6 +1,6 @@
 extends Node
 
-@export var main_scene:PackedScene
+@export var main_menu_scene:PackedScene
 @export var endless_runner_game:PackedScene
 
 var current_scene:Node = null

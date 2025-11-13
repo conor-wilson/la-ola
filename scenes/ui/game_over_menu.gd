@@ -1,4 +1,4 @@
-class_name GameOverMenu extends ColorRect
+class_name GameOverMenu extends Control
 
 @export var _retry_button:Button
 

@@ -30,6 +30,12 @@ func get_column_with_id(id:int) -> CrowdColumn:
 		push_error("Could not find CrowdColumn in pool with id \"", id, "\"")
 	return column
 
+## Returns a random column from the pool.
+##
+## TODO: Should this return a random ACTIVE column?
+func get_random_column() -> CrowdColumn:
+	return _columns[_columns.keys().pick_random()]
+
 ## Returns the full dictionary of columns in the pool.
 func get_columns() -> Dictionary[int, CrowdColumn]:
 	return _columns
