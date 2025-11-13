@@ -50,21 +50,21 @@ func _restart() -> void:
 ## function waits until they are. Pushes errors if any of them are undefined.
 func _wait_for_ready_components() -> void:
 	
-	# Connect the InputSystem signals
+	# Wait for InputSystem
 	if _input_system != null:
 		if !_input_system.is_node_ready():
 			await _input_system.ready
 	else:
 		push_error("no InputSystem defined")
 	
-	# Connect the ScreenView signals
+	# Wait for ScreenView
 	if _screen_view != null:
 		if !_screen_view.is_node_ready():
 			await _screen_view.ready
 	else:
 		push_error("no ScreenView defined")
 	
-	# Connect the Popup signals:
+	# Wait for Popups
 	if _popups != null:
 		if !_popups.is_node_ready():
 			await _popups.ready
@@ -78,7 +78,8 @@ func _connect_all_signals():
 	_input_system.letter_input_received.connect(_on_input_system_letter_input_received)
 
 	# Connect the ScreenView signals
-	_screen_view.loss.connect(_on_screen_view_loss)
+	_screen_view.new_column_spawned.connect(_on_screen_view_new_column_spawned)
+	_screen_view.existing_column_despawned.connect(_on_screen_view_existing_column_spawned)
 	
 	# Connect the Popup signals:
 	# None yet :)
@@ -101,16 +102,26 @@ func _on_input_system_letter_input_received(letter_input:String) -> void:
 		return
 	_process_letter_input(letter_input)
 
-## Triggered when the ScreenView signals that a loss has occurred.
-func _on_screen_view_loss() -> void:
+## Triggered when the ScreenView signals that a new column has spawned.
+func _on_screen_view_new_column_spawned(new_column_id:int) -> void:
 	if _state != State.PLAYING:
 		return
-	_process_game_over()
+	_process_new_column_spawned(new_column_id)
+
+## Triggered when the ScreenView signals that an existing column has despawned.
+func _on_screen_view_existing_column_spawned(column_id:int) -> void:
+	if _state != State.PLAYING:
+		return
+	_process_existing_column_despawned(column_id)
+
+## Handles what happens when a new column spawns.
+@abstract
+func _process_new_column_spawned(new_column_id:int) -> void
+
+## Handles what happens when an existing column desspawns.
+@abstract
+func _process_existing_column_despawned(column_id:int) -> void
 
 ## Handles what happens when the game receives a letter input.
 @abstract
 func _process_letter_input(_letter_input:String)
-
-## Handles the game's game-over sequence.
-@abstract
-func _process_game_over()

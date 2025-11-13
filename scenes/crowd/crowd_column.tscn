@@ -3,8 +3,9 @@
 [ext_resource type="Script" uid="uid://bvf1boyqq7pm5" path="res://scenes/crowd/crowd_column.gd" id="1_fyjm1"]
 [ext_resource type="PackedScene" uid="uid://tes5qvvjxl1f" path="res://scenes/crowd/person.tscn" id="2_g1iyf"]
 
-[node name="CrowdColumn" type="Node2D"]
+[node name="CrowdColumn" type="Node2D" node_paths=PackedStringArray("_people")]
 script = ExtResource("1_fyjm1")
+_people = [NodePath("People/Person0"), NodePath("People/Person1"), NodePath("People/Person2"), NodePath("People/Person3"), NodePath("People/Person4"), NodePath("People/Person5"), NodePath("People/Person6"), NodePath("People/Person7"), NodePath("People/Person8")]
 
 [node name="People" type="Node2D" parent="."]
 

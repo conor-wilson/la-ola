@@ -1,8 +1,8 @@
 class_name Person extends Node2D
 
-@onready var held_sign: ColorRect = $HeldSign
-@onready var held_sign_label: Label = $HeldSign/Label
-@onready var standup_timer: Timer = $StandupTimer
+@export var held_sign: Control
+@export var held_sign_label: Label
+@export var standup_timer: Timer
 
 @export var has_sign:bool = false
 @export var letter:String = ""
