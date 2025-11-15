@@ -1,1 +1,0 @@
-class_name MainMenuPopups extends Popups

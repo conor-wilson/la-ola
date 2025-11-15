@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkykypddp20e2"]
-
-[ext_resource type="Script" uid="uid://b2j4jp43eps3a" path="res://scenes/main_menu/main_menu_controller.gd" id="1_3gh0d"]
-
-[node name="MainMenuController" type="Node2D"]
-script = ExtResource("1_3gh0d")
