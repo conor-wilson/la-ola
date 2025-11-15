@@ -50,10 +50,8 @@ func give_letter(new_letter:String) -> void:
 	# Update the visuals
 	if letter != "" && letter != " ":
 		held_sign.show()
-		$SignShadow.show()
 	else:
 		held_sign.hide()
-		$SignShadow.hide()
 
 ## Removes the held sign from the Person.
 func remove_sign() -> void:
@@ -65,7 +63,6 @@ func remove_sign() -> void:
 	
 	# Update the visuals
 	held_sign.hide()
-	$SignShadow.hide()
 
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():

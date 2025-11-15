@@ -21,18 +21,6 @@ waddle_timer = NodePath("WaddleTimer")
 peopleSprites = Array[Texture2D]([ExtResource("2_s48cp"), ExtResource("3_6i1j1"), ExtResource("4_bf855"), ExtResource("5_04m24")])
 sprite2d = NodePath("Sprite2D")
 
-[node name="SignShadow" type="ColorRect" parent="."]
-offset_left = -33.0
-offset_top = -78.0
-offset_right = 24.0
-offset_bottom = -10.0
-color = Color(0, 0, 0, 0.74509805)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9.536743e-07, 9.536743e-07)
-scale = Vector2(3, 3)
-texture = ExtResource("2_s48cp")
-
 [node name="HeldSign" type="ColorRect" parent="."]
 offset_left = -27.0
 offset_top = -84.0
@@ -52,6 +40,20 @@ text = "L"
 label_settings = SubResource("LabelSettings_q7wum")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Shadow" type="ColorRect" parent="HeldSign"]
+show_behind_parent = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = 6.0
+offset_right = 48.0
+offset_bottom = 75.0
+color = Color(0, 0, 0, 0.74509805)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.536743e-07, 9.536743e-07)
+scale = Vector2(3, 3)
+texture = ExtResource("2_s48cp")
 
 [node name="StandupTimer" type="Timer" parent="."]
 wait_time = 0.5
