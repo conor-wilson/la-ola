@@ -1,0 +1,36 @@
+name: "Web Export"
+on: 
+  workflow_dispatch:
+
+env:
+  GODOT_VERSION: 4.5.1
+  EXPORT_NAME: "mexican-wave-game"
+  PROJECT_PATH: "."
+  BUTLER_API_KEY: ${{secrets.BUTLER_API_KEY}}
+  ITCHIO_USERNAME: ${{vars.ITCHIO_USERNAME}}
+  ITCHIO_GAME: ${{vars.ITCHIO_GAME}}
+
+jobs:
+  export-web:
+    name: Build & Deploy
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:4.5.1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/export_templates/
+          mv /root/.local/share/godot/export_templates/${GODOT_VERSION}.stable ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          EXPORT_DIR="$(readlink -f build)"
+          cd $PROJECT_PATH
+          godot --headless --verbose --export-release "Web" "$EXPORT_DIR/web/index.html"
+      - name: Upload to Itch.io    
+        run: |
+          butler push "./build/web" "$ITCHIO_USERNAME/$ITCHIO_GAME:web" --userversion $GITHUB_REF_NAME
