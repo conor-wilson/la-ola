@@ -23,9 +23,9 @@ texture = ExtResource("2_r720t")
 
 [node name="Ad1" type="ColorRect" parent="ScrollingBackground/BackWall"]
 offset_left = 48.0
-offset_top = 24.0
+offset_top = 32.0
 offset_right = 424.0
-offset_bottom = 112.0
+offset_bottom = 120.0
 color = Color(0.92156863, 0.9529412, 1, 1)
 
 [node name="Ad2" type="ColorRect" parent="ScrollingBackground/BackWall"]

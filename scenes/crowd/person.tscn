@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://tes5qvvjxl1f"]
+[gd_scene load_steps=8 format=3 uid="uid://tes5qvvjxl1f"]
 
 [ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://scenes/crowd/person.gd" id="1_31ckc"]
 [ext_resource type="Texture2D" uid="uid://b6kwby6o31ybe" path="res://assets/art/people/1.1Fan01.png" id="2_s48cp"]
 [ext_resource type="Texture2D" uid="uid://bpphsts6o1hri" path="res://assets/art/people/1.1Fan02.png" id="3_6i1j1"]
 [ext_resource type="Texture2D" uid="uid://c5wy55ykvxjtv" path="res://assets/art/people/1.1Fan03.png" id="4_bf855"]
 [ext_resource type="Texture2D" uid="uid://b33ucln5uhha3" path="res://assets/art/people/1.1Fan04.png" id="5_04m24"]
+[ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="6_s48cp"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7wum"]
-font_size = 32
+font = ExtResource("6_s48cp")
+font_size = 40
 font_color = Color(0, 0, 0, 1)
 
 [node name="Person" type="Node2D" node_paths=PackedStringArray("held_sign", "held_sign_label", "standup_timer", "waddle_timer", "sprite2d")]
@@ -19,6 +21,13 @@ waddle_timer = NodePath("WaddleTimer")
 peopleSprites = Array[Texture2D]([ExtResource("2_s48cp"), ExtResource("3_6i1j1"), ExtResource("4_bf855"), ExtResource("5_04m24")])
 sprite2d = NodePath("Sprite2D")
 
+[node name="SignShadow" type="ColorRect" parent="."]
+offset_left = -33.0
+offset_top = -78.0
+offset_right = 24.0
+offset_bottom = -10.0
+color = Color(0, 0, 0, 0.74509805)
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(9.536743e-07, 9.536743e-07)
 scale = Vector2(3, 3)
@@ -26,7 +35,7 @@ texture = ExtResource("2_s48cp")
 
 [node name="HeldSign" type="ColorRect" parent="."]
 offset_left = -27.0
-offset_top = -67.0
+offset_top = -84.0
 offset_right = 27.0
 offset_bottom = -27.0
 
@@ -35,6 +44,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "L"

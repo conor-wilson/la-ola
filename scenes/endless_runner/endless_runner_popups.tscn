@@ -20,7 +20,12 @@ _game_over_menu = NodePath("GameOverMenu")
 [node name="ReadyScreen" type="Label" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-text = "READY...."
+text = "READY....
+
+
+
+
+"
 label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -28,7 +33,12 @@ vertical_alignment = 1
 [node name="GoScreen" type="Label" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
-text = "GO!!!"
+text = "GO!!!
+
+
+
+
+"
 label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -45,6 +55,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverMenu" type="ColorRect" parent="." node_paths=PackedStringArray("_retry_button")]
+visible = false
 offset_left = 232.0
 offset_top = 128.0
 offset_right = 848.0

@@ -34,14 +34,6 @@ offset_right = 1032.0
 offset_bottom = 120.0
 color = Color(0.92156863, 0.9529412, 1, 1)
 
-[node name="Pitch" type="Parallax2D" parent="ScrollingBackground"]
-scroll_scale = Vector2(1.15, 1)
-repeat_size = Vector2(1152, 0)
-
-[node name="StadiumPitch" type="Sprite2D" parent="ScrollingBackground/Pitch"]
-position = Vector2(1152, 324)
-texture = ExtResource("6_2xeil")
-
 [node name="Crowd" parent="." instance=ExtResource("7_lt3xr")]
 num_columns = 23
 
@@ -56,6 +48,14 @@ z_index = 15
 position = Vector2(576, 392)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_h5wwr")
+
+[node name="Pitch" type="Parallax2D" parent="ScrollingForeground"]
+scroll_scale = Vector2(0.99, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumPitch" type="Sprite2D" parent="ScrollingForeground/Pitch"]
+position = Vector2(1152, 324)
+texture = ExtResource("6_2xeil")
 
 [connection signal="column_exited_screen" from="Crowd" to="." method="_on_crowd_column_exited_screen"]
 [connection signal="new_column_spawned" from="Crowd" to="." method="_on_crowd_new_column_spawned"]
