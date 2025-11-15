@@ -55,9 +55,21 @@ func _process_letter_input(letter_input:String):
 		# TODO: Handle the incorrect input here
 		return
 	
-	# Update the state
-	if _state == State.READY:
-		_start()
+	# Handle the state
+	match _state:
+		
+		# If this is the first correct input, start the game!
+		State.READY:
+			_start()
+		
+		# If we're mid-game, do a safety check just in case the user somehow
+		# typed past the screen border.
+		State.PLAYING:
+			if len(_wave_column_id_queue) <= 0:
+				push_error("a correct letter input was received, but the wave column queue was empty")
+				return
+	
+	# Update the model
 	_text_manager.advance_selected_char()
 	
 	# Update the visuals
