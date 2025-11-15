@@ -43,8 +43,7 @@ func get_column_with_id(column_id:int) -> CrowdColumn:
 
 ## Returns the array of column IDs currently in the crowd. Optionally, the IDs
 ## are returned sorted from the left to the right of the screen.
-func get_column_ids(sort_left_to_right:bool = false) -> Array[int]:
-	
+func get_column_ids() -> Array[int]:
 	var columns:Dictionary[int, CrowdColumn] = _column_pool.get_columns()
 	var sorted_ids := columns.keys()
 	sorted_ids.sort_custom(func(a,b):
