@@ -1,0 +1,57 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://82ac6fw2v7rt"]
+
+[ext_resource type="Texture2D" uid="uid://bk0i5rq8nkkda" path="res://assets/art/characters/fan3/Fan3_HandsDown.png" id="1_ff51t"]
+[ext_resource type="Texture2D" uid="uid://ddt0fy3plj3u1" path="res://assets/art/characters/fan3/Fan3_HandsUps.png" id="2_y8tjl"]
+[ext_resource type="Texture2D" uid="uid://cc5anarsqfw4e" path="res://assets/art/characters/fan3/jumping_anim/Fan3_JumpingAnim2.png" id="3_23o5s"]
+[ext_resource type="Texture2D" uid="uid://b1sy5onpnws4m" path="res://assets/art/characters/fan3/jumping_anim/Fan3_JumpingAnim1.png" id="4_a868h"]
+[ext_resource type="Texture2D" uid="uid://dqos45alwse7b" path="res://assets/art/characters/fan3/hands_down_anim/Fan3_HandsDownAnim1.png" id="5_t1cqk"]
+[ext_resource type="Texture2D" uid="uid://dqh4grkir1s54" path="res://assets/art/characters/fan3/hands_down_anim/Fan3_HandsDownAnim2.png" id="6_c0mva"]
+[ext_resource type="Texture2D" uid="uid://crxixahihml2w" path="res://assets/art/characters/fan3/hands_down_anim/Fan3_HandsDownAnim3.png" id="7_w1fdn"]
+[ext_resource type="Texture2D" uid="uid://cccovrij57adh" path="res://assets/art/characters/fan3/hands_down_anim/Fan3_HandsDownAnim4.png" id="8_idio4"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ff51t")
+}],
+"loop": true,
+"name": &"hands_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y8tjl")
+}],
+"loop": false,
+"name": &"hands_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_23o5s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a868h")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_t1cqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_c0mva")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_w1fdn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_idio4")
+}],
+"loop": false,
+"name": &"sit_down",
+"speed": 10.0
+}]

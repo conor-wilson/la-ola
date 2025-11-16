@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bpphsts6o1hri"
-path="res://.godot/imported/1.1Fan02.png-7c8a3de5f56119fa74a2a0141ba3467a.ctex"
+uid="uid://rkfsp8roxyji"
+path="res://.godot/imported/Fan1_HandsDownAnim3.png-5078a3269a9b3b4b91b101796b1d4f30.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/people/1.1Fan02.png"
-dest_files=["res://.godot/imported/1.1Fan02.png-7c8a3de5f56119fa74a2a0141ba3467a.ctex"]
+source_file="res://assets/art/characters/fan1/hands_down_anim/Fan1_HandsDownAnim3.png"
+dest_files=["res://.godot/imported/Fan1_HandsDownAnim3.png-5078a3269a9b3b4b91b101796b1d4f30.ctex"]
 
 [params]
 

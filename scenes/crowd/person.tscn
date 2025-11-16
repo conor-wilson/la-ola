@@ -1,31 +1,31 @@
 [gd_scene load_steps=8 format=3 uid="uid://tes5qvvjxl1f"]
 
 [ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://scenes/crowd/person.gd" id="1_31ckc"]
-[ext_resource type="Texture2D" uid="uid://b6kwby6o31ybe" path="res://assets/art/people/1.1Fan01.png" id="2_s48cp"]
-[ext_resource type="Texture2D" uid="uid://bpphsts6o1hri" path="res://assets/art/people/1.1Fan02.png" id="3_6i1j1"]
-[ext_resource type="Texture2D" uid="uid://c5wy55ykvxjtv" path="res://assets/art/people/1.1Fan03.png" id="4_bf855"]
-[ext_resource type="Texture2D" uid="uid://b33ucln5uhha3" path="res://assets/art/people/1.1Fan04.png" id="5_04m24"]
+[ext_resource type="SpriteFrames" uid="uid://csfo8pna2usjj" path="res://assets/art/characters/fan2/fan2.tres" id="3_s48cp"]
+[ext_resource type="SpriteFrames" uid="uid://82ac6fw2v7rt" path="res://assets/art/characters/fan3/fan3.tres" id="4_6i1j1"]
+[ext_resource type="SpriteFrames" uid="uid://c7up3o5alydfq" path="res://assets/art/characters/fan4/fan4.tres" id="5_bf855"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="6_s48cp"]
+[ext_resource type="SpriteFrames" uid="uid://cbnrqiokmp8q0" path="res://assets/art/characters/fan1/fan1.tres" id="7_6i1j1"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7wum"]
 font = ExtResource("6_s48cp")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
 
-[node name="Person" type="Node2D" node_paths=PackedStringArray("held_sign", "held_sign_label", "standup_timer", "waddle_timer", "sprite2d")]
+[node name="Person" type="Node2D" node_paths=PackedStringArray("sprite", "held_sign", "held_sign_label", "standup_timer", "waddle_timer")]
 script = ExtResource("1_31ckc")
+sprite = NodePath("AnimatedSprite2D")
 held_sign = NodePath("HeldSign")
 held_sign_label = NodePath("HeldSign/Label")
 standup_timer = NodePath("StandupTimer")
 waddle_timer = NodePath("WaddleTimer")
-peopleSprites = Array[Texture2D]([ExtResource("2_s48cp"), ExtResource("3_6i1j1"), ExtResource("4_bf855"), ExtResource("5_04m24")])
-sprite2d = NodePath("Sprite2D")
+peopleSpriteFrames = Array[SpriteFrames]([ExtResource("7_6i1j1"), ExtResource("3_s48cp"), ExtResource("4_6i1j1"), ExtResource("5_bf855")])
 
 [node name="HeldSign" type="ColorRect" parent="."]
 offset_left = -27.0
-offset_top = -84.0
+offset_top = -78.0
 offset_right = 27.0
-offset_bottom = -27.0
+offset_bottom = -21.0
 
 [node name="Label" type="Label" parent="HeldSign"]
 layout_mode = 1
@@ -44,16 +44,18 @@ vertical_alignment = 1
 [node name="Shadow" type="ColorRect" parent="HeldSign"]
 show_behind_parent = true
 layout_mode = 0
-offset_left = -6.0
-offset_top = 6.0
-offset_right = 48.0
-offset_bottom = 75.0
+offset_left = -5.0
+offset_top = 5.0
+offset_right = 49.0
+offset_bottom = 62.0
 color = Color(0, 0, 0, 0.74509805)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(9.536743e-07, 9.536743e-07)
 scale = Vector2(3, 3)
-texture = ExtResource("2_s48cp")
+sprite_frames = ExtResource("5_bf855")
+animation = &"sit_down"
+autoplay = "hands_up"
 
 [node name="StandupTimer" type="Timer" parent="."]
 wait_time = 0.5
