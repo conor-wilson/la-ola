@@ -12,7 +12,7 @@ class_name Person extends Node2D
 @export var peopleSpriteFrames:Array[SpriteFrames] = []
 
 var sitting_pos:Vector2
-const STANDING_DIFF:float = -16
+const STANDING_DIFF:float = -12
 
 var waddling:bool = false # TODO: Maybe the Person needs a State?
 var waddle_movement_duration:float = 0.5
@@ -79,16 +79,28 @@ func remove_sign() -> void:
 
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():
-	#var tween = create_tween()
-	#tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y + STANDING_DIFF), 0.15)
+	
+	# Start the stand-up animation (unless they've already got their arms up)
+	if !has_sign:
+		sprite.play("jump")
+	
+	# Move the person up a bit
+	var tween = create_tween()
+	tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y + STANDING_DIFF), 0.15)
+	
+	 # Start the timer to sit back down
 	standup_timer.start()
-	sprite.play("jump")
 
 ## Makes the person sit down.
 func sit_down():
-	#var tween = create_tween()
-	#tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.15)
-	sprite.play("sit_down")
+	
+	# Play the sit-down animation (unless they need to keep their arms up)
+	if !has_sign:
+		sprite.play("sit_down")
+	
+	# Move the person back down
+	var tween = create_tween()
+	tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.15)
 
 ## Makes the person waddle after the provided delay with the provided movement 
 ## duration for the provided linger time.
