@@ -19,6 +19,9 @@ held_sign = NodePath("HeldSign")
 held_sign_label = NodePath("HeldSign/Label")
 standup_timer = NodePath("StandupTimer")
 waddle_timer = NodePath("WaddleTimer")
+normal_sign_colour = Color(1, 1, 1, 1)
+highlighted_sign_colour = Color(0.983, 0.796, 0, 1)
+faded_sign_colour = Color(0.754, 0.754, 0.754, 1)
 peopleSpriteFrames = Array[SpriteFrames]([ExtResource("7_6i1j1"), ExtResource("3_s48cp"), ExtResource("4_6i1j1"), ExtResource("5_bf855")])
 
 [node name="HeldSign" type="ColorRect" parent="."]

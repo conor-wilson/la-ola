@@ -55,12 +55,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="GameOverMenu" type="ColorRect" parent="." node_paths=PackedStringArray("_retry_button")]
-visible = false
 offset_left = 232.0
 offset_top = 128.0
 offset_right = 848.0
 offset_bottom = 504.0
-color = Color(0, 1, 1, 1)
+color = Color(0, 1, 1, 0.3647059)
 script = ExtResource("2_yywdt")
 _retry_button = NodePath("CenterContainer/VBoxContainer/RetryButton")
 

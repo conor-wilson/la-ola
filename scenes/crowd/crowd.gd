@@ -71,6 +71,7 @@ func spawn_new_column() -> void:
 	# Signal that the new column has been spawned
 	new_column_spawned.emit(new_column.get_instance_id())
 
+## Makes all the people in the crowd upset with a bit of random delay.
 func make_everyone_upset():
 	for column in _column_pool.get_columns().values() as Array[CrowdColumn]:
 		for person in column.get_people():

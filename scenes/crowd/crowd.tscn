@@ -6,5 +6,3 @@
 [node name="Crowd" type="Node2D"]
 script = ExtResource("1_axrbu")
 crowd_column_scene = ExtResource("2_axrbu")
-spacing_between_crowd_columns = null
-num_columns = null

@@ -65,7 +65,6 @@ func fill_crowd_with_text(from_column_index):
 		if id == sliced_ids[0]:
 			var column = _crowd.get_column_with_id(id)
 			column.mark_highlighted()
-	
 
 ## Obtains a new character from the text manager, and renders it in the next 
 ## column.
