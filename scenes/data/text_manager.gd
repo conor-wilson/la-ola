@@ -32,6 +32,10 @@ func get_currently_selected_char() -> String:
 func advance_selected_char() -> void:
 	_currently_selected_char_index += 1
 
+# At the moment, score is equal to the amount of correctly typed characters, which equals the char index.
+func get_score() -> int:
+	return _currently_selected_char_index;
+	
 ## Uses the TextGenerator to generate new text.
 func _generate_new_text():
 	if _text != "":

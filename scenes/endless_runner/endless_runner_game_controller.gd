@@ -95,4 +95,4 @@ func _process_game_over():
 	# Update the visuals
 	_screen_view.stop()
 	await get_tree().create_timer(1).timeout
-	_popups.show_game_over_menu(_restart)
+	_popups.show_game_over_menu(_restart, _text_manager.get_score())

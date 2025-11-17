@@ -33,6 +33,6 @@ func show_hud():
 	_hud.show()
 
 ## Shows the game-over menu.
-func show_game_over_menu(retry_button_functionality:Callable):
+func show_game_over_menu(retry_button_functionality:Callable, score:int):
 	_hide_all()
-	_game_over_menu.open_popup(retry_button_functionality)
+	_game_over_menu.open_popup(retry_button_functionality, score)

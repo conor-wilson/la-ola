@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv0pcnqkje6xm"]
+
+[ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="1_7nx0y"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_onapr"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_7nx0y"]
+font_size = 32
+
+[node name="GameOverMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_score_text")]
+offset_left = 232.0
+offset_top = 128.0
+offset_right = 848.0
+offset_bottom = 504.0
+color = Color(0, 1, 1, 0.3647059)
+script = ExtResource("1_7nx0y")
+_retry_button = NodePath("CenterContainer/VBoxContainer/RetryButton")
+_score_text = NodePath("CenterContainer/VBoxContainer/ScoreLabel")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 616.0
+offset_bottom = 376.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "GAME OVER!"
+label_settings = SubResource("LabelSettings_onapr")
+horizontal_alignment = 1
+
+[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+
+[node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Score: 69420"
+label_settings = SubResource("LabelSettings_7nx0y")
+horizontal_alignment = 1
