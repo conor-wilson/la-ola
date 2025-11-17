@@ -26,6 +26,7 @@ game_camera = NodePath("../GameCamera")
 
 [node name="GameCamera" parent="." instance=ExtResource("4_04xik")]
 position = Vector2(576, 324)
+max_movement_speed = 2000.0
 
 [node name="InputSystem" parent="." instance=ExtResource("2_46c3i")]
 
