@@ -14,18 +14,32 @@ _ready_screen = NodePath("ReadyScreen")
 _hud = NodePath("HUD")
 game_over_menu = NodePath("GameOverMenu")
 
-[node name="ReadyScreen" type="Label" parent="."]
-offset_right = 1152.0
-offset_bottom = 648.0
-text = "READY....
+[node name="ReadyScreen" type="ColorRect" parent="."]
+offset_left = 232.0
+offset_top = 488.0
+offset_right = 848.0
+offset_bottom = 568.0
+color = Color(0, 1, 1, 1)
 
-
-
-
-"
+[node name="ReadyScreen" type="Label" parent="ReadyScreen"]
+layout_mode = 0
+offset_top = -520.0
+offset_right = 616.0
+offset_bottom = -264.0
+text = "READY...."
 label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="ReadyScreen"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 535.0
+offset_bottom = 69.0
+theme_override_font_sizes/font_size = 32
+button_pressed = true
+text = "Sleeping people wake up"
 
 [node name="GoScreen" type="Label" parent="."]
 offset_right = 1152.0
@@ -53,4 +67,5 @@ vertical_alignment = 1
 
 [node name="GameOverMenu" parent="." instance=ExtResource("2_yywdt")]
 
+[connection signal="toggled" from="ReadyScreen/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="timeout" from="GoScreen/HideTimer" to="." method="_on_screen_text_hide_timer_timeout"]

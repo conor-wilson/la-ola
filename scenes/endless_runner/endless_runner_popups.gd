@@ -15,3 +15,9 @@ func start():
 	
 	# Now show the HUD
 	super.start()
+
+# TODO: remove this ASAP
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	Global.sleeping_people_wake_up = toggled_on
+	
+	print("AHHH! ", Global.sleeping_people_wake_up)

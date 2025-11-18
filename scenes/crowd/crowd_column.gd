@@ -42,6 +42,11 @@ func stand_up():
 	for person in _people:
 		person.stand_up()
 
+## Makes all the people in the column wake up.
+func wake_up():
+	for person in _people:
+		person.wake_up()
+
 func mark_completed() -> void:
 	for person in _people:
 		person.fade_sign()

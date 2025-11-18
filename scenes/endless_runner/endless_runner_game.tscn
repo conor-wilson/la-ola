@@ -18,8 +18,9 @@ _popups = NodePath("../EndlessRunnerPopups")
 [node name="EndlessRunnerScreenView" parent="." node_paths=PackedStringArray("_text_manager", "game_camera") instance=ExtResource("2_8vx36")]
 _text_manager = NodePath("../TextManager")
 _letter_row_index = 4
-_starting_camera_speed = 100.0
+_wake_up_column_index = 8
 _camera_snap_threshold_percentage = 0.75
+_starting_camera_speed = 100.0
 game_camera = NodePath("../GameCamera")
 
 [node name="EndlessRunnerPopups" parent="." instance=ExtResource("3_46c3i")]

@@ -65,6 +65,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("1_g1fq3")
+}],
+"loop": true,
+"name": &"sleeping",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("7_gkwkh")
 }, {
 "duration": 1.0,
@@ -72,5 +80,22 @@ animations = [{
 }],
 "loop": false,
 "name": &"stand_up",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ww7ar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cvaui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_btdhq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_j7m2b")
+}],
+"loop": false,
+"name": &"wake_up",
 "speed": 10.0
 }]
