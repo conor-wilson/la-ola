@@ -331,6 +331,6 @@ func _on_standup_timer_timeout() -> void:
 func _on_waddle_timer_timeout() -> void:
 	unwaddle()
 
-## Triggered when the WakeUpTimer times out.
-func _on_wake_up_timer_timeout() -> void:
-	wake_up()
+### Triggered when the WakeUpTimer times out.
+#func _on_wake_up_timer_timeout() -> void:
+	#wake_up()
