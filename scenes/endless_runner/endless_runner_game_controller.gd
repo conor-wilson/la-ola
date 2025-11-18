@@ -2,22 +2,42 @@ class_name EndlessRunnerGameController extends GameController
 
 @export var _text_manager:TextManager
 
+@export var _starting_sleeping_person_spawn_chance:float = 0.1
+@export var _sleeping_person_spawn_chance_accelleration:float = 0.001
+@export var _max_sleeping_person_spawn_chance:float = 0.5
+
 ## The queue IDs of columns that are next in the wave.
 var _wave_column_id_queue:Array[int] = []
+
+var _sleeping_person_spawn_chance:float = 0.5
+var _last_sleeping_person_index:int = 0
+
+func _process(delta: float) -> void:
+	
+	if _text_manager.get_generated_text_length() > _last_sleeping_person_index:
+		_text_manager.add_sleeping_indices(_generate_sleeping_people_indices())
 
 func _reset() -> void:
 	
 	# Reset the data
-	_text_manager.reset(_generate_sleeping_people_indices())
+	_text_manager.reset()
+	_last_sleeping_person_index = 0
 	
 	# Reset the difficulty
-	# TODO
+	_sleeping_person_spawn_chance = _starting_sleeping_person_spawn_chance
 	
 	super._reset()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
 func _restart() -> void:
-	_text_manager.reset(_generate_sleeping_people_indices())
+	
+	# Restart the data
+	_text_manager.reset()
+	_last_sleeping_person_index = 0
+	
+	# Restart the difficulty
+	_sleeping_person_spawn_chance = _starting_sleeping_person_spawn_chance
+	
 	super._restart()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
 
@@ -117,9 +137,21 @@ func _generate_sleeping_people_indices() -> Dictionary[int, bool]:
 	
 	# TODO: Figure out a way to do this properly
 	
-	# Generate 100 numbers
+	
+	# Generate the indexes for sleeping people
 	var output:Dictionary[int, bool] = {}
-	for i in range(100):
-		output[randi_range(20, 500)] = true
+	for i in range(_last_sleeping_person_index, _text_manager.get_generated_text_length()):
+		
+		# Roll the dice to see if the person will be sleeping
+		if randf() <= _sleeping_person_spawn_chance:
+			output[i] = true
+		
+		# Increase the chance that the next person will be sleeping
+		if _sleeping_person_spawn_chance < _max_sleeping_person_spawn_chance:
+			_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_accelleration
+	
+	print("GENERATED ", _text_manager.get_generated_text_length() - _last_sleeping_person_index, " SLEEPING PEOPLE")
+	print("SPAWN CHANCE: ", _sleeping_person_spawn_chance)
+	_last_sleeping_person_index = _text_manager.get_generated_text_length()
 	
 	return output

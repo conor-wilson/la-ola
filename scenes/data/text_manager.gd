@@ -7,15 +7,18 @@ var _currently_selected_char_index:int
 
 var _sleeping_people_indices:Dictionary[int, bool]
 
-func reset(new_sleeping_indices:Dictionary[int, bool]):
+func reset():
 	_text = ""
 	_currently_selected_char_index = 0
-	_sleeping_people_indices = new_sleeping_indices
+	_sleeping_people_indices = {}
 	_generate_new_text()
 
 func add_sleeping_indices(new_indices:Dictionary[int, bool]):
 	for index in new_indices:
 		_sleeping_people_indices[index] = true
+
+func get_generated_text_length() -> int:
+	return len(_text)
 
 ## Returns the character in the text at the provided index.
 func get_char(index:int) -> String:

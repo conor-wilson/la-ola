@@ -4,3 +4,4 @@
 
 [node name="EndlessRunnerGameController" type="Node2D"]
 script = ExtResource("1_qb58y")
+_sleeping_person_spawn_chance = null
