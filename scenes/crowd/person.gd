@@ -1,7 +1,5 @@
 class_name Person extends Node2D
 
-# TODO: Fix WakeUpTimer mechanic (also maybe make it optional to help testing)
-
 @export var sprite:AnimatedSprite2D
 @export var held_sign: Control
 @export var held_sign_label: Label
@@ -289,6 +287,7 @@ func _play_dissapointment_animation(delay:float = 0):
 	if has_sign:
 		_fold_sign_down()
 
+## Plays the wake-up animation for the person.
 func _play_wake_up_animation(delay:float = 0):
 	
 	# Add optional delay
@@ -309,7 +308,3 @@ func _on_standup_timer_timeout() -> void:
 ## Triggered when the WaddleTimer times out.
 func _on_waddle_timer_timeout() -> void:
 	unwaddle()
-
-### Triggered when the WakeUpTimer times out.
-#func _on_wake_up_timer_timeout() -> void:
-	#wake_up()

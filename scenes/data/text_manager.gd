@@ -15,10 +15,12 @@ func reset():
 	_sleeping_people_indices = {}
 	_generate_new_text()
 
+## Adds the provided indices to the set of sleeping person indices.
 func add_sleeping_indices(new_indices:Dictionary[int, bool]):
 	for index in new_indices:
 		_sleeping_people_indices[index] = true
 
+## Returns the current length of the generated text.
 func get_generated_text_length() -> int:
 	return _text_length
 
@@ -36,6 +38,20 @@ func get_char(index:int) -> String:
 	
 	return _text[index]
 
+## Returns the current character selection (based on _currently_selected_char_index)
+func get_currently_selected_char() -> String:
+	return get_char(_currently_selected_char_index)
+
+## Returns the current character index selection.
+func get_currently_selected_char_index() -> int:
+	return _currently_selected_char_index
+
+## Advances the selected character index by one. 
+func advance_selected_char() -> void:
+	_currently_selected_char_index += 1
+
+## Returns treu if the provided index is within the set of sleeping people
+## indices.
 func get_index_is_sleeping_person(index:int) -> bool:
 	
 	# Override to false this character can't be sleeping
@@ -43,6 +59,8 @@ func get_index_is_sleeping_person(index:int) -> bool:
 		get_char(index) == " "   or # Space person can't be asleep
 		get_char(index-1) == " " or # First letter in word can't be asleep
 		get_char(index+1) == " " or # Last letter in word can't be asleep
+		
+		# TODO: Remove these once we've got no more punctiuation
 		get_char(index+1) == "," or # Last letter in word can't be asleep
 		get_char(index+1) == "." or # Last letter in word can't be asleep
 		get_char(index+1) == "?" or # Last letter in word can't be asleep
@@ -52,17 +70,6 @@ func get_index_is_sleeping_person(index:int) -> bool:
 	
 	return _sleeping_people_indices.get(index, false)
 
-## Returns the current character selection (based on _currently_selected_char_index)
-func get_currently_selected_char() -> String:
-	return get_char(_currently_selected_char_index)
-	
-func get_currently_selected_char_index() -> int:
-	return _currently_selected_char_index
-
-## Advances the selected character index by one. 
-func advance_selected_char() -> void:
-	_currently_selected_char_index += 1
-	
 ## Uses the TextGenerator to generate new text.
 func _generate_new_text():
 	if _text != "":
