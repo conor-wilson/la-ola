@@ -6,7 +6,14 @@ var _text:String
 var _text_length:int # We store this as a variable to avoid having to do len(_text) every time the controller wants the length of the text.
 var _currently_selected_char_index:int
 
-var _flipped_sign_indices:Dictionary[int, bool]
+enum ArrowDirection {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+}
+
+var _flipped_sign_indices:Dictionary[int, ArrowDirection]
 
 func reset():
 	_text = ""
@@ -16,9 +23,9 @@ func reset():
 	_generate_new_text()
 
 ## Adds the provided indices to the set of flipped-sign indices.
-func add_flipped_sign_indices(new_indices:Dictionary[int, bool]):
+func add_flipped_sign_indices(new_indices:Dictionary[int, ArrowDirection]):
 	for index in new_indices:
-		_flipped_sign_indices[index] = true
+		_flipped_sign_indices[index] = new_indices[index]
 
 ## Returns the current length of the generated text.
 func get_generated_text_length() -> int:
