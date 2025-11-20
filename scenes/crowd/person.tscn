@@ -66,6 +66,7 @@ offset_bottom = 62.0
 color = Color(0, 0, 0, 0.74509805)
 
 [node name="Arrow" type="Sprite2D" parent="HeldSign"]
+visible = false
 position = Vector2(27, 29)
 scale = Vector2(2, 2)
 texture = ExtResource("7_bf855")

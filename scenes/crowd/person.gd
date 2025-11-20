@@ -1,5 +1,7 @@
 class_name Person extends Node2D
 
+const SLEEPING_PERSON_TEXT:String = "?"
+
 @export var sprite:AnimatedSprite2D
 @export var held_sign: Control
 @export var held_sign_label: Label
@@ -10,7 +12,6 @@ class_name Person extends Node2D
 @export var normal_sign_colour:Color
 @export var highlighted_sign_colour:Color
 @export var faded_sign_colour:Color
-@export var flipped_sign_colour:Color
 @export var arrow: Sprite2D
 
 @export var has_sign:bool = false
@@ -243,14 +244,13 @@ func _flip_sign_to_front(horizontal:bool = false) -> void:
 	tween.chain().tween_property(held_sign, "scale", Vector2(1,1), 0.1)
 
 func _snap_sign_to_back():
-	arrow.show()
-	held_sign_label.hide()
-	held_sign.color = flipped_sign_colour
+	arrow.hide()
+	held_sign_label.text = SLEEPING_PERSON_TEXT
 
 func _snap_sign_to_front() -> void:
 	held_sign.show()
 	held_sign.color = normal_sign_colour
-	held_sign_label.show()
+	held_sign_label.text = letter
 	arrow.hide()
 
 ## Fades the sign with the fade colour.
