@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tes5qvvjxl1f"]
+[gd_scene load_steps=9 format=3 uid="uid://tes5qvvjxl1f"]
 
 [ext_resource type="Script" uid="uid://df1xryx5570ic" path="res://scenes/crowd/person.gd" id="1_31ckc"]
 [ext_resource type="SpriteFrames" uid="uid://csfo8pna2usjj" path="res://assets/art/characters/fan2/fan2.tres" id="3_s48cp"]
@@ -6,13 +6,14 @@
 [ext_resource type="SpriteFrames" uid="uid://c7up3o5alydfq" path="res://assets/art/characters/fan4/fan4.tres" id="5_bf855"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="6_s48cp"]
 [ext_resource type="SpriteFrames" uid="uid://cbnrqiokmp8q0" path="res://assets/art/characters/fan1/fan1.tres" id="7_6i1j1"]
+[ext_resource type="Texture2D" uid="uid://cfss76wel7e1k" path="res://assets/art/ui/arrow.png" id="7_bf855"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_q7wum"]
 font = ExtResource("6_s48cp")
 font_size = 40
 font_color = Color(0, 0, 0, 1)
 
-[node name="Person" type="Node2D" node_paths=PackedStringArray("sprite", "held_sign", "held_sign_label", "standup_timer", "waddle_timer")]
+[node name="Person" type="Node2D" node_paths=PackedStringArray("sprite", "held_sign", "held_sign_label", "standup_timer", "waddle_timer", "arrow")]
 script = ExtResource("1_31ckc")
 sprite = NodePath("AnimatedSprite2D")
 held_sign = NodePath("HeldSign")
@@ -22,6 +23,7 @@ waddle_timer = NodePath("WaddleTimer")
 normal_sign_colour = Color(1, 1, 1, 1)
 highlighted_sign_colour = Color(0.983, 0.796, 0, 1)
 faded_sign_colour = Color(0.754, 0.754, 0.754, 1)
+arrow = NodePath("HeldSign/Arrow")
 peopleSpriteFrames = Array[SpriteFrames]([ExtResource("7_6i1j1"), ExtResource("3_s48cp"), ExtResource("4_6i1j1"), ExtResource("5_bf855")])
 
 [node name="HeldSign" type="ColorRect" parent="."]
@@ -62,6 +64,11 @@ offset_top = 5.0
 offset_right = 49.0
 offset_bottom = 62.0
 color = Color(0, 0, 0, 0.74509805)
+
+[node name="Arrow" type="Sprite2D" parent="HeldSign"]
+position = Vector2(27, 29)
+scale = Vector2(2, 2)
+texture = ExtResource("7_bf855")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(9.536743e-07, 9.536743e-07)

@@ -2,31 +2,31 @@ class_name EndlessRunnerGameController extends GameController
 
 @export var _text_manager:TextManager
 
-## The chance that a random person will be sleeping at the start of the game.
-@export var _starting_sleeping_person_spawn_chance:float = 0.1
+## The chance that a random person will have a flipped sign at the start of the game.
+@export var _starting_flipped_sign_spawn_chance:float = 0.1
 
-## The amount by which the sleeping person spawn chance increases each time a
+## The amount by which the flipped sign spawn chance increases each time a
 ## person is spawned.
-@export var _sleeping_person_spawn_chance_increment:float = 0.001
+@export var _flipped_sign_spawn_chance_increment:float = 0.001
 
-## The maximum chance that a random person will be sleeping (ie: it won't
+## The maximum chance that a random person's sign will be flipped (ie: it won't
 ## increment beyond this).
-@export var _max_sleeping_person_spawn_chance:float = 0.5
+@export var _max_flipped_sign_spawn_chance:float = 0.5
 
 ## The queue IDs of columns that are next in the wave.
 var _wave_column_id_queue:Array[int] = []
 
-var _sleeping_person_spawn_chance:float = 0.5
-var _last_sleeping_person_index:int = 0
+var _flipped_sign_spawn_chance:float = 0.5
+var _last_flipped_sign_index:int = 0
 
 func _reset() -> void:
 	
 	# Reset the data
 	_text_manager.reset()
-	_last_sleeping_person_index = 0
+	_last_flipped_sign_index = 0
 	
 	# Reset the difficulty
-	_sleeping_person_spawn_chance = _starting_sleeping_person_spawn_chance
+	_flipped_sign_spawn_chance = _starting_flipped_sign_spawn_chance
 	
 	super._reset()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
@@ -35,10 +35,10 @@ func _restart() -> void:
 	
 	# Restart the data
 	_text_manager.reset()
-	_last_sleeping_person_index = 0
+	_last_flipped_sign_index = 0
 	
 	# Restart the difficulty
-	_sleeping_person_spawn_chance = _starting_sleeping_person_spawn_chance
+	_flipped_sign_spawn_chance = _starting_flipped_sign_spawn_chance
 	
 	super._restart()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
@@ -67,9 +67,9 @@ func _process_new_column_spawned(column_id:int) -> void:
 	# Render the character as needed
 	_screen_view.render_char_in_column(column_id)
 	
-	# New text might have been generated. Check to see if we need new sleeping indices.
-	if _text_manager.get_generated_text_length() > _last_sleeping_person_index:
-		_generate_sleeping_people_indices()
+	# New text might have been generated. Check to see if we need new flipped sign indices.
+	if _text_manager.get_generated_text_length() > _last_flipped_sign_index:
+		_generate_flipped_sign_indices()
 
 ## Handles what happens when an existing column desspawns.
 func _process_existing_column_despawned(column_id:int) -> void:
@@ -139,25 +139,25 @@ func _get_score() -> int:
 func _get_mode_name() -> String:
 	return "EndlessRunner"
 
-## Generates new indices for sleeping people, and gives them to the text manager.
-func _generate_sleeping_people_indices():
+## Generates new indices for flipped signs, and gives them to the text manager.
+func _generate_flipped_sign_indices():
 	
 	var new_indices:Dictionary[int, bool] = {}
 	var current_text_length:int = _text_manager.get_generated_text_length()
 	
-	# For each person who haven't had the chance to be sleeping...
-	for i in range(_last_sleeping_person_index, current_text_length):
+	# For each person who haven't had the chance to have a flipped sign...
+	for i in range(_last_flipped_sign_index, current_text_length):
 		
-		# ...roll the dice to see if they should sleep...
-		if randf() <= _sleeping_person_spawn_chance:
+		# ...roll the dice to see if they should flip their sign...
+		if randf() <= _flipped_sign_spawn_chance:
 			new_indices[i] = true
 		
-		# ...then increase the chance that the next person will be sleeping.
-		if _sleeping_person_spawn_chance < _max_sleeping_person_spawn_chance:
-			_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_increment
+		# ...then increase the chance that the next person's sign will be flipped.
+		if _flipped_sign_spawn_chance < _max_flipped_sign_spawn_chance:
+			_flipped_sign_spawn_chance += _flipped_sign_spawn_chance_increment
 	
 	# Record where we left off for next time
-	_last_sleeping_person_index = current_text_length
+	_last_flipped_sign_index = current_text_length
 	
 	# Give the indices to the text manager
-	_text_manager.add_sleeping_indices(new_indices)
+	_text_manager.add_flipped_sign_indices(new_indices)

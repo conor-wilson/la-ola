@@ -42,10 +42,10 @@ func stand_up():
 	for person in _people:
 		person.stand_up()
 
-## Makes all the people in the column wake up.
-func wake_up():
+## Makes all the people in the column flip their signs to the front.
+func flip_signs_forwards():
 	for person in _people:
-		person.wake_up()
+		person.flip_sign_forwards()
 
 func mark_completed() -> void:
 	for person in _people:

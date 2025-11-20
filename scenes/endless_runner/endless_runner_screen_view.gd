@@ -7,8 +7,9 @@ class_name EndlessRunnerScreenView extends ScreenView
 # Visual Configuration
 @export var _letter_row_index:int = 5
 
-## When a column reaches this index (from left to right on the screen), its members wake up.
-@export var _wake_up_column_index:int = 10
+## When a column reaches this index (from left to right on the screen), its members flip their signs
+## to the front.
+@export var _flip_forwards_column_index:int = 10
 
 ## If the wave gets to this percentage across the screen, we snap the camera to catch up.
 @export var _camera_snap_threshold_percentage:float = 0.6 # TODO: Play around with this value
@@ -76,13 +77,13 @@ func render_char_in_column(column_id:int, with_sign_up_animation:bool=false):
 	
 	# Obtain the next letter
 	var next_letter :String = _text_manager.get_char(_next_rendered_char_index)
-	var is_sleeping_person:bool = _text_manager.get_index_is_sleeping_person(_next_rendered_char_index)
+	var is_flipped_sign:bool = _text_manager.get_index_is_flipped_sign(_next_rendered_char_index)
 	
 	# Render the person
 	var person:Person = _crowd.get_column_with_id(column_id).get_person_at_index(_letter_row_index)
 	person.give_letter(next_letter, with_sign_up_animation)
-	if is_sleeping_person:
-		person.go_to_sleep()
+	if is_flipped_sign:
+		person.flip_sign_backwards()
 	
 	# Advance the letter index
 	_next_rendered_char_index += 1
@@ -134,15 +135,15 @@ func _on_crowd_new_column_spawned(column_id:int) -> void:
  	# Export the new column ID to the controller
 	new_column_spawned.emit(column_id)
 
-## Wakes up the column at the wake-up column index (ie: that many columns across
-## the screen).
-func _wake_up_wake_up_column(): # NOTE: This name is derranged but I think it actually makes sense, because we're waking up the wake-up column?
+## Flips the signs in the column at the flip-forwards column index (ie: that
+## many columns across the screen).
+func _flip_flip_forwards_column(): # NOTE: This name is derranged but I think it actually makes sense, because we're flipping forwards the flip-forwards column?
 	
 	if !Global.sleeping_people_wake_up:
 		return
 	
 	var sorted_column_ids:Array[int] = _crowd.get_column_ids()
-	_crowd.get_column_with_id(sorted_column_ids[_wake_up_column_index]).wake_up()
+	_crowd.get_column_with_id(sorted_column_ids[_flip_forwards_column_index]).flip_signs_forwards()
 
 ## Triggered when a column exits the screen.
 func _on_crowd_column_exited_screen(column_id:int) -> void:
@@ -154,5 +155,5 @@ func _on_crowd_column_exited_screen(column_id:int) -> void:
 	_crowd.get_column_with_id(column_id).call_deferred("despawn")
 	_crowd.spawn_new_column()
 	
-	# The columns have shifted. Wake up the people in the wake-up column
-	_wake_up_wake_up_column()
+	# The columns have shifted. Flip forwards the signs of the people in the flip-forwards column
+	_flip_flip_forwards_column()

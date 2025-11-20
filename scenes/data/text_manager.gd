@@ -6,19 +6,19 @@ var _text:String
 var _text_length:int # We store this as a variable to avoid having to do len(_text) every time the controller wants the length of the text.
 var _currently_selected_char_index:int
 
-var _sleeping_people_indices:Dictionary[int, bool]
+var _flipped_sign_indices:Dictionary[int, bool]
 
 func reset():
 	_text = ""
 	_text_length = 0
 	_currently_selected_char_index = 0
-	_sleeping_people_indices = {}
+	_flipped_sign_indices = {}
 	_generate_new_text()
 
-## Adds the provided indices to the set of sleeping person indices.
-func add_sleeping_indices(new_indices:Dictionary[int, bool]):
+## Adds the provided indices to the set of flipped-sign indices.
+func add_flipped_sign_indices(new_indices:Dictionary[int, bool]):
 	for index in new_indices:
-		_sleeping_people_indices[index] = true
+		_flipped_sign_indices[index] = true
 
 ## Returns the current length of the generated text.
 func get_generated_text_length() -> int:
@@ -50,25 +50,24 @@ func get_currently_selected_char_index() -> int:
 func advance_selected_char() -> void:
 	_currently_selected_char_index += 1
 
-## Returns treu if the provided index is within the set of sleeping people
-## indices.
-func get_index_is_sleeping_person(index:int) -> bool:
+## Returns true if the provided index is within the set of flipped sign indices.
+func get_index_is_flipped_sign(index:int) -> bool:
 	
-	# Override to false this character can't be sleeping
+	# Override to false if this character can't have a flipped sign
 	if (
-		get_char(index) == " "   or # Space person can't be asleep
-		get_char(index-1) == " " or # First letter in word can't be asleep
-		get_char(index+1) == " " or # Last letter in word can't be asleep
+		get_char(index) == " "   or # Space person can't be flipped
+		get_char(index-1) == " " or # First letter in word can't be flipped
+		get_char(index+1) == " " or # Last letter in word can't be flipped
 		
 		# TODO: Remove these once we've got no more punctiuation
-		get_char(index+1) == "," or # Last letter in word can't be asleep
-		get_char(index+1) == "." or # Last letter in word can't be asleep
-		get_char(index+1) == "?" or # Last letter in word can't be asleep
-		get_char(index+1) == "!"    # Last letter in word can't be asleep
+		get_char(index+1) == "," or # Last letter in word can't be flipped
+		get_char(index+1) == "." or # Last letter in word can't be flipped
+		get_char(index+1) == "?" or # Last letter in word can't be flipped
+		get_char(index+1) == "!"    # Last letter in word can't be flipped
 		):
 		return false 
 	
-	return _sleeping_people_indices.get(index, false)
+	return _flipped_sign_indices.get(index, false)
 
 ## Uses the TextGenerator to generate new text.
 func _generate_new_text():

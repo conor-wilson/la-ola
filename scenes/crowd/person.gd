@@ -10,6 +10,8 @@ class_name Person extends Node2D
 @export var normal_sign_colour:Color
 @export var highlighted_sign_colour:Color
 @export var faded_sign_colour:Color
+@export var flipped_sign_colour:Color
+@export var arrow: Sprite2D
 
 @export var has_sign:bool = false
 @export var letter:String = ""
@@ -21,7 +23,7 @@ const STANDING_DIFF:float = -18
 var held_up_sign_pos:Vector2
 const SIGN_DOWN_DIFF:float = 32
 
-var asleep:bool = false
+var sign_backwards:bool = false
 var waddling:bool = false # TODO: Maybe the Person needs a State?
 var waddle_movement_duration:float = 0.5
 
@@ -64,6 +66,7 @@ func give_letter(new_letter:String, with_sign_up_animation:bool = false) -> void
 	has_sign = true
 	held_sign_label.text = new_letter
 	letter = new_letter
+	_snap_sign_forwards()
 	
 	# Update the visuals
 	held_sign.show()
@@ -89,9 +92,9 @@ func remove_sign(immediate:bool = false) -> void:
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():
 	
-	# Wake the person up if they're asleep
-	if asleep:
-		wake_up()
+	# Flip the sign the right way around if the sign is backwards
+	if sign_backwards:
+		flip_sign_forwards()
 	
 	# Start the stand-up animation
 	_play_stand_up_animation()
@@ -122,31 +125,39 @@ func sit_down(immediate:bool = false):
 	
 	_play_idle_animation(0, immediate)
 
-## Makes the person go to sleep.
-func go_to_sleep() -> void:
+## Makes the person flip their sign backwards.
+func flip_sign_backwards() -> void:
 	
 	# Update the state
-	asleep = true
+	sign_backwards = true
 	
 	# Update the visuals
-	_snap_sign_down()
-	_play_idle_animation()
+	_snap_sign_to_back()
+	# TODO: Maybe a sign-flip animation
 
-## Makes the person wake up.
-func wake_up() -> void:
+## Makes the person flip their sign forwards.
+func flip_sign_forwards() -> void:
 	
 	# Update the state
-	if !asleep:
+	if !has_sign || !sign_backwards:
 		return
-	asleep = false
+	sign_backwards = false
 	
 	# Update the visuals
-	_fold_sign_up()
-	_play_wake_up_animation()
+	_flip_sign_to_front(true)
+
+## Makes the person flip their sign forwards.
+func _snap_sign_forwards() -> void:
+	
+	# Update the state
+	sign_backwards = false
+	
+	# Update the visuals
+	_snap_sign_to_front()
 
 ## Makes the person become upset.
 func become_upset(delay:float = 0):
-	asleep = false
+	sign_backwards = false
 	_play_dissapointment_animation(delay)
 
 ## Makes the person waddle after the provided delay with the provided movement 
@@ -211,6 +222,37 @@ func _fold_sign_down() -> void:
 	tween.parallel().tween_property(held_sign, "position", held_up_sign_pos + Vector2(0, SIGN_DOWN_DIFF), 0.2)
 	tween.parallel().tween_property(held_sign, "scale", Vector2(1,0), 0.2)
 
+func _flip_sign_to_front(horizontal:bool = false) -> void:
+	
+	held_sign.pivot_offset = Vector2(28.5, 28.5)
+	var tween = create_tween()
+	
+	# Squash the sign differently depending on the direction of flip
+	var squash := Vector2(1,0)
+	if horizontal:
+		squash = Vector2(0,1)
+	
+	# Squash the sign in
+	tween.tween_property(held_sign, "scale", squash, 0.1)
+	
+	# Snap the sign to the front
+	# TODO: This is happening before the above tween is finished. Fix that.
+	_snap_sign_to_front()
+	
+	# Squash the sign back out
+	tween.chain().tween_property(held_sign, "scale", Vector2(1,1), 0.1)
+
+func _snap_sign_to_back():
+	arrow.show()
+	held_sign_label.hide()
+	held_sign.color = flipped_sign_colour
+
+func _snap_sign_to_front() -> void:
+	held_sign.show()
+	held_sign.color = normal_sign_colour
+	held_sign_label.show()
+	arrow.hide()
+
 ## Fades the sign with the fade colour.
 func fade_sign() -> void:
 	if has_sign:
@@ -256,7 +298,7 @@ func _play_stand_up_animation(delay:float = 0, immediate:bool = false):
 		sprite.frame = -1 # Force to the last frame of the animation	
 
 ## Plays the idle animation for the person. This takes into consideration
-## whether or not the person is sleeping, or has a sign.
+## whether or not the person has a sign.
 func _play_idle_animation(delay:float = 0, immediate:bool = false):
 	
 	# Add optional delay. Only works with non-immediate calls.
@@ -264,9 +306,7 @@ func _play_idle_animation(delay:float = 0, immediate:bool = false):
 		await get_tree().create_timer(delay).timeout
 	
 	# Play the appropriate idle animation
-	if asleep:
-		sprite.play("sleeping")
-	elif has_sign:
+	if has_sign:
 		sprite.play("hands_up_holding_sign")
 	else:
 		sprite.play("hands_up_not_holding_sign")
