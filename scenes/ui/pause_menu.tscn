@@ -24,7 +24,7 @@
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_coo1x"]
 frames = 13
-speed_scale = 4.0
+speed_scale = 8.0
 frame_0/texture = ExtResource("10_t6ppj")
 frame_1/texture = ExtResource("11_3xddx")
 frame_1/duration = 1.0
