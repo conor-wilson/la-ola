@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://81yxlnpsjl8c" path="res://assets/art/ui/PauseMenuButtons/ReturnToMainMenu.png" id="4_2rlsb"]
 [ext_resource type="Texture2D" uid="uid://bdgetvj52w7ln" path="res://assets/art/ui/PauseMenuButtons/Replay.png" id="5_coo1x"]
 [ext_resource type="Texture2D" uid="uid://busnfxltjmm7q" path="res://assets/art/ui/SettingAnim/Sprite-Settings6.png" id="6_2jkta"]
-[ext_resource type="Texture2D" uid="uid://cjxl7rabr8elu" path="res://assets/art/ui/XSign.png" id="8_2rlsb"]
+[ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/PauseMenuButtons/X.png" id="8_2rlsb"]
 
 [node name="PauseMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_home_button", "_toggle_audio_button", "_close_button")]
 anchors_preset = 8
@@ -34,7 +34,7 @@ _close_button = NodePath("ClosePopupButton")
 position = Vector2(309.99976, 185)
 scale = Vector2(7.1225, 3.7424877)
 sprite_frames = ExtResource("2_4inpj")
-frame_progress = 0.51939434
+frame_progress = 0.84361327
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -86,9 +86,10 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -47.99951
-offset_top = 7.5
-offset_right = 0.00048828125
-offset_bottom = 55.5
+offset_left = -47.999756
+offset_top = 7.0
+offset_right = 0.00024414063
+offset_bottom = 55.0
 grow_horizontal = 0
 icon = ExtResource("8_2rlsb")
+icon_alignment = 1
