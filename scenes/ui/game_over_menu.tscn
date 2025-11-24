@@ -1,28 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv0pcnqkje6xm"]
+[gd_scene load_steps=9 format=3 uid="uid://cv0pcnqkje6xm"]
 
 [ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="1_7nx0y"]
 [ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PauseMenuBackAnim/pause_menu_background_animated_texture.tres" id="2_i4hgn"]
 [ext_resource type="Texture2D" uid="uid://b8elscsrtwq76" path="res://assets/art/ui/SettingAnim/Sprite-Settings1.png" id="3_5d0qp"]
+[ext_resource type="Texture2D" uid="uid://81yxlnpsjl8c" path="res://assets/art/ui/PauseMenuButtons/ReturnToMainMenu.png" id="4_bajbn"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="4_rvyv1"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_onapr"]
-font_size = 64
+[ext_resource type="Texture2D" uid="uid://bdgetvj52w7ln" path="res://assets/art/ui/PauseMenuButtons/Replay.png" id="5_dvuf8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7nx0y"]
 font_size = 32
 
-[node name="GameOverMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_score_text", "_high_score_text")]
+[sub_resource type="LabelSettings" id="LabelSettings_i4hgn"]
+font_size = 64
+font_color = Color(0.28235295, 0.6627451, 1, 1)
+
+[node name="GameOverMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_main_menu_button", "_score_text", "_high_score_text")]
 offset_left = 232.0
 offset_top = 128.0
 offset_right = 848.0
 offset_bottom = 504.0
-color = Color(0, 1, 1, 0.3647059)
+color = Color(0, 1, 1, 0)
 script = ExtResource("1_7nx0y")
-_retry_button = NodePath("CenterContainer/VBoxContainer/RetryButton")
+_retry_button = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/RestartButton")
+_main_menu_button = NodePath("CenterContainer/VBoxContainer/HBoxContainer2/QuitButton")
 _score_text = NodePath("CenterContainer/VBoxContainer/ScoreLabel")
 _high_score_text = NodePath("CenterContainer/VBoxContainer/HighScoreLabel")
 
 [node name="BackgroundRect" type="NinePatchRect" parent="."]
+modulate = Color(0.91228896, 0.9122889, 0.91228884, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,22 +45,12 @@ patch_margin_bottom = 49
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
-offset_right = 616.0
-offset_bottom = 376.0
+offset_right = 353.925
+offset_bottom = 225.87
+scale = Vector2(1.75, 1.75)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-text = "GAME OVER!"
-label_settings = SubResource("LabelSettings_onapr")
-horizontal_alignment = 1
-
-[node name="RetryButton" type="Button" parent="CenterContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Retry"
 
 [node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -69,6 +64,23 @@ text = "Best: 69420"
 label_settings = SubResource("LabelSettings_7nx0y")
 horizontal_alignment = 1
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rvyv1")
+text = "Main Menu"
+icon = ExtResource("4_bajbn")
+
+[node name="RestartButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_rvyv1")
+text = "Restart"
+icon = ExtResource("5_dvuf8")
+
 [node name="HeaderTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -81,17 +93,37 @@ offset_bottom = 67.985
 grow_horizontal = 2
 texture = ExtResource("3_5d0qp")
 
-[node name="CenterContainer" type="CenterContainer" parent="HeaderTextureRect"]
-layout_mode = 0
-offset_left = 15.5
-offset_top = 19.94
-offset_right = 402.06
-offset_bottom = 150.92001
-scale = Vector2(0.615, 0.615)
+[node name="ColorRect" type="ColorRect" parent="HeaderTextureRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.21
+offset_top = -40.684998
+offset_right = 118.125
+offset_bottom = 40.71
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.92156863, 0.9529412, 1, 1)
 
-[node name="Label" type="Label" parent="HeaderTextureRect/CenterContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="HeaderTextureRect/ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -111.0225
+offset_top = -25.104498
+offset_right = 393.97748
+offset_bottom = 90.89551
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.45, 0.45)
 theme_override_fonts/font = ExtResource("4_rvyv1")
 text = "GAME OVER!"
-label_settings = SubResource("LabelSettings_onapr")
+label_settings = SubResource("LabelSettings_i4hgn")
 horizontal_alignment = 1
+vertical_alignment = 1
