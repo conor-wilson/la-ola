@@ -37,6 +37,8 @@ func reset():
 	spawn_buffer = 0
 	for i in range(0, num_columns):
 		spawn_new_column()
+	
+	waddle()
 
 ## Returns the column from the crowd with the provided ID.
 func get_column_with_id(column_id:int) -> CrowdColumn:

@@ -313,3 +313,9 @@ func _on_standup_timer_timeout() -> void:
 ## Triggered when the WaddleTimer times out.
 func _on_waddle_timer_timeout() -> void:
 	unwaddle()
+	waddle(
+		randf_range(0, 4),
+		randf_range(0.2, 2),
+		randf_range(2, 5)
+	)
+
