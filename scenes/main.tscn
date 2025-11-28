@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=25 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
@@ -16,6 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://bij11r6xu3n1h" path="res://assets/art/ui/PauseMenuBackAnim/PauseMenuBack4.png" id="14_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://djjebajdht7sp" path="res://assets/art/ui/PauseMenuBackAnim/PauseMenuBack5.png" id="15_yc10j"]
 [ext_resource type="Texture2D" uid="uid://bksx8ea6pwn4c" path="res://assets/art/ui/PauseMenuBackAnim/PauseMenuBack6.png" id="16_jscy8"]
+[ext_resource type="Script" uid="uid://7hucf76x5yp6" path="res://scenes/ui/tutorial_popup.gd" id="17_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PauseMenuBackAnim/pause_menu_background_animated_texture.tres" id="18_yc10j"]
+[ext_resource type="PackedScene" uid="uid://d0qg5byt1cjmw" path="res://scenes/ui/person_ui.tscn" id="19_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/PauseMenuButtons/X.png" id="20_pm3ni"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
 font_size = 64
@@ -38,6 +42,10 @@ frame_4/texture = ExtResource("15_yc10j")
 frame_4/duration = 1.0
 frame_5/texture = ExtResource("16_jscy8")
 frame_5/duration = 1.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_yc10j"]
+font = ExtResource("12_muem4")
+font_color = Color(0.28235295, 0.6627451, 1, 1)
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("_play_button", "_settings_button", "_settings_popup")]
 script = ExtResource("1_ig7tw")
@@ -194,6 +202,208 @@ visible = false
 
 [node name="RestartButton" parent="PauseMenu/VBoxContainer/HBoxContainer2" index="1"]
 visible = false
+
+[node name="TutorialPopup" type="ColorRect" parent="." node_paths=PackedStringArray("_wave_people", "_sleeping_people")]
+z_index = 80
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 344.0
+offset_top = 220.0
+offset_right = 813.185
+offset_bottom = 399.95502
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+script = ExtResource("17_gqmmt")
+_wave_people = [NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI3")]
+_sleeping_people = [NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI3"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI4"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI5")]
+
+[node name="DarkenColorRect" type="ColorRect" parent="TutorialPopup"]
+layout_mode = 0
+offset_left = -1000.0
+offset_top = -1000.0
+offset_right = 1000.0
+offset_bottom = 1000.0
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="BackgroundRect" type="NinePatchRect" parent="TutorialPopup"]
+modulate = Color(0.9428228, 0.94282264, 0.94282264, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -210.0
+offset_top = -178.0
+offset_right = -537.74
+offset_bottom = -259.95502
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(6, 6)
+texture = ExtResource("18_yc10j")
+patch_margin_left = 49
+patch_margin_top = 49
+patch_margin_right = 49
+patch_margin_bottom = 49
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TutorialPopup"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -395.5925
+offset_top = -154.97751
+offset_right = 455.2825
+offset_bottom = 397.0225
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialPopup/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer_Typing" type="VBoxContainer" parent="TutorialPopup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Typing"]
+layout_mode = 2
+alignment = 1
+
+[node name="PersonUI" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PersonUI2" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PersonUI3" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Typing"]
+layout_mode = 2
+text = "Type letters in the order
+they appear on the signs to keep the Mexican wave going!"
+label_settings = SubResource("LabelSettings_yc10j")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer_Sleeping" type="VBoxContainer" parent="TutorialPopup/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping"]
+layout_mode = 2
+alignment = 1
+
+[node name="PersonUI" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PersonUI2" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PersonUI3" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PersonUI4" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="PersonUI5" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TutorialPopup/VBoxContainer/HBoxContainer/VBoxContainer_Sleeping"]
+layout_mode = 2
+text = "Some fans are sleeping - you'll have to guess the letter from context!"
+label_settings = SubResource("LabelSettings_yc10j")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TutorialPopup/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer_Lose" type="VBoxContainer" parent="TutorialPopup/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose"]
+layout_mode = 2
+alignment = 1
+
+[node name="PersonUI" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+
+[node name="PersonUI2" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+
+[node name="PersonUI3" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+
+[node name="PersonUI4" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+
+[node name="PersonUI5" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer" instance=ExtResource("19_gqmmt")]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TutorialPopup/VBoxContainer/HBoxContainer3/VBoxContainer_Lose"]
+layout_mode = 2
+text = "The wave speeds up. Take too long to type the letter and the wave dies - it's game over!"
+label_settings = SubResource("LabelSettings_yc10j")
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HeaderTextureRect" type="TextureRect" parent="TutorialPopup"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.49976
+offset_top = -222.0
+offset_right = 132.50024
+offset_bottom = -93.0
+grow_horizontal = 2
+texture = ExtResource("7_tipki")
+
+[node name="ClosePopupButton" type="Button" parent="TutorialPopup"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 91.815
+offset_top = -148.0
+offset_right = 139.815
+offset_bottom = -100.00001
+grow_horizontal = 0
+icon = ExtResource("20_pm3ni")
+icon_alignment = 1
 
 [connection signal="column_exited_screen" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_column_exited_screen"]
 [connection signal="new_column_spawned" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_new_column_spawned"]
