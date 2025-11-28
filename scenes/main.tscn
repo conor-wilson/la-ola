@@ -177,15 +177,17 @@ offset_top = 220.0
 offset_right = 813.185
 offset_bottom = 399.95502
 
-[node name="BackgroundRect" parent="PauseMenu" index="0"]
+[node name="BackgroundRect" parent="PauseMenu" index="1"]
 offset_right = -234.51
-offset_bottom = -81.955
+offset_bottom = -31.455017
 scale = Vector2(2, 2)
 texture = SubResource("AnimatedTexture_pm3ni")
 
-[node name="VBoxContainer" parent="PauseMenu" index="1"]
-offset_top = -25.149498
-offset_bottom = 44.850563
+[node name="VBoxContainer" parent="PauseMenu" index="2"]
+offset_left = -279.5925
+offset_top = -10.977509
+offset_right = 32.4075
+offset_bottom = 109.02249
 
 [node name="QuitButton" parent="PauseMenu/VBoxContainer/HBoxContainer2" index="0"]
 visible = false
