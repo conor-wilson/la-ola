@@ -203,7 +203,7 @@ visible = false
 [node name="RestartButton" parent="PauseMenu/VBoxContainer/HBoxContainer2" index="1"]
 visible = false
 
-[node name="TutorialPopup" type="ColorRect" parent="." node_paths=PackedStringArray("_wave_people", "_sleeping_people")]
+[node name="TutorialPopup" type="ColorRect" parent="." node_paths=PackedStringArray("_wave_people", "_sleeping_people", "_sad_people")]
 z_index = 80
 anchors_preset = 8
 anchor_left = 0.5
@@ -220,6 +220,7 @@ color = Color(1, 1, 1, 0)
 script = ExtResource("17_gqmmt")
 _wave_people = [NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Typing/HBoxContainer/PersonUI3")]
 _sleeping_people = [NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI3"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI4"), NodePath("VBoxContainer/HBoxContainer/VBoxContainer_Sleeping/HBoxContainer/PersonUI5")]
+_sad_people = [NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI2"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI3"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI4"), NodePath("VBoxContainer/HBoxContainer3/VBoxContainer_Lose/HBoxContainer/PersonUI5")]
 
 [node name="DarkenColorRect" type="ColorRect" parent="TutorialPopup"]
 layout_mode = 0
