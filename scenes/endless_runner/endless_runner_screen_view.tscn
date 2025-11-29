@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbsfelqtvbj2"]
+[gd_scene load_steps=9 format=3 uid="uid://cbsfelqtvbj2"]
 
 [ext_resource type="Script" uid="uid://b8o57ocny684l" path="res://scenes/endless_runner/endless_runner_screen_view.gd" id="1_cdxfl"]
 [ext_resource type="Texture2D" uid="uid://c078h7knc5syp" path="res://assets/art/stadium/StadiumBackground.png" id="2_xgt18"]
+[ext_resource type="Texture2D" uid="uid://w60be57ca6ml" path="res://assets/art/stadium/clouds/CloudSprite-1.png" id="3_h5wwr"]
+[ext_resource type="Texture2D" uid="uid://be6ajqsvwyjmr" path="res://assets/art/stadium/clouds/CloudSprite-2.png" id="4_yfp3g"]
+[ext_resource type="Texture2D" uid="uid://cle2v1bwo2g3k" path="res://assets/art/stadium/clouds/CloudSprite-3.png" id="5_6cmjg"]
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_h5wwr"]
 [ext_resource type="Texture2D" uid="uid://cxedegn0eigar" path="res://assets/art/stadium/StadiumPitch.png" id="6_2xeil"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="7_lt3xr"]
@@ -12,27 +15,67 @@ _crowd = NodePath("Crowd")
 
 [node name="ScrollingBackground" type="Node2D" parent="."]
 
-[node name="BackWall" type="Parallax2D" parent="ScrollingBackground"]
+[node name="Sky" type="Parallax2D" parent="ScrollingBackground"]
+z_index = -1
 scroll_scale = Vector2(0.85, 1)
 repeat_size = Vector2(1152, 0)
 
-[node name="StadiumBackWall" type="Sprite2D" parent="ScrollingBackground/BackWall"]
+[node name="Sky" type="Sprite2D" parent="ScrollingBackground/Sky"]
 position = Vector2(1152, 324)
 texture = ExtResource("2_xgt18")
 
-[node name="Ad1" type="ColorRect" parent="ScrollingBackground/BackWall"]
-offset_left = 48.0
-offset_top = 24.0
-offset_right = 424.0
-offset_bottom = 112.0
-color = Color(0.92156863, 0.9529412, 1, 1)
+[node name="Clouds1" type="Parallax2D" parent="ScrollingBackground"]
+z_index = -1
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1152, 0)
 
-[node name="Ad2" type="ColorRect" parent="ScrollingBackground/BackWall"]
-offset_left = 656.0
-offset_top = 32.0
-offset_right = 1032.0
-offset_bottom = 120.0
-color = Color(0.92156863, 0.9529412, 1, 1)
+[node name="Cloud1" type="Sprite2D" parent="ScrollingBackground/Clouds1"]
+position = Vector2(-37, 32)
+scale = Vector2(8, 8)
+texture = ExtResource("3_h5wwr")
+offset = Vector2(29.25, 6.625)
+
+[node name="Cloud2" type="Sprite2D" parent="ScrollingBackground/Clouds1"]
+position = Vector2(859, 62)
+scale = Vector2(8, 8)
+texture = ExtResource("4_yfp3g")
+
+[node name="Clouds2" type="Parallax2D" parent="ScrollingBackground"]
+z_index = -1
+scroll_scale = Vector2(0.85, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="Cloud3" type="Sprite2D" parent="ScrollingBackground/Clouds2"]
+position = Vector2(437, 146)
+scale = Vector2(4, 4)
+texture = ExtResource("5_6cmjg")
+
+[node name="Cloud4" type="Sprite2D" parent="ScrollingBackground/Clouds2"]
+position = Vector2(1089, 130)
+scale = Vector2(4, 4)
+texture = ExtResource("3_h5wwr")
+
+[node name="BackRails" type="Parallax2D" parent="ScrollingBackground"]
+scroll_scale = Vector2(0.99, 1)
+scroll_offset = Vector2(0, -368)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumBackRailings" type="Sprite2D" parent="ScrollingBackground/BackRails"]
+modulate = Color(0.91, 0.91, 0.91, 1)
+position = Vector2(536, 436)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_h5wwr")
+
+[node name="Seats" type="Parallax2D" parent="ScrollingBackground"]
+scroll_scale = Vector2(1.1, 0)
+scroll_offset = Vector2(0, -368)
+repeat_size = Vector2(1152, 0)
+
+[node name="Seats" type="ColorRect" parent="ScrollingBackground/Seats"]
+offset_top = 568.0
+offset_right = 1152.0
+offset_bottom = 864.0
+color = Color(0.19607843, 0.45882353, 0.7019608, 1)
 
 [node name="Crowd" parent="." instance=ExtResource("7_lt3xr")]
 num_columns = 23

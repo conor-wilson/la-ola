@@ -20,11 +20,11 @@ _popups = [NodePath("ReadyScreen"), NodePath("GoScreen"), NodePath("GameOverMenu
 _pause_button = NodePath("HUD/PauseButton")
 
 [node name="ReadyScreen" type="ColorRect" parent="."]
-offset_left = 232.0
-offset_top = 488.0
-offset_right = 848.0
-offset_bottom = 568.0
-color = Color(0, 1, 1, 1)
+offset_left = 219.0
+offset_top = 179.0
+offset_right = 835.0
+offset_bottom = 531.0
+color = Color(1, 1, 1, 0)
 
 [node name="ReadyScreen" type="Label" parent="ReadyScreen"]
 layout_mode = 0
@@ -36,25 +36,10 @@ label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CheckButton" type="CheckButton" parent="ReadyScreen"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 16.0
-offset_right = 535.0
-offset_bottom = 69.0
-theme_override_font_sizes/font_size = 32
-button_pressed = true
-text = "Sleeping people wake up"
-
 [node name="GoScreen" type="Label" parent="."]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
-text = "GO!!!
-
-
-
-
-"
 label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -64,6 +49,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="HUD" type="Label" parent="."]
+visible = false
 offset_right = 1152.0
 offset_bottom = 648.0
 label_settings = SubResource("LabelSettings_sqbng")
@@ -83,8 +69,9 @@ scale = Vector2(2, 2)
 texture_normal = ExtResource("2_jgys4")
 
 [node name="GameOverMenu" parent="." instance=ExtResource("2_yywdt")]
+visible = false
 
 [node name="PauseMenu" parent="." instance=ExtResource("4_jgys4")]
+visible = false
 
-[connection signal="toggled" from="ReadyScreen/CheckButton" to="." method="_on_check_button_toggled"]
 [connection signal="timeout" from="GoScreen/HideTimer" to="." method="_on_screen_text_hide_timer_timeout"]
