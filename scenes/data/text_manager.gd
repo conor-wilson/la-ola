@@ -2,6 +2,8 @@ class_name TextManager extends Node2D
 
 @export var _text_generator:TextGenerator
 
+const INCLUDE_PUNCTUATION_THRESHOLD = 100
+
 var _text:String
 var _text_length:int # We store this as a variable to avoid having to do len(_text) every time the controller wants the length of the text.
 var _currently_selected_char_index:int
@@ -75,5 +77,5 @@ func get_index_is_sleeping_person(index:int) -> bool:
 func _generate_new_text():
 	if _text != "":
 		_text += " "
-	_text += _text_generator.generate_sentence()
+	_text += _text_generator.generate_sentence(INCLUDE_PUNCTUATION_THRESHOLD <= _currently_selected_char_index)
 	_text_length = len(_text)
