@@ -6,7 +6,8 @@
 
 [resource]
 default_font = ExtResource("1_0hks0")
-default_font_size = 60
+default_font_size = 20
 Button/font_sizes/font_size = 20
 Button/styles/focus = SubResource("StyleBoxEmpty_ctn7o")
 Label/colors/font_color = Color(0.28235295, 0.6627451, 1, 1)
+Label/font_sizes/font_size = 10

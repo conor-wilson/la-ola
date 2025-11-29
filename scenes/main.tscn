@@ -1,7 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=18 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
 [ext_resource type="Texture2D" uid="uid://c078h7knc5syp" path="res://assets/art/stadium/StadiumBackground.png" id="3_o6xl0"]
 [ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="4_jscy8"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="4_tipki"]
@@ -10,11 +9,11 @@
 [ext_resource type="Texture2D" uid="uid://doxfnkwsv6oew" path="res://scenes/ui/game_title_animated_text.tres" id="7_jscy8"]
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
-[ext_resource type="Texture2D" uid="uid://fetb4u78i345" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton1.png" id="12_y6deb"]
-[ext_resource type="Texture2D" uid="uid://16tx164xooqe" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton2.png" id="13_og1vs"]
-[ext_resource type="Texture2D" uid="uid://cxju1cajs2lru" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton3.png" id="14_2wyq8"]
-[ext_resource type="Texture2D" uid="uid://boitsnaxo4n8h" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton4.png" id="15_vxglm"]
-[ext_resource type="Texture2D" uid="uid://b1v2r0ahlljj0" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton5.png" id="16_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://cjv2un42alb7m" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton1.png" id="12_y6deb"]
+[ext_resource type="Texture2D" uid="uid://b7kkijhdyo0s6" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton2.png" id="13_og1vs"]
+[ext_resource type="Texture2D" uid="uid://bsivclqgcee2i" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton3.png" id="14_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://sjx3paba3xxv" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton4.png" id="15_vxglm"]
+[ext_resource type="Texture2D" uid="uid://dqhkyypmc6362" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton5.png" id="16_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
@@ -22,7 +21,7 @@ load_path = "res://.godot/imported/StadiumPitch.png-e0747f3ce62a7d7f26a7177fed67
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_chjal"]
 frames = 5
-speed_scale = 8.0
+speed_scale = 3.0
 frame_0/texture = ExtResource("12_y6deb")
 frame_1/texture = ExtResource("13_og1vs")
 frame_1/duration = 1.0
@@ -35,9 +34,9 @@ frame_4/duration = 1.0
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("_play_button", "_settings_button", "_tutorial_button", "_settings_popup", "_tutorial_popup")]
 script = ExtResource("1_ig7tw")
-_play_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer/PlayButton")
-_settings_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer2/SettingsButton")
-_tutorial_button = NodePath("MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer3/TutorialButton")
+_play_button = NodePath("Buttons/PlayButton")
+_settings_button = NodePath("Buttons/SettingsButton")
+_tutorial_button = NodePath("Buttons/TutorialButton")
 _settings_popup = NodePath("PauseMenu")
 _tutorial_popup = NodePath("TutorialPopup")
 
@@ -54,54 +53,6 @@ repeat_size = Vector2(1152, 0)
 position = Vector2(1152, 324)
 texture = ExtResource("3_o6xl0")
 
-[node name="TopLeftBanner" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
-position = Vector2(236.66, 85.275)
-scale = Vector2(2.989, 1.55)
-texture = ExtResource("3_choun")
-
-[node name="CreditsOneLabel" type="Label" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall/TopLeftBanner"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -35.684174
-offset_top = -30.5
-offset_right = 396.3158
-offset_bottom = 342.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.125, 0.125)
-theme = ExtResource("4_jscy8")
-text = "Created by:
-Conor Wilson
-Emmet Winter
-Evie Winter"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="TopRightBanner" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
-position = Vector2(896.274, 85.275)
-scale = Vector2(2.989, 1.55)
-texture = ExtResource("3_choun")
-
-[node name="CreditsTwoLabel" type="Label" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall/TopRightBanner"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -37.228
-offset_top = -30.5
-offset_right = 471.77197
-offset_bottom = 342.5
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.125, 0.125)
-theme = ExtResource("4_jscy8")
-text = "Created by:
-Jay Arbuthnot
-Markus Galic
-Sankha Peiris"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Crowd" parent="EndlessRunnerScreenView" instance=ExtResource("4_tipki")]
 num_columns = 23
 
@@ -113,7 +64,7 @@ repeat_size = Vector2(1152, 0)
 
 [node name="StadiumBackRailings" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
 z_index = 15
-position = Vector2(576, 392)
+position = Vector2(535, 392)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_85g3d")
 
@@ -125,70 +76,173 @@ repeat_size = Vector2(1152, 0)
 position = Vector2(1152, 324)
 texture = SubResource("CompressedTexture2D_yq6so")
 
-[node name="MarginContainer" type="CenterContainer" parent="."]
-z_index = 5
-offset_top = -12.0
-offset_right = 1152.0
-offset_bottom = 636.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="Title" type="TextureRect" parent="."]
+z_as_relative = false
+offset_left = 312.0
+offset_right = 572.0
+offset_bottom = 140.0
+scale = Vector2(2, 2)
 texture = ExtResource("7_jscy8")
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(28.875, 102.225)
-layout_mode = 2
+[node name="Buttons" type="Node2D" parent="."]
 
-[node name="GameTitle" type="Sprite2D" parent="MarginContainer/VBoxContainer/Control"]
-position = Vector2(215.99998, 25.845)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("7_jscy8")
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
-z_index = 10
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer"]
-layout_mode = 2
+[node name="PlayButton" type="Button" parent="Buttons"]
+z_index = 3
+z_as_relative = false
+offset_left = 438.0
+offset_top = 244.0
+offset_right = 711.0
+offset_bottom = 381.0
 size_flags_horizontal = 0
 theme = ExtResource("4_jscy8")
 icon = ExtResource("6_o6xl0")
 flat = true
 icon_alignment = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer2"]
-layout_mode = 2
+[node name="SettingsButton" type="Button" parent="Buttons"]
+z_index = 5
+offset_left = 188.00002
+offset_top = 344.0
+offset_right = 461.0
+offset_bottom = 481.0
+scale = Vector2(0.9, 0.9)
 size_flags_horizontal = 0
 theme = ExtResource("4_jscy8")
 icon = ExtResource("7_tipki")
 flat = true
 icon_alignment = 1
 
-[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer3"]
-layout_mode = 2
+[node name="TutorialButton" type="Button" parent="Buttons"]
+z_index = 5
+offset_left = 720.0
+offset_top = 360.00003
+offset_right = 1158.0
+offset_bottom = 488.00003
+scale = Vector2(0.7, 0.7)
 size_flags_horizontal = 0
 theme = ExtResource("4_jscy8")
 icon = SubResource("AnimatedTexture_chjal")
 flat = true
 icon_alignment = 1
+
+[node name="Credits" type="Node2D" parent="."]
+
+[node name="ProgrammingHeader" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = 488.0
+offset_right = 568.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
+theme_override_constants/line_spacing = 0
+text = "PROGRAMMING: 
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgrammingNames" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = 488.0
+offset_right = 568.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_constants/line_spacing = 0
+text = "
+Conor Wilson    Emmet Winter    Sankha Peiris"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArtHeader" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 752.0
+offset_top = 488.0
+offset_right = 960.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
+theme_override_constants/line_spacing = 0
+text = "ART:
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ArtName" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 752.0
+offset_top = 488.0
+offset_right = 960.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_constants/line_spacing = 0
+text = "
+Evie Winter"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProductionHeader" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 624.0
+offset_top = 488.0
+offset_right = 832.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_constants/line_spacing = 0
+text = "
+ Jay Arbuthnot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProductionName" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 624.0
+offset_top = 488.0
+offset_right = 832.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
+theme_override_constants/line_spacing = 0
+text = "  PRODUCTION:
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_tipki")]
 visible = false
