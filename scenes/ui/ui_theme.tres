@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dy8agccfk1yd7"]
+
+[ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="1_0hks0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctn7o"]
+
+[resource]
+default_font = ExtResource("1_0hks0")
+default_font_size = 60
+Button/font_sizes/font_size = 20
+Button/styles/focus = SubResource("StyleBoxEmpty_ctn7o")
+Label/colors/font_color = Color(0.28235295, 0.6627451, 1, 1)

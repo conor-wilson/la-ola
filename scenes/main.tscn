@@ -1,31 +1,21 @@
-[gd_scene load_steps=27 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=19 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://cfvry7ctes6tc" path="res://assets/art/stadium/banner/banner_animated_texture.tres" id="3_choun"]
 [ext_resource type="Texture2D" uid="uid://c078h7knc5syp" path="res://assets/art/stadium/StadiumBackground.png" id="3_o6xl0"]
+[ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="4_jscy8"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_85g3d"]
 [ext_resource type="Texture2D" uid="uid://jf051ov1rwtn" path="res://scenes/ui/start_button_animated_texture.tres" id="6_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://doxfnkwsv6oew" path="res://scenes/ui/game_title_animated_text.tres" id="7_jscy8"]
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
-[ext_resource type="Texture2D" uid="uid://qiev3vhh3af5" path="res://assets/art/ui/PopupBackground/PauseMenuBack1.png" id="11_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://ddw7bg88wixnw" path="res://assets/art/ui/PopupBackground/PauseMenuBack2.png" id="12_dp3eg"]
-[ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="12_muem4"]
 [ext_resource type="Texture2D" uid="uid://fetb4u78i345" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton1.png" id="12_y6deb"]
-[ext_resource type="Texture2D" uid="uid://cf8ygvjn2whdl" path="res://assets/art/ui/PopupBackground/PauseMenuBack3.png" id="13_0ld40"]
 [ext_resource type="Texture2D" uid="uid://16tx164xooqe" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton2.png" id="13_og1vs"]
 [ext_resource type="Texture2D" uid="uid://cxju1cajs2lru" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton3.png" id="14_2wyq8"]
-[ext_resource type="Texture2D" uid="uid://bij11r6xu3n1h" path="res://assets/art/ui/PopupBackground/PauseMenuBack4.png" id="14_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://boitsnaxo4n8h" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton4.png" id="15_vxglm"]
-[ext_resource type="Texture2D" uid="uid://djjebajdht7sp" path="res://assets/art/ui/PopupBackground/PauseMenuBack5.png" id="15_yc10j"]
 [ext_resource type="Texture2D" uid="uid://b1v2r0ahlljj0" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton5.png" id="16_2f3dj"]
-[ext_resource type="Texture2D" uid="uid://bksx8ea6pwn4c" path="res://assets/art/ui/PopupBackground/PauseMenuBack6.png" id="16_jscy8"]
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
-font_size = 64
-font_color = Color(0.28235295, 0.6627451, 1, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
 load_path = "res://.godot/imported/StadiumPitch.png-e0747f3ce62a7d7f26a7177fed67fae4.ctex"
@@ -42,21 +32,6 @@ frame_3/texture = ExtResource("15_vxglm")
 frame_3/duration = 1.0
 frame_4/texture = ExtResource("16_2f3dj")
 frame_4/duration = 1.0
-
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_pm3ni"]
-frames = 6
-speed_scale = 4.0
-frame_0/texture = ExtResource("11_jbj1t")
-frame_1/texture = ExtResource("12_dp3eg")
-frame_1/duration = 1.0
-frame_2/texture = ExtResource("13_0ld40")
-frame_2/duration = 1.0
-frame_3/texture = ExtResource("14_gqmmt")
-frame_3/duration = 1.0
-frame_4/texture = ExtResource("15_yc10j")
-frame_4/duration = 1.0
-frame_5/texture = ExtResource("16_jscy8")
-frame_5/duration = 1.0
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("_play_button", "_settings_button", "_tutorial_button", "_settings_popup", "_tutorial_popup")]
 script = ExtResource("1_ig7tw")
@@ -95,13 +70,11 @@ offset_bottom = 342.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.125, 0.125)
-theme_override_fonts/font = ExtResource("12_muem4")
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("4_jscy8")
 text = "Created by:
 Conor Wilson
 Emmet Winter
 Evie Winter"
-label_settings = SubResource("LabelSettings_ya4ey")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,13 +94,11 @@ offset_bottom = 342.5
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.125, 0.125)
-theme_override_fonts/font = ExtResource("12_muem4")
-theme_override_font_sizes/font_size = 32
+theme = ExtResource("4_jscy8")
 text = "Created by:
 Jay Arbuthnot
 Markus Galic
 Sankha Peiris"
-label_settings = SubResource("LabelSettings_ya4ey")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -192,6 +163,7 @@ layout_mode = 2
 [node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("4_jscy8")
 icon = ExtResource("6_o6xl0")
 flat = true
 icon_alignment = 1
@@ -202,6 +174,7 @@ layout_mode = 2
 [node name="SettingsButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer2"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("4_jscy8")
 icon = ExtResource("7_tipki")
 flat = true
 icon_alignment = 1
@@ -212,6 +185,7 @@ layout_mode = 2
 [node name="TutorialButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer/CenterContainer3"]
 layout_mode = 2
 size_flags_horizontal = 0
+theme = ExtResource("4_jscy8")
 icon = SubResource("AnimatedTexture_chjal")
 flat = true
 icon_alignment = 1
@@ -219,16 +193,17 @@ icon_alignment = 1
 [node name="PauseMenu" parent="." instance=ExtResource("8_tipki")]
 visible = false
 z_index = 80
-offset_left = 344.0
+offset_left = 327.0
 offset_top = 220.0
-offset_right = 813.185
-offset_bottom = 399.95502
+offset_right = 842.0
+offset_bottom = 255.0
 
 [node name="BackgroundRect" parent="PauseMenu" index="1"]
-offset_right = -234.51
-offset_bottom = -31.455017
+offset_left = -39.0
+offset_top = -68.0
+offset_right = -250.0
+offset_bottom = 57.0
 scale = Vector2(2, 2)
-texture = SubResource("AnimatedTexture_pm3ni")
 
 [node name="VBoxContainer" parent="PauseMenu" index="2"]
 offset_left = -279.5925
@@ -245,6 +220,12 @@ visible = false
 [node name="HeaderTextureRect" parent="PauseMenu" index="3"]
 offset_top = -144.565
 offset_bottom = -15.565002
+
+[node name="ClosePopupButton" parent="PauseMenu" index="4"]
+offset_left = -18.0
+offset_top = -44.0
+offset_right = 30.0
+offset_bottom = 3.9999924
 
 [node name="TutorialPopup" parent="." instance=ExtResource("17_muem4")]
 visible = false

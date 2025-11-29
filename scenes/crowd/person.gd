@@ -318,4 +318,3 @@ func _on_waddle_timer_timeout() -> void:
 		randf_range(0.2, 2),
 		randf_range(2, 5)
 	)
-
