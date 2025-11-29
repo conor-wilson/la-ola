@@ -67,6 +67,10 @@ func restart() -> void:
 	_screen_view.restart()
 	_popups.reset()
 
+	# Play music. By triggering them both at the same time we can make sure they're synced.
+	AudioManager.play_audio(AudioManager.music_beats)
+	AudioManager.play_audio(AudioManager.music_tune, 0.0, true, 0)
+
 ## Checks to see if the modular components are ready. If they are not, the
 ## function waits until they are. Pushes errors if any of them are undefined.
 func _wait_for_ready_components() -> void:
