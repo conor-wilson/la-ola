@@ -1,0 +1,12 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "leaderboard-backend",
+	"main": "app.mjs",
+	"compatibility_date": "2025-11-21",
+	"observability": {
+		"enabled": true
+	},
+	"compatibility_flags": [
+    "nodejs_compat"
+  ]
+}
