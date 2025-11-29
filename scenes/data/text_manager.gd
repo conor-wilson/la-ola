@@ -61,10 +61,11 @@ func get_index_is_sleeping_person(index:int) -> bool:
 		get_char(index+1) == " " or # Last letter in word can't be asleep
 		
 		# TODO: Remove these once we've got no more punctiuation
-		get_char(index+1) == "," or # Last letter in word can't be asleep
-		get_char(index+1) == "." or # Last letter in word can't be asleep
-		get_char(index+1) == "?" or # Last letter in word can't be asleep
-		get_char(index+1) == "!"    # Last letter in word can't be asleep
+		get_char(index+1) == "," or # can't be asleep
+		get_char(index+1) == "." or # can't be asleep
+		get_char(index+1) == "?" or # can't be asleep
+		get_char(index+1) == "!" or # can't be asleep
+		get_char(index+1) == "'"    # can't be asleep
 		):
 		return false 
 	

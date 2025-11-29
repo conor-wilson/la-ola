@@ -8,7 +8,7 @@ var model = null
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	model = _load_model()
-	regex.compile(r"[^A-Za-z,\.\- ';]")
+	regex.compile(r"[^A-Za-z,\.' ]")
 	
 func generate_sentence():
 	current_word = ""
@@ -61,7 +61,10 @@ func _load_model():
 				starter_words[word] = true
 			
 			if !is_last_word:
-				chains[word].push_back(words[i+1])
+				var word_chains = chains[word]
+				var next_word = words[i+1]
+				if !word_chains.has(next_word):
+					word_chains.push_back(next_word)
 			
 	return {
 		"starters": starter_words.keys(), 

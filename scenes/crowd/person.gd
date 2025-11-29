@@ -64,8 +64,10 @@ func give_letter(new_letter:String, with_sign_up_animation:bool = false) -> void
 		return
 	
 	# Update the state
+	asleep = false
 	has_sign = true
 	held_sign_label.text = new_letter
+	held_sign_label.show()
 	letter = new_letter
 	
 	# Update the visuals
