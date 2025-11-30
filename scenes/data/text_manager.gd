@@ -3,6 +3,7 @@ class_name TextManager extends Node2D
 @export var _text_generator:TextGenerator
 
 const INCLUDE_PUNCTUATION_THRESHOLD = 100
+const INCLUDE_CAPITALIZATION_THRESHOLD = 200
 
 var _text:String
 var _text_length:int # We store this as a variable to avoid having to do len(_text) every time the controller wants the length of the text.
@@ -25,6 +26,9 @@ func add_sleeping_indices(new_indices:Dictionary[int, bool]):
 ## Returns the current length of the generated text.
 func get_generated_text_length() -> int:
 	return _text_length
+
+func get_generated_text_char(ind: int) -> String:
+	return _text[ind]
 
 ## Returns the character in the text at the provided index.
 func get_char(index:int) -> String:
@@ -67,7 +71,7 @@ func get_index_is_sleeping_person(index:int) -> bool:
 		get_char(index+1) == "." or # can't be asleep
 		get_char(index+1) == "?" or # can't be asleep
 		get_char(index+1) == "!" or # can't be asleep
-		get_char(index+1) == "'"    # can't be asleep
+		get_char(index+1) == "\'"    # can't be asleep
 		):
 		return false 
 	
@@ -77,5 +81,7 @@ func get_index_is_sleeping_person(index:int) -> bool:
 func _generate_new_text():
 	if _text != "":
 		_text += " "
-	_text += _text_generator.generate_sentence(INCLUDE_PUNCTUATION_THRESHOLD <= _currently_selected_char_index)
+	var include_punctuation = _currently_selected_char_index > INCLUDE_PUNCTUATION_THRESHOLD
+	var include_capitalization = _currently_selected_char_index > INCLUDE_CAPITALIZATION_THRESHOLD
+	_text += _text_generator.generate_sentence(include_punctuation, include_capitalization)
 	_text_length = len(_text)

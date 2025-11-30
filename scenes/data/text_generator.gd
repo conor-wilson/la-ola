@@ -12,7 +12,7 @@ func _ready() -> void:
 	regex.compile(r"[^A-Za-z,\.' ]")
 	no_punctuation_regex.compile(r"[^A-Za-z ]")
 
-func generate_sentence(include_punctuation:bool = true):
+func generate_sentence(include_punctuation:bool = true, include_capitalization:bool = true) -> String:
 	current_word = ""
 	
 	var word = generate_word()
@@ -29,6 +29,10 @@ func generate_sentence(include_punctuation:bool = true):
 		cleaned_sentence = regex.sub(sentence, "", true)
 	else:
 		cleaned_sentence = no_punctuation_regex.sub(sentence, "", true)
+
+
+	if !include_capitalization:
+		cleaned_sentence = cleaned_sentence.to_lower()
 
 	print("Cleaned sentence: " + cleaned_sentence)
 	return cleaned_sentence

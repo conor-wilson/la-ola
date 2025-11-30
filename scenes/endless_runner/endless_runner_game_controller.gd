@@ -18,6 +18,7 @@ var _wave_column_id_queue:Array[int] = []
 
 var _sleeping_person_spawn_chance:float = 0.5
 var _last_sleeping_person_index:int = 0
+var _sleeping_quota:int = 0
 
 func _reset() -> void:
 	
@@ -149,23 +150,64 @@ func _get_score() -> int:
 func _get_mode_name() -> String:
 	return "EndlessRunner"
 
+# func _reset_sleeping_quota() -> void:
+# 	_sleeping_quota = ceili((float(current_text_length) - 4)/2);
+
+# func _is_valid_character(char:String) -> bool:
+# 	if (
+# 	get_char(index) == " "   or # Space person can't be asleep
+# 	get_char(index-1) == " " or # First letter in word can't be asleep
+# 	get_char(index+1) == " " or # Last letter in word can't be asleep
+	
+# 	# TODO: Remove these once we've got no more punctiuation
+# 	get_char(index+1) == "," or # can't be asleep
+# 	get_char(index+1) == "." or # can't be asleep
+# 	get_char(index+1) == "?" or # can't be asleep
+# 	get_char(index+1) == "!" or # can't be asleep
+# 	get_char(index+1) == "\'"    # can't be asleep
+# 	):
+# 	return false 
+# 	return char != " " && char != "\n"
+
 ## Generates new indices for sleeping people, and gives them to the text manager.
 func _generate_sleeping_people_indices():
 	
 	var new_indices:Dictionary[int, bool] = {}
 	var current_text_length:int = _text_manager.get_generated_text_length()
+
+	var last_person_was_sleeping = false;
+	var sleeping_quota = 0
+	
+	var process_queue = []
+
+	# if !last_person_was_sleeping:
+	# 	# ...roll the dice to see if they should sleep...
+	# 	if randf() <= _sleeping_person_spawn_chance:
+	# 		new_indices[i] = true
+	# 		sleeping_quota -= 1
+	# 		last_person_was_sleeping = true;
+	# 		if sleeping_quota == 0:
+	# 			break
+	# else: 
+	# 	last_person_was_sleeping = false;
+
+	# # ...then increase the chance that the next person will be sleeping.
+	# if _sleeping_person_spawn_chance < _max_sleeping_person_spawn_chance:
+	# 	_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_increment
+
+
+	var current_block = []
 	
 	# For each person who haven't had the chance to be sleeping...
 	for i in range(_last_sleeping_person_index, current_text_length):
-		
-		# ...roll the dice to see if they should sleep...
-		if randf() <= _sleeping_person_spawn_chance:
-			new_indices[i] = true
-		
-		# ...then increase the chance that the next person will be sleeping.
-		if _sleeping_person_spawn_chance < _max_sleeping_person_spawn_chance:
-			_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_increment
-	
+		var current_char = _text_manager.get_generated_text_char(i)
+		var is_last_char = i == current_text_length - 1
+		if (current_char == " " || is_last_char) && current_block.size() > 0:
+			process_queue.append(current_block)
+			# print(current_block)
+		else:
+			current_block.append(char)
+
 	# Record where we left off for next time
 	_last_sleeping_person_index = current_text_length
 	

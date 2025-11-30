@@ -21,8 +21,8 @@ const STANDING_DIFF:float = -18
 var held_up_sign_pos:Vector2
 const SIGN_DOWN_COMPLETELY_DIFF:float = 32
 
-const SIGN_DOWN_PARTIAL_DIFF:float = 4
-const SIGN_DOWN_PARTIAL_SCALE:float = 0.25
+const SIGN_DOWN_PARTIAL_DIFF:float = 8
+const SIGN_DOWN_PARTIAL_SCALE:float = 0.5
 
 var asleep:bool = false
 var waddling:bool = false # TODO: Maybe the Person needs a State?
