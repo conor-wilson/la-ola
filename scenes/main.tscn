@@ -354,5 +354,11 @@ offset_bottom = 723.955
 
 [connection signal="column_exited_screen" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_column_exited_screen"]
 [connection signal="new_column_spawned" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_new_column_spawned"]
+[connection signal="mouse_entered" from="Buttons/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_exited"]
 
 [editable path="PauseMenu"]

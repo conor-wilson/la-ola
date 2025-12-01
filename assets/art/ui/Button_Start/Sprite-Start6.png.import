@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqaxd2ivyqwg0"
-path="res://.godot/imported/AnimSprite-Start12.png-8b2540483c6a4e457b0dddd51321d5c7.ctex"
+uid="uid://hdhqkj1f1os0"
+path="res://.godot/imported/Sprite-Start6.png-94648bfe8849fdbb0cfd4926bda75086.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/Button_Start/AnimSprite-Start12.png"
-dest_files=["res://.godot/imported/AnimSprite-Start12.png-8b2540483c6a4e457b0dddd51321d5c7.ctex"]
+source_file="res://assets/art/ui/Button_Start/Sprite-Start6.png"
+dest_files=["res://.godot/imported/Sprite-Start6.png-94648bfe8849fdbb0cfd4926bda75086.ctex"]
 
 [params]
 
