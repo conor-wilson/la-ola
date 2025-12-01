@@ -23,4 +23,3 @@ func init(rank:int, name:String, score:int, is_player:bool = false):
 		_name_label[FONT_COLOR_OVERRIDE] = null
 		_score_label[FONT_COLOR_OVERRIDE] = null
 		remove_theme_stylebox_override("panel")
-

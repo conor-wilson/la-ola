@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dy8agccfk1yd7"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://dy8agccfk1yd7"]
 
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="1_0hks0"]
 [ext_resource type="StyleBox" uid="uid://s52anerogre3" path="res://scenes/ui/normal_style_box.tres" id="1_ctn7o"]
@@ -27,6 +27,19 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g0slf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ipwhi"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.34080002, 0.39648, 0.48, 0.49803922)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
 [resource]
 default_font = ExtResource("1_0hks0")
 default_font_size = 20
@@ -37,4 +50,9 @@ Button/styles/normal = ExtResource("1_ctn7o")
 Button/styles/pressed = SubResource("StyleBoxFlat_g0slf")
 Label/colors/font_color = Color(0.28235295, 0.6627451, 1, 1)
 Label/font_sizes/font_size = 10
+LineEdit/colors/caret_color = Color(0.92156863, 0.9529412, 1, 1)
+LineEdit/constants/caret_width = 4
+LineEdit/font_sizes/font_size = 20
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_g0slf")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_ipwhi")
 Panel/styles/panel = ExtResource("1_ctn7o")

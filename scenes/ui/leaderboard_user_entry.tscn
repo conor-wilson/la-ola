@@ -6,7 +6,7 @@
 bg_color = Color(0.80442595, 0.5178656, 0.41382408, 1)
 
 [node name="LeaderboardUserEntry" type="Panel" node_paths=PackedStringArray("_position_label", "_name_label", "_score_label")]
-custom_minimum_size = Vector2(0, 36.855)
+custom_minimum_size = Vector2(0, 28)
 size_flags_vertical = 3
 script = ExtResource("1_xaeq3")
 _position_label = NodePath("CenterContainer/HBoxContainer/Control/RankLabel")
