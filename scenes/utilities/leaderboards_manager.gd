@@ -70,5 +70,8 @@ func set_player_name(_name=""):
 func start_run():
 	_send_request(HTTPClient.METHOD_POST, "start_run", {"userId": user_id, "leaderboardId": LEADERBOARD_ID})
 
+func end_run(score):
+	_send_request(HTTPClient.METHOD_POST, "end_run", {"userId": user_id, "leaderboardId": LEADERBOARD_ID, "score": score})
+
 func post_score(score):
 	_send_request(HTTPClient.METHOD_POST, "post_score", {"userId": user_id, "leaderboardId": LEADERBOARD_ID, "score": score})

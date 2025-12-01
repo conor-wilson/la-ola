@@ -148,6 +148,7 @@ func _get_high_score() -> int:
 	
 func _set_high_score() -> void:
 	LeaderboardsManager.post_score(_get_score())
+	LeaderboardsManager.end_run(_get_score())
 	if _get_score() > _get_high_score():
 		SaveManager.set_value(_get_mode_name() + HIGH_SCORE_SAVE_SUFFIX, _get_score())
 
