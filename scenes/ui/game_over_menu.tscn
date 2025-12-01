@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv0pcnqkje6xm"]
+[gd_scene load_steps=13 format=3 uid="uid://cv0pcnqkje6xm"]
 
 [ext_resource type="Script" uid="uid://3ugbv7d5ldc" path="res://scenes/ui/game_over_menu.gd" id="1_7nx0y"]
 [ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="1_ssfjd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ccjhqyh1h5dv6" path="res://scenes/ui/leaderboard_user_entry.tscn" id="4_g4y5r"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="4_rvyv1"]
 [ext_resource type="Texture2D" uid="uid://bdgetvj52w7ln" path="res://assets/art/ui/Icons/Replay.png" id="5_dvuf8"]
+[ext_resource type="Texture2D" uid="uid://dm4wgbwrb3whe" path="res://assets/art/ui/Icons/SubmitArrow.png" id="5_pqh8g"]
 [ext_resource type="Texture2D" uid="uid://cl351rcg7bgiu" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined1.png" id="6_dvuf8"]
 [ext_resource type="Texture2D" uid="uid://ccrlwir7i7vnv" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined2.png" id="7_ssfjd"]
 [ext_resource type="Texture2D" uid="uid://bbxahrlp7x5xn" path="res://assets/art/ui/Titles/GameOverTitle/GameOverAnimOutlined3.png" id="8_g4y5r"]
@@ -115,13 +116,13 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="NameEntry" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(162, 0)
+custom_minimum_size = Vector2(218, 0)
 layout_mode = 2
 caret_blink = true
 
 [node name="SubmitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Submit"
+icon = ExtResource("5_pqh8g")
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(349, -49.865)
