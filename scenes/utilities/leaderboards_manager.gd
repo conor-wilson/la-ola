@@ -39,13 +39,13 @@ func fetch_scores(leaderboard_id, _user_id=""):
 	leaderboard_scores[leaderboard_id] = scores
 	leaderboards_loaded = true
 
-func get_board_scores(leaderboard_id, use_player_name=false):
+func get_board_scores(leaderboard_id):
 	var ref_scores = leaderboard_scores[leaderboard_id]
 	var scores = ref_scores.duplicate(true)
 
 	scores.map(func(s): s["is_player"] = false)
 	scores.append({
-		"name": player_name if use_player_name else "You",
+		"name": player_name if SaveManager.get_value("nameChosen") == true else "You",
 		"is_player": true,
 		"score": SaveManager.get_value("EndlessRunner_HighScore", 0),
 	})

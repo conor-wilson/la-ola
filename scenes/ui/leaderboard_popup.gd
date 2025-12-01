@@ -52,7 +52,7 @@ func _setup_buttons() -> void:
 		_close_button.pressed.connect(_on_close_button_click)
 
 func _populate_leaderboard_data():
-	var  scores = LeaderboardsManager.get_board_scores(LeaderboardsManager.LEADERBOARD_ID, true)
+	var  scores = LeaderboardsManager.get_board_scores(LeaderboardsManager.LEADERBOARD_ID)
 
 	_leaderboard_pages = []
 	var page_size = 10

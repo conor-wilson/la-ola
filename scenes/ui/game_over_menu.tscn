@@ -67,9 +67,9 @@ patch_margin_bottom = 49
 [node name="CenterContainer" type="MarginContainer" parent="."]
 layout_mode = 0
 offset_left = 115.67
-offset_top = -48.514984
+offset_top = -67.0
 offset_right = 378.53595
-offset_bottom = 203.48502
+offset_bottom = 227.56287
 scale = Vector2(1.75, 1.75)
 theme_override_constants/margin_top = 48
 
@@ -92,6 +92,9 @@ layout_mode = 2
 [node name="LeaderboardUserEntry4" parent="CenterContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_g4y5r")]
 layout_mode = 2
 
+[node name="LeaderboardUserEntry5" parent="CenterContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_g4y5r")]
+layout_mode = 2
+
 [node name="ScoreLabel" type="Label" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -108,16 +111,18 @@ horizontal_alignment = 1
 
 [node name="NameEntryInstructions" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "
-Enter your name:"
+text = "Enter your name:"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="NameEntry" type="LineEdit" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(218, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 10
+max_length = 16
 caret_blink = true
 
 [node name="SubmitButton" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
@@ -154,5 +159,6 @@ theme_override_fonts/font = ExtResource("4_rvyv1")
 text = "Restart"
 icon = ExtResource("5_dvuf8")
 
+[connection signal="text_changed" from="CenterContainer/VBoxContainer/HBoxContainer/NameEntry" to="." method="_on_name_entry_text_changed"]
 [connection signal="text_submitted" from="CenterContainer/VBoxContainer/HBoxContainer/NameEntry" to="." method="_on_name_entry_text_submitted"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/SubmitButton" to="." method="_on_submit_button_pressed"]
