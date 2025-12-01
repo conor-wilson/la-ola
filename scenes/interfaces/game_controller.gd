@@ -120,6 +120,8 @@ func _start():
 	_screen_view.start()
 	_popups.start()
 
+	LeaderboardsManager.start_run()
+
 	# Start the music!
 	AudioManager.play_audio(AudioManager.music_tune, 1, false)
 
@@ -145,6 +147,7 @@ func _get_high_score() -> int:
 	return SaveManager.get_value(_get_mode_name() + HIGH_SCORE_SAVE_SUFFIX, 0)
 	
 func _set_high_score() -> void:
+	LeaderboardsManager.post_score(_get_score())
 	if _get_score() > _get_high_score():
 		SaveManager.set_value(_get_mode_name() + HIGH_SCORE_SAVE_SUFFIX, _get_score())
 

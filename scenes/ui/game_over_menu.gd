@@ -27,49 +27,11 @@ func open_popup(game_controller:GameController, score:int, highscore: int):
 func _init_leaderboard():
 	# Delete existing leaderboard entries
 	for n in _leaderboard_entry_container.get_children():
-		_leaderboard_entry_container.remove_child(n)
-		n.queue_free()
+		if n is LeaderboardUserEntry:
+			n.free()
 
 	# Populates the leaderboard
-	# TODO - Get actual data
-	var leaderboard_data = [
-		{
-			"position": 1,
-			"name": "Alice",
-			"score": 1200,
-			"is_player": false
-		},
-		{
-			"position": 2,
-			"name": "Bob",
-			"score": 950,
-			"is_player": false
-		},
-		{
-			"position": 3,
-			"name": "Charlie",
-			"score": 900,
-			"is_player": false
-		},
-		{
-			"position": 4,
-			"name": "Dave",
-			"score": 70,
-			"is_player": false
-		},
-		{
-			"position": 5,
-			"name": "Eric",
-			"score": 55,
-			"is_player": true
-		},
-		{
-			"position": 6,
-			"name": "Felicia",
-			"score": 2,
-			"is_player": false
-		}
-	]
+	var leaderboard_data = LeaderboardsManager.get_board_scores(LeaderboardsManager.LEADERBOARD_ID)
 
 	var entry_cap = min(leaderboard_data.size(), LEADERBOARD_ENTRIES_CAP)
 	var found_player = false

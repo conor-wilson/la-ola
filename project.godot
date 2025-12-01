@@ -22,6 +22,7 @@ SaveManager="*res://scenes/data/save_manager.gd"
 Global="*res://scenes/Global.gd"
 Settings="*res://scenes/data/settings.gd"
 AudioManager="*res://scenes/audio/audio_manager.tscn"
+LeaderboardsManager="*res://scenes/utilities/leaderboards_manager.gd"
 
 [display]
 

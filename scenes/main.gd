@@ -32,5 +32,6 @@ func _on_tutorial_button_pressed() -> void:
 	_tutorial_popup.show()
 
 func _on_leaderboard_button_pressed() -> void:
-	_leaderboard_popup.show()
+	if LeaderboardsManager.is_ready():
+		_leaderboard_popup.show()
 	
