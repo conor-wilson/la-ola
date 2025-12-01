@@ -1,4 +1,4 @@
 # La Ola
-POC for entry for Github GameOff 2025 
+Entry for Github GameOff 2025 
 
-TEST!
+(Proper README coming soon)
