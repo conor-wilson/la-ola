@@ -22,13 +22,14 @@ _letter_row_index = 4
 _wake_up_column_index = 8
 _camera_snap_threshold_percentage = 0.75
 _starting_camera_speed = 50.0
+_camera_acceleration = 3.0
 game_camera = NodePath("../GameCamera")
 
 [node name="EndlessRunnerPopups" parent="." instance=ExtResource("3_46c3i")]
 
 [node name="GameCamera" parent="." instance=ExtResource("4_04xik")]
 position = Vector2(576, 324)
-max_movement_speed = 2000.0
+max_movement_speed = 450.0
 
 [node name="InputSystem" parent="." instance=ExtResource("2_46c3i")]
 

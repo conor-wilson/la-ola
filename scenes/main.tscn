@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=21 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://w60be57ca6ml" path="res://assets/art/stadium/clouds/CloudSprite-1.png" id="3_dp3eg"]
 [ext_resource type="Texture2D" uid="uid://c078h7knc5syp" path="res://assets/art/stadium/StadiumBackground.png" id="3_o6xl0"]
-[ext_resource type="Theme" path="res://scenes/ui/ui_theme.tres" id="4_jscy8"]
+[ext_resource type="Texture2D" uid="uid://be6ajqsvwyjmr" path="res://assets/art/stadium/clouds/CloudSprite-2.png" id="4_0ld40"]
+[ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="4_jscy8"]
 [ext_resource type="PackedScene" uid="uid://b4jfm050tml0n" path="res://scenes/crowd/crowd.tscn" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_85g3d"]
+[ext_resource type="Texture2D" uid="uid://cle2v1bwo2g3k" path="res://assets/art/stadium/clouds/CloudSprite-3.png" id="5_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://jf051ov1rwtn" path="res://scenes/ui/start_button_animated_texture.tres" id="6_o6xl0"]
 [ext_resource type="Texture2D" path="res://scenes/ui/game_title_animated_text.tres" id="7_jscy8"]
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
@@ -18,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
+load_path = "res://.godot/imported/StadiumPitch.png-16a5b053450c015e0f7b27af646f467c.ctex"
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_chjal"]
 frames = 5
@@ -46,14 +50,67 @@ _leaderboard_popup = NodePath("LeaderboardPopup")
 
 [node name="ScrollingBackground" type="Node2D" parent="EndlessRunnerScreenView"]
 
-[node name="BackWall" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
+[node name="Sky" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
 z_index = -1
 scroll_scale = Vector2(0.85, 1)
 repeat_size = Vector2(1152, 0)
 
-[node name="StadiumBackWall" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/BackWall"]
+[node name="Sky" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/Sky"]
 position = Vector2(1152, 324)
 texture = ExtResource("3_o6xl0")
+
+[node name="Clouds1" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
+z_index = -1
+scroll_scale = Vector2(0.8, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="Cloud1" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/Clouds1"]
+position = Vector2(-37, 32)
+scale = Vector2(8, 8)
+texture = ExtResource("3_dp3eg")
+offset = Vector2(29.25, 6.625)
+
+[node name="Cloud2" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/Clouds1"]
+position = Vector2(859, 62)
+scale = Vector2(8, 8)
+texture = ExtResource("4_0ld40")
+
+[node name="Clouds2" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
+z_index = -1
+scroll_scale = Vector2(0.85, 1)
+repeat_size = Vector2(1152, 0)
+
+[node name="Cloud3" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/Clouds2"]
+position = Vector2(437, 146)
+scale = Vector2(4, 4)
+texture = ExtResource("5_gqmmt")
+
+[node name="Cloud4" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/Clouds2"]
+position = Vector2(1089, 130)
+scale = Vector2(4, 4)
+texture = ExtResource("3_dp3eg")
+
+[node name="BackRails" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
+scroll_scale = Vector2(0.99, 1)
+scroll_offset = Vector2(0, -368)
+repeat_size = Vector2(1152, 0)
+
+[node name="StadiumBackRailings" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingBackground/BackRails"]
+modulate = Color(0.91, 0.91, 0.91, 1)
+position = Vector2(536, 436)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_85g3d")
+
+[node name="Seats" type="Parallax2D" parent="EndlessRunnerScreenView/ScrollingBackground"]
+scroll_scale = Vector2(1.1, 0)
+scroll_offset = Vector2(0, -368)
+repeat_size = Vector2(1152, 0)
+
+[node name="Seats" type="ColorRect" parent="EndlessRunnerScreenView/ScrollingBackground/Seats"]
+offset_top = 568.0
+offset_right = 1152.0
+offset_bottom = 864.0
+color = Color(0.19607843, 0.45882353, 0.7019608, 1)
 
 [node name="Crowd" parent="EndlessRunnerScreenView" instance=ExtResource("4_tipki")]
 num_columns = 23
@@ -224,10 +281,11 @@ offset_bottom = 552.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
-theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
 theme_override_constants/line_spacing = 0
-text = "
- Jay Arbuthnot"
+text = "  PRODUCTION:
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -243,11 +301,10 @@ offset_bottom = 552.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
-theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
 theme_override_constants/line_spacing = 0
-text = "  PRODUCTION:
-
-"
+text = "
+ Jay Arbuthnot"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -308,5 +365,11 @@ visible = false
 
 [connection signal="column_exited_screen" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_column_exited_screen"]
 [connection signal="new_column_spawned" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_new_column_spawned"]
+[connection signal="mouse_entered" from="Buttons/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_exited"]
 
 [editable path="PauseMenu"]

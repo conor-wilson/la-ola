@@ -67,7 +67,7 @@ color = Color(0, 0, 0, 0.74509805)
 position = Vector2(9.536743e-07, 9.536743e-07)
 scale = Vector2(3, 3)
 sprite_frames = ExtResource("5_bf855")
-animation = &"wake_up"
+animation = &"stand_up"
 autoplay = "hands_up_holding_sign"
 
 [node name="StandupTimer" type="Timer" parent="."]

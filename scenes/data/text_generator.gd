@@ -2,6 +2,7 @@ class_name TextGenerator extends Node
 
 var json = JSON.new()
 var regex = RegEx.new()
+var no_punctuation_regex = RegEx.new()
 var current_word = ""
 var model = null
 
@@ -9,8 +10,9 @@ var model = null
 func _ready() -> void:
 	model = _load_model()
 	regex.compile(r"[^A-Za-z,\.' ]")
-	
-func generate_sentence():
+	no_punctuation_regex.compile(r"[^A-Za-z ]")
+
+func generate_sentence(include_punctuation:bool = true, include_capitalization:bool = true) -> String:
 	current_word = ""
 	
 	var word = generate_word()
@@ -20,7 +22,20 @@ func generate_sentence():
 		if (word != ""):
 			sentence += " " + word
 	
-	return regex.sub(sentence, "", true)
+	print("PUNCTUATING: " + str(include_punctuation) + ", Original sentence: " + sentence)
+
+	var cleaned_sentence = ""
+	if include_punctuation:
+		cleaned_sentence = regex.sub(sentence, "", true)
+	else:
+		cleaned_sentence = no_punctuation_regex.sub(sentence, "", true)
+
+
+	if !include_capitalization:
+		cleaned_sentence = cleaned_sentence.to_lower()
+
+	print("Cleaned sentence: " + cleaned_sentence)
+	return cleaned_sentence
 
 func generate_word():
 	var options

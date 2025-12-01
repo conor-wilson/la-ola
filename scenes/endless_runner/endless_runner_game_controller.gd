@@ -7,17 +7,20 @@ class_name EndlessRunnerGameController extends GameController
 
 ## The amount by which the sleeping person spawn chance increases each time a
 ## person is spawned.
-@export var _sleeping_person_spawn_chance_increment:float = 0.001
+@export var _sleeping_person_spawn_chance_increment:float = 0.01
 
 ## The maximum chance that a random person will be sleeping (ie: it won't
 ## increment beyond this).
-@export var _max_sleeping_person_spawn_chance:float = 0.5
+@export var _max_sleeping_person_spawn_chance:float = 1
 
 ## The queue IDs of columns that are next in the wave.
 var _wave_column_id_queue:Array[int] = []
 
 var _sleeping_person_spawn_chance:float = 0.5
 var _last_sleeping_person_index:int = 0
+
+const SLEEPING_PEOPLE_THRESHOLD = 400
+const SLEEPING_PEOPLE_RAMP_RATE = 200
 
 func _reset() -> void:
 	
@@ -154,18 +157,71 @@ func _generate_sleeping_people_indices():
 	
 	var new_indices:Dictionary[int, bool] = {}
 	var current_text_length:int = _text_manager.get_generated_text_length()
+
+	if current_text_length < SLEEPING_PEOPLE_THRESHOLD:
+		return
+
+	var process_queue = []
+	var current_word = []
 	
-	# For each person who haven't had the chance to be sleeping...
+	# Separate sentence into words
 	for i in range(_last_sleeping_person_index, current_text_length):
-		
-		# ...roll the dice to see if they should sleep...
-		if randf() <= _sleeping_person_spawn_chance:
-			new_indices[i] = true
-		
-		# ...then increase the chance that the next person will be sleeping.
+		var current_char = _text_manager.get_generated_text_char(i)
+		var is_last_char = i == current_text_length - 1
+		if current_char == " " || is_last_char:
+			if current_word.size() > 0:
+				if is_last_char:
+					current_word.append({"chr": current_char, "ind": i})
+				process_queue.append(current_word)
+				current_word = []
+			else:
+				continue
+		else:
+			current_word.append({"chr": current_char, "ind": i})
+
+	const special_characters = [",", ".", "?", "!", "\'"]
+	var sleeping_quota_upper_bound = max(0, 1 + floori(current_text_length - SLEEPING_PEOPLE_THRESHOLD)/float(SLEEPING_PEOPLE_RAMP_RATE))
+
+	# For each word, determine sleeping people by picking characters that are 
+	# not the first or last letter in the word and are not special characters or consecutive
+	# with a limit applied on missing letters based on word length and total characters generated
+	for word in process_queue:
+
+		var word_len = word.size()
+		if word_len > 4 && randf() < _sleeping_person_spawn_chance:
+
+			var sleeping_quota = min(roundi((float(word_len) - 4)/2), sleeping_quota_upper_bound);
+
+			for i in range(0, word_len):
+				word[i]["chr_ind"] = i
+
+			var valid_indices = word.filter(func(l): return !special_characters.has(l.chr)).slice(1, -1).map(func(l): return l.chr_ind)
+			var picked = []
+
+			while true:
+				valid_indices.shuffle()
+				picked = valid_indices.slice(0, sleeping_quota)
+				picked.sort()
+				
+				if sleeping_quota == 1:
+					break
+
+				var min_diff = INF
+				for i in range(1, sleeping_quota):
+					var diff = picked[i] - picked[i-1] 
+					if diff < min_diff:
+						min_diff = diff
+ 
+				if min_diff > 1:
+					break
+
+			for i in picked:
+				var letter = word[i]
+				new_indices[letter.ind] = true
+
 		if _sleeping_person_spawn_chance < _max_sleeping_person_spawn_chance:
 			_sleeping_person_spawn_chance += _sleeping_person_spawn_chance_increment
-	
+
 	# Record where we left off for next time
 	_last_sleeping_person_index = current_text_length
 	
