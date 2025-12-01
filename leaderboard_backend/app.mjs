@@ -24,7 +24,7 @@ function mongoCollection(database, collection) {
 async function getScores(leaderboardId, userId) {
   const col = mongoCollection(scoresDb, scoresCollection);
 
-  const query = {leaderboardId, isHighscore: true};
+  const query = { leaderboardId };
   if (userId) {
     query.userId = { $ne: userId };
   }
@@ -88,47 +88,41 @@ async function setName(userId, name) {
   return name;
 }
 
-async function postScore(userId, leaderboardId, score, ip) {
-
+async function postScore(userId, leaderboardId, score) {
   const scoresCol = mongoCollection(scoresDb, scoresCollection);
-  const runsCol = mongoCollection(scoresDb, runsCollection);
-
-  const run = await runsCol.findOne({ userId, leaderboardId });
-  if (!run) {
-    console.log("No run found for user " + userId + " in leaderboard " + leaderboardId);
-    return;
-  }
-
-  const promises = []
-  let promise;
-
-  score = cleanScore(score);
-  const time = new Date();
-  const duration = Math.round((time - run.time)/100)/10;
-  promise = runsCol.deleteOne({ userId, leaderboardId });
-  promises.push(promise);
-
-  const prevHighScore = await scoresCol.findOne({ userId, leaderboardId, isHighscore: true });
-  let isHighscore = true;
-  
-  if (prevHighScore) {
-    if (prevHighScore.score >= score) {
-      isHighscore = false;
-    } else {
-      promise = scoresCol.updateOne({ _id: prevHighScore._id }, { $set: { isHighscore: false }});
-      promises.push(promise);
-    }
-  }
-  promise = scoresCol.insertOne({ userId, leaderboardId, score, time, duration, isHighscore, ip });
-  promises.push(promise);
-  await Promise.all(promises);
+  await scoresCol.updateOne({ userId, leaderboardId }, { $max: { score } }, { upsert: true });
 }
 
 async function startRun(userId, leaderboardId) {
   const runsCol = mongoCollection(scoresDb, runsCollection)
-  const time = new Date();
+  const startTime = new Date();
+  await runsCol.updateOne({ userId, leaderboardId, endTime: {$exists: false} }, { $set: { startTime }}, { upsert: true });
+}
 
-  await runsCol.updateOne({ userId, leaderboardId }, { $set: { userId, leaderboardId, time }}, { upsert: true });
+async function endRun(userId, leaderboardId) {
+  const runsCol = mongoCollection(scoresDb, runsCollection)
+  const endTime = new Date();
+  await runsCol.updateOne({ userId, leaderboardId, startTime: { $exists: true }, endTime: { $exists: false } },
+  [
+    { $set: {
+      endTime, 
+      score,
+      ip,
+      duration: {
+        $divide: [
+          {
+            $round: {
+              $divide: [
+                { $subtract: [endTime, "$startTime"] },
+                100
+              ]
+            }
+          },
+          10
+        ]
+      }
+    }}
+  ]);
 }
 
 app.get('/', async (req, res) => {
@@ -147,7 +141,6 @@ app.post('/test', async (req, res) => {
 
 app.post('/post_score', async (req, res) => {
   const data = req.body;
-  const ip = req.socket.remoteAddress;
   const {userId, leaderboardId, score} = data;
   await postScore(userId, leaderboardId, score, ip);
   res.send();
@@ -157,6 +150,14 @@ app.post('/start_run', async (req, res) => {
   const data = req.body;
   const {userId, leaderboardId} = data;
   await startRun(userId, leaderboardId);
+  res.send();
+})
+
+app.post('/end_run', async (req, res) => {
+  const data = req.body;
+  const {userId, leaderboardId, score} = data;
+  const ip = req.socket.remoteAddress;
+  await endRun(userId, leaderboardId, score, ip);
   res.send();
 })
 
