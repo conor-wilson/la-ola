@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cblhmpjclebn8"
-path="res://.godot/imported/CaseSensitivityOff.png-2ed3d1e2edbecd1bc06ee2c28ae4babb.ctex"
+uid="uid://cvsqrf781d3ng"
+path="res://.godot/imported/Sprite-Start12.png-28f186e479495d4d7fb5620e8a9179c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/Icons/CaseSensitivityOff.png"
-dest_files=["res://.godot/imported/CaseSensitivityOff.png-2ed3d1e2edbecd1bc06ee2c28ae4babb.ctex"]
+source_file="res://assets/art/ui/Button_Start/Sprite-Start12.png"
+dest_files=["res://.godot/imported/Sprite-Start12.png-28f186e479495d4d7fb5620e8a9179c3.ctex"]
 
 [params]
 

@@ -1,13 +1,40 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dy8agccfk1yd7"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dy8agccfk1yd7"]
 
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="1_0hks0"]
+[ext_resource type="StyleBox" uid="uid://s52anerogre3" path="res://scenes/ui/normal_style_box.tres" id="1_ctn7o"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ctn7o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ctn7o"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.284, 0.3304, 0.4, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g0slf"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.2485, 0.2891, 0.35, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [resource]
 default_font = ExtResource("1_0hks0")
 default_font_size = 20
 Button/font_sizes/font_size = 20
 Button/styles/focus = SubResource("StyleBoxEmpty_ctn7o")
+Button/styles/hover = SubResource("StyleBoxFlat_ctn7o")
+Button/styles/normal = ExtResource("1_ctn7o")
+Button/styles/pressed = SubResource("StyleBoxFlat_g0slf")
 Label/colors/font_color = Color(0.28235295, 0.6627451, 1, 1)
 Label/font_sizes/font_size = 10
+Panel/styles/panel = ExtResource("1_ctn7o")

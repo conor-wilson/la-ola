@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ciwdoia3utrsx"
-path="res://.godot/imported/AnimSprite-Start4.png-53cce89d37aef724c4f9a3696665a9df.ctex"
+uid="uid://b6wtty0xe3i4n"
+path="res://.godot/imported/Fan1Sleeping.png-3d831f14228570ba917053cf00dd11c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/Button_Start/AnimSprite-Start4.png"
-dest_files=["res://.godot/imported/AnimSprite-Start4.png-53cce89d37aef724c4f9a3696665a9df.ctex"]
+source_file="res://assets/art/characters/fan1/Fan1Sleeping.png"
+dest_files=["res://.godot/imported/Fan1Sleeping.png-3d831f14228570ba917053cf00dd11c0.ctex"]
 
 [params]
 

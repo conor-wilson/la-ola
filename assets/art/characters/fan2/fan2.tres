@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://csfo8pna2usjj"]
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://csfo8pna2usjj"]
 
 [ext_resource type="Texture2D" uid="uid://bgov4cxn25wx4" path="res://assets/art/characters/fan2/Fan2_HandsDown.png" id="1_8fw10"]
 [ext_resource type="Texture2D" uid="uid://b8m88llt31dae" path="res://assets/art/characters/fan2/Fan2_HandsUp.png" id="2_5s48l"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dlyxn4lvy53h6" path="res://assets/art/characters/fan2/hands_down_anim/Fan2_HandsDownAnim2.png" id="6_nfxy4"]
 [ext_resource type="Texture2D" uid="uid://bcita4hn5f34o" path="res://assets/art/characters/fan2/hands_down_anim/Fan2_HandsDownAnim3.png" id="7_pueu3"]
 [ext_resource type="Texture2D" uid="uid://duwrytoblct06" path="res://assets/art/characters/fan2/hands_down_anim/Fan2_HandsDownAnim4.png" id="8_5nqei"]
+[ext_resource type="Texture2D" uid="uid://d3ytp3bjll2l4" path="res://assets/art/characters/fan2/Fan2Sleeping.png" id="9_5s48l"]
 
 [resource]
 animations = [{
@@ -65,7 +66,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_8fw10")
+"texture": ExtResource("9_5s48l")
 }],
 "loop": true,
 "name": &"sleeping",
@@ -84,10 +85,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("8_5nqei")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_pueu3")
+"texture": ExtResource("9_5s48l")
 }, {
 "duration": 1.0,
 "texture": ExtResource("6_nfxy4")

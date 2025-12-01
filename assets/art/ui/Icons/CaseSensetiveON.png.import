@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6q27fn8ntbyl"
-path="res://.godot/imported/AnimSprite-Start10.png-060dbf62a3ba7202f9865d190e1d4f89.ctex"
+uid="uid://bu1ubs1g6m7dd"
+path="res://.godot/imported/CaseSensetiveON.png-d8bbda30e633acfddd56730b1bedcdf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/Button_Start/AnimSprite-Start10.png"
-dest_files=["res://.godot/imported/AnimSprite-Start10.png-060dbf62a3ba7202f9865d190e1d4f89.ctex"]
+source_file="res://assets/art/ui/Icons/CaseSensetiveON.png"
+dest_files=["res://.godot/imported/CaseSensetiveON.png-d8bbda30e633acfddd56730b1bedcdf7.ctex"]
 
 [params]
 

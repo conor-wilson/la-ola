@@ -273,10 +273,11 @@ offset_bottom = 552.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
-theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
 theme_override_constants/line_spacing = 0
-text = "
- Jay Arbuthnot"
+text = "  PRODUCTION:
+
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -292,11 +293,10 @@ offset_bottom = 552.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
-theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
 theme_override_constants/line_spacing = 0
-text = "  PRODUCTION:
-
-"
+text = "
+ Jay Arbuthnot"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -354,5 +354,11 @@ offset_bottom = 723.955
 
 [connection signal="column_exited_screen" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_column_exited_screen"]
 [connection signal="new_column_spawned" from="EndlessRunnerScreenView/Crowd" to="EndlessRunnerScreenView" method="_on_crowd_new_column_spawned"]
+[connection signal="mouse_entered" from="Buttons/PlayButton" to="." method="_on_play_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/PlayButton" to="." method="_on_play_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_exited"]
 
 [editable path="PauseMenu"]

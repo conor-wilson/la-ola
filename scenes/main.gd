@@ -7,6 +7,8 @@ extends Node2D
 @export var _settings_popup:PauseMenu
 @export var _tutorial_popup:TutorialPopup
 
+const button_hover_modulation:Color = Color(0.8, 0.8, 0.8, 1.0)
+
 func _ready() -> void:
 	_setup_buttons()
 
@@ -26,4 +28,27 @@ func _on_settings_button_pressed() -> void:
 
 func _on_tutorial_button_pressed() -> void:
 	_tutorial_popup.show()
-	
+
+# Button Hover Logic
+func _on_play_button_mouse_entered() -> void:
+	_hover_button(_play_button)
+func _on_settings_button_mouse_entered() -> void:
+	_hover_button(_settings_button)
+func _on_tutorial_button_mouse_entered() -> void:
+	_hover_button(_tutorial_button)
+
+## Modulates the provided button to provide the hover effect.
+func _hover_button(button:Button) -> void:
+	button.modulate = button_hover_modulation
+
+# Button Un-Hover Logic
+func _on_play_button_mouse_exited() -> void:
+	_unhover_button(_play_button)
+func _on_settings_button_mouse_exited() -> void:
+	_unhover_button(_settings_button)
+func _on_tutorial_button_mouse_exited() -> void:
+	_unhover_button(_tutorial_button)
+
+## Modulates the provided button to provide the un-hover effect.
+func _unhover_button(button:Button) -> void:
+	button.modulate = Color.WHITE

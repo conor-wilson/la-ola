@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwxc76pu5ssnl"
-path="res://.godot/imported/AnimSprite-Start11.png-fc960c25c0457d8beac71483ea8693ca.ctex"
+uid="uid://bba3jbqn7df12"
+path="res://.godot/imported/PauseButtonWhite.png-dde61c56b178d5a1deb18d4b9e3ea1c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/Button_Start/AnimSprite-Start11.png"
-dest_files=["res://.godot/imported/AnimSprite-Start11.png-fc960c25c0457d8beac71483ea8693ca.ctex"]
+source_file="res://assets/art/ui/PauseButtonWhite.png"
+dest_files=["res://.godot/imported/PauseButtonWhite.png-dde61c56b178d5a1deb18d4b9e3ea1c1.ctex"]
 
 [params]
 
