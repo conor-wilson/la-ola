@@ -33,6 +33,7 @@ func _reset() -> void:
 	
 	super._reset()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
+	_popups.set_score(0)
 
 func restart() -> void:
 	
@@ -45,6 +46,7 @@ func restart() -> void:
 	
 	super.restart()
 	_screen_view.fill_crowd_with_text(_screen_view.first_letter_column_index)
+	_popups.set_score(0)
 
 func _wait_for_ready_components() -> void:
 	
@@ -96,6 +98,9 @@ func _process_letter_input(letter_input:String):
 		if letter_input.to_lower() != charToMatch.to_lower():
 			# TODO: Handle the incorrect input here as well
 			return
+	
+	# Update the score
+	_popups.set_score(_get_score())
 	
 	# Handle the state
 	match _state:

@@ -78,7 +78,7 @@ offset_bottom = 864.0
 color = Color(0.19607843, 0.45882353, 0.7019608, 1)
 
 [node name="Crowd" parent="." instance=ExtResource("7_lt3xr")]
-num_columns = 23
+num_columns = 30
 
 [node name="ScrollingForeground" type="Node2D" parent="."]
 

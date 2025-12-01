@@ -1,15 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://ogocgp6mobke"]
+[gd_scene load_steps=9 format=3 uid="uid://ogocgp6mobke"]
 
 [ext_resource type="Script" uid="uid://cubpfrr44642v" path="res://scenes/endless_runner/endless_runner_popups.gd" id="1_sqbng"]
 [ext_resource type="Texture2D" uid="uid://bba3jbqn7df12" path="res://assets/art/ui/PauseButtonWhite.png" id="2_8o8wd"]
 [ext_resource type="Texture2D" uid="uid://v2vmphtkgboe" path="res://assets/art/ui/PauseButtonIcon.png" id="2_jgys4"]
+[ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="2_w6111"]
 [ext_resource type="PackedScene" uid="uid://cv0pcnqkje6xm" path="res://scenes/ui/game_over_menu.tscn" id="2_yywdt"]
+[ext_resource type="Texture2D" uid="uid://belpkbst64wd0" path="res://assets/art/ui/Icons/ScoreCard.png" id="4_51t4o"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="4_jgys4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sqbng"]
 font_size = 64
 
-[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("_go_screen", "_go_screen_hide_timer", "_ready_screen", "_hud", "game_over_menu", "pause_menu", "_popups", "_pause_button")]
+[node name="EndlessRunnerPopups" type="CanvasLayer" node_paths=PackedStringArray("_go_screen", "_go_screen_hide_timer", "_ready_screen", "_hud", "game_over_menu", "pause_menu", "_popups", "_pause_button", "_score_label")]
 script = ExtResource("1_sqbng")
 _go_screen = NodePath("GoScreen")
 _go_screen_hide_timer = NodePath("GoScreen/HideTimer")
@@ -19,6 +21,7 @@ game_over_menu = NodePath("GameOverMenu")
 pause_menu = NodePath("PauseMenu")
 _popups = [NodePath("ReadyScreen"), NodePath("GoScreen"), NodePath("GameOverMenu"), NodePath("GameOverMenu"), NodePath("PauseMenu")]
 _pause_button = NodePath("HUD/PauseButton")
+_score_label = NodePath("HUD/ScoreCard/ScoreLabel")
 
 [node name="ReadyScreen" type="ColorRect" parent="."]
 offset_left = 219.0
@@ -52,6 +55,7 @@ one_shot = true
 [node name="HUD" type="Label" parent="."]
 offset_right = 1152.0
 offset_bottom = 648.0
+theme = ExtResource("2_w6111")
 label_settings = SubResource("LabelSettings_sqbng")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -61,14 +65,33 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -96.0
-offset_right = -56.0
+offset_left = -112.0
+offset_right = -72.0
 offset_bottom = 40.0
 grow_horizontal = 0
 scale = Vector2(2, 2)
 focus_mode = 0
 texture_normal = ExtResource("2_8o8wd")
 texture_hover = ExtResource("2_jgys4")
+
+[node name="ScoreCard" type="TextureRect" parent="HUD"]
+layout_mode = 0
+offset_left = 32.0
+offset_right = 132.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+texture = ExtResource("4_51t4o")
+
+[node name="ScoreLabel" type="Label" parent="HUD/ScoreCard"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 4.5
+offset_right = 96.0
+offset_bottom = 40.5
+theme_override_font_sizes/font_size = 20
+text = "123"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="GameOverMenu" parent="." instance=ExtResource("2_yywdt")]
 visible = false

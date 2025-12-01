@@ -94,6 +94,12 @@ func remove_sign(immediate:bool = false) -> void:
 ## Makes the person stand up temporarily (time is configurable via the StandupTimer).
 func stand_up():
 	
+	# Cancel any waddling
+	if waddle_tween != null:
+		waddle_tween.stop()
+	if unwaddle_tween != null:
+		unwaddle_tween.stop()
+	
 	# Wake the person up if they're asleep
 	if asleep:
 		wake_up()
@@ -111,6 +117,12 @@ func stand_up():
 ## Makes the person sit down.
 func sit_down(immediate:bool = false):
 	
+	# Cancel any waddling
+	if waddle_tween != null:
+		waddle_tween.stop()
+	if unwaddle_tween != null:
+		unwaddle_tween.stop()
+	
 	# Play the sit-down animation
 	_play_sit_down_animation(0, immediate)
 	
@@ -120,11 +132,12 @@ func sit_down(immediate:bool = false):
 	else:
 		# Move the person back down with a tween
 		var tween = create_tween()
-		tween.tween_property(self, "position", Vector2(position.x, sitting_pos.y), 0.2)
+		tween.tween_property(self, "position", sitting_pos, 0.2)
 	
 		# Play the idle animation once the person has sat down
 		await tween.finished
 	
+	# Return to idle state
 	_play_idle_animation(0, immediate)
 
 ## Makes the person go to sleep.
@@ -154,6 +167,8 @@ func become_upset(delay:float = 0):
 	asleep = false
 	_play_dissapointment_animation(delay)
 
+var waddle_tween:Tween
+
 ## Makes the person waddle after the provided delay with the provided movement 
 ## duration for the provided linger time.
 ## Only one waddle motion is allowed at a time.
@@ -169,19 +184,21 @@ func waddle(delay_before_waddle:float, movement_duration:float, linger_time:floa
 	await get_tree().create_timer(delay_before_waddle).timeout
 	
 	# Begin the movement
-	var tween = create_tween()
+	waddle_tween = create_tween()
 	var waddle_diff := Vector2(rng.randf_range(-4, 4), rng.randf_range(-4, 4))
-	tween.tween_property(self, "position", sitting_pos + waddle_diff, waddle_movement_duration)
+	waddle_tween.tween_property(self, "position", sitting_pos + waddle_diff, waddle_movement_duration)
 	
 	# Start the linger timer
 	waddle_timer.start(linger_time)
+
+var unwaddle_tween:Tween
 
 ## Moves the player back to its original position with with the configured
 ## movement duration. This is intended to be called after the Person is finished
 ## waddling.
 func unwaddle():
-	var tween = create_tween()
-	tween.tween_property(self, "position", sitting_pos, waddle_movement_duration)
+	unwaddle_tween = create_tween()
+	unwaddle_tween.tween_property(self, "position", sitting_pos, waddle_movement_duration)
 	waddling = false
 
 ###########################
@@ -317,6 +334,6 @@ func _on_waddle_timer_timeout() -> void:
 	unwaddle()
 	waddle(
 		randf_range(0, 4),
-		randf_range(0.2, 2),
+		randf_range(1, 2),
 		randf_range(2, 5)
 	)

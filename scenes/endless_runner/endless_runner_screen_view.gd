@@ -143,10 +143,6 @@ func _on_crowd_new_column_spawned(column_id:int) -> void:
 ## Wakes up the column at the wake-up column index (ie: that many columns across
 ## the screen).
 func _wake_up_wake_up_column(): # NOTE: This name is derranged but I think it actually makes sense, because we're waking up the wake-up column?
-	
-	if !Global.sleeping_people_wake_up:
-		return
-	
 	var sorted_column_ids:Array[int] = _crowd.get_column_ids()
 	_crowd.get_column_with_id(sorted_column_ids[_wake_up_column_index]).wake_up()
 
