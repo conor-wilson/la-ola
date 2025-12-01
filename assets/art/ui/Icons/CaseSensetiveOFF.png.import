@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://x3g75e2sw1lb"
-path="res://.godot/imported/CaseSensitivityOn.png-0da5e0086a7f95dc7814634d83832677.ctex"
+uid="uid://bvxj3rhc5d62o"
+path="res://.godot/imported/CaseSensetiveOFF.png-1dda3592e4efdd2d2f14e23e6039614a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/ui/Icons/CaseSensitivityOn.png"
-dest_files=["res://.godot/imported/CaseSensitivityOn.png-0da5e0086a7f95dc7814634d83832677.ctex"]
+source_file="res://assets/art/ui/Icons/CaseSensetiveOFF.png"
+dest_files=["res://.godot/imported/CaseSensetiveOFF.png-1dda3592e4efdd2d2f14e23e6039614a.ctex"]
 
 [params]
 

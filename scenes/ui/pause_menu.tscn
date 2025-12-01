@@ -1,18 +1,18 @@
 [gd_scene load_steps=15 format=3 uid="uid://cnmf4ghisg08r"]
 
 [ext_resource type="Theme" uid="uid://dy8agccfk1yd7" path="res://scenes/ui/ui_theme.tres" id="1_6qnem"]
-[ext_resource type="Script" path="res://scenes/ui/pause_menu.gd" id="1_8fwbo"]
+[ext_resource type="Script" uid="uid://d2afwydxtilko" path="res://scenes/ui/pause_menu.gd" id="1_8fwbo"]
 [ext_resource type="Texture2D" uid="uid://bm7nsb0noeog2" path="res://assets/art/ui/Icons/SoundOff02.png" id="3_2rlsb"]
 [ext_resource type="Texture2D" uid="uid://86x4rf7hx8yj" path="res://assets/art/ui/Icons/SoundOn.png" id="3_8fwbo"]
 [ext_resource type="Texture2D" uid="uid://81yxlnpsjl8c" path="res://assets/art/ui/Icons/ReturnToMainMenu.png" id="4_2rlsb"]
 [ext_resource type="Texture2D" uid="uid://rej5gwy0fxir" path="res://assets/art/ui/PopupBackground/pause_menu_background_animated_texture.tres" id="4_coo1x"]
-[ext_resource type="Script" path="res://scenes/ui/audio_toggle_button.gd" id="5_2jkta"]
+[ext_resource type="Script" uid="uid://c6b67pc1nsts2" path="res://scenes/ui/audio_toggle_button.gd" id="5_2jkta"]
 [ext_resource type="Texture2D" uid="uid://bdgetvj52w7ln" path="res://assets/art/ui/Icons/Replay.png" id="5_coo1x"]
 [ext_resource type="FontFile" uid="uid://b08gfrml13o4i" path="res://assets/fonts/Tomorrow_Night.ttf" id="6_ht4ye"]
-[ext_resource type="Texture2D" uid="uid://x3g75e2sw1lb" path="res://assets/art/ui/Icons/CaseSensitivityOn.png" id="7_lrbnh"]
 [ext_resource type="Texture2D" uid="uid://dcq0fnknm0rwg" path="res://assets/art/ui/Icons/X.png" id="8_2rlsb"]
-[ext_resource type="Script" path="res://scenes/ui/case_sensitive_toggle_button.gd" id="8_6qnem"]
-[ext_resource type="Texture2D" uid="uid://cblhmpjclebn8" path="res://assets/art/ui/Icons/CaseSensitivityOff.png" id="9_ynwdf"]
+[ext_resource type="Script" uid="uid://b3iyxk51da68y" path="res://scenes/ui/case_sensitive_toggle_button.gd" id="8_6qnem"]
+[ext_resource type="Texture2D" uid="uid://bu1ubs1g6m7dd" path="res://assets/art/ui/Icons/CaseSensetiveON.png" id="9_6qnem"]
+[ext_resource type="Texture2D" uid="uid://bvxj3rhc5d62o" path="res://assets/art/ui/Icons/CaseSensetiveOFF.png" id="10_ynwdf"]
 [ext_resource type="Texture2D" uid="uid://d360dhmfqmgal" path="res://assets/art/ui/Titles/SettingsTitle.png" id="12_lrbnh"]
 
 [node name="PauseMenu" type="ColorRect" node_paths=PackedStringArray("_retry_button", "_home_button", "_close_button")]
@@ -100,11 +100,10 @@ alignment = 1
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_ht4ye")
 text = " Case Sensitive "
-icon = ExtResource("7_lrbnh")
 icon_alignment = 2
 script = ExtResource("8_6qnem")
-_enabled_icon = ExtResource("7_lrbnh")
-_disabled_icon = ExtResource("9_ynwdf")
+_enabled_icon = ExtResource("9_6qnem")
+_disabled_icon = ExtResource("10_ynwdf")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
