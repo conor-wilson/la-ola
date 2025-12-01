@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=32 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://w60be57ca6ml" path="res://assets/art/stadium/clouds/CloudSprite-1.png" id="3_dp3eg"]
@@ -19,6 +19,14 @@
 [ext_resource type="Texture2D" uid="uid://dqhkyypmc6362" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton5.png" id="16_2f3dj"]
 [ext_resource type="PackedScene" uid="uid://b6fwghryb8gr6" path="res://scenes/ui/leaderboard_popup.tscn" id="16_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
+[ext_resource type="Texture2D" uid="uid://cc6r0tsq4gt44" path="res://assets/art/ui/Button_Rankings/RankingsButton1.png" id="17_pm3ni"]
+[ext_resource type="Texture2D" uid="uid://dxtrsw0b0s8ui" path="res://assets/art/ui/Button_Rankings/RankingsButton2.png" id="18_y6deb"]
+[ext_resource type="Texture2D" uid="uid://bv8hsrgg4eyfy" path="res://assets/art/ui/Button_Rankings/RankingsButton3.png" id="19_og1vs"]
+[ext_resource type="Texture2D" uid="uid://clelr3grx478c" path="res://assets/art/ui/Button_Rankings/RankingsButton4.png" id="20_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://cdd2c2jjcrktt" path="res://assets/art/ui/Trophy/Trophy1.png" id="21_vxglm"]
+[ext_resource type="Texture2D" uid="uid://dhiv81yuuvkix" path="res://assets/art/ui/Trophy/Trophy2.png" id="22_2f3dj"]
+[ext_resource type="Texture2D" uid="uid://c21ki2g0eowm5" path="res://assets/art/ui/Trophy/Trophy3.png" id="23_yq6so"]
+[ext_resource type="Texture2D" uid="uid://bg7thpytucjk4" path="res://assets/art/ui/Trophy/Trophy4.png" id="24_fv21b"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
 load_path = "res://.godot/imported/StadiumPitch.png-16a5b053450c015e0f7b27af646f467c.ctex"
@@ -36,12 +44,34 @@ frame_3/duration = 1.0
 frame_4/texture = ExtResource("16_2f3dj")
 frame_4/duration = 1.0
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("_play_button", "_settings_button", "_tutorial_button", "_leaderboard_button", "_settings_popup", "_tutorial_popup", "_leaderboard_popup")]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_pm3ni"]
+frames = 4
+frame_0/texture = ExtResource("17_pm3ni")
+frame_1/texture = ExtResource("18_y6deb")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("19_og1vs")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("20_2wyq8")
+frame_3/duration = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_tel4y"]
+frames = 4
+frame_0/texture = ExtResource("22_2f3dj")
+frame_1/texture = ExtResource("23_yq6so")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("24_fv21b")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("21_vxglm")
+frame_3/duration = 1.0
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("_play_button", "_settings_button", "_tutorial_button", "_rankings_button", "_trophy_button_1", "_trophy_button_2", "_settings_popup", "_tutorial_popup", "_leaderboard_popup")]
 script = ExtResource("1_ig7tw")
 _play_button = NodePath("Buttons/PlayButton")
 _settings_button = NodePath("Buttons/SettingsButton")
 _tutorial_button = NodePath("Buttons/TutorialButton")
-_leaderboard_button = NodePath("Buttons/LeaderboardButton")
+_rankings_button = NodePath("Buttons/RankingsButton")
+_trophy_button_1 = NodePath("Buttons/TrophyButton1")
+_trophy_button_2 = NodePath("Buttons/TrophyButton2")
 _settings_popup = NodePath("PauseMenu")
 _tutorial_popup = NodePath("TutorialPopup")
 _leaderboard_popup = NodePath("LeaderboardPopup")
@@ -348,10 +378,33 @@ icon = SubResource("AnimatedTexture_chjal")
 flat = true
 icon_alignment = 1
 
-[node name="LeaderboardButton" type="Button" parent="Buttons"]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Leaderboard"
+[node name="RankingsButton" type="Button" parent="Buttons"]
+z_index = 2
+offset_left = 891.0
+offset_top = 255.0
+offset_right = 1173.0
+offset_bottom = 312.0
+scale = Vector2(0.7, 0.7)
+icon = SubResource("AnimatedTexture_pm3ni")
+flat = true
+
+[node name="TrophyButton1" type="Button" parent="Buttons"]
+z_index = 2
+offset_left = 1063.0
+offset_top = 254.0
+offset_right = 1133.0001
+offset_bottom = 321.14285
+icon = SubResource("AnimatedTexture_tel4y")
+flat = true
+
+[node name="TrophyButton2" type="Button" parent="Buttons"]
+z_index = 2
+offset_left = 852.0
+offset_top = 253.0
+offset_right = 924.0
+offset_bottom = 325.0
+icon = SubResource("AnimatedTexture_tel4y")
+flat = true
 
 [node name="Credits" type="Node2D" parent="."]
 
@@ -591,5 +644,14 @@ visible = false
 [connection signal="mouse_exited" from="Buttons/SettingsButton" to="." method="_on_settings_button_mouse_exited"]
 [connection signal="mouse_entered" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_entered"]
 [connection signal="mouse_exited" from="Buttons/TutorialButton" to="." method="_on_tutorial_button_mouse_exited"]
+[connection signal="mouse_entered" from="Buttons/RankingsButton" to="." method="_on_rankings_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/RankingsButton" to="." method="_on_rankings_button_mouse_exited"]
+[connection signal="pressed" from="Buttons/RankingsButton" to="." method="_on_rankings_button_pressed"]
+[connection signal="mouse_entered" from="Buttons/TrophyButton1" to="." method="_on_rankings_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/TrophyButton1" to="." method="_on_rankings_button_mouse_exited"]
+[connection signal="pressed" from="Buttons/TrophyButton1" to="." method="_on_rankings_button_pressed"]
+[connection signal="mouse_entered" from="Buttons/TrophyButton2" to="." method="_on_rankings_button_mouse_entered"]
+[connection signal="mouse_exited" from="Buttons/TrophyButton2" to="." method="_on_rankings_button_mouse_exited"]
+[connection signal="pressed" from="Buttons/TrophyButton2" to="." method="_on_rankings_button_pressed"]
 
 [editable path="PauseMenu"]
