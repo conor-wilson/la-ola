@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bklubkulutqyb"]
+[gd_scene load_steps=22 format=3 uid="uid://bklubkulutqyb"]
 
 [ext_resource type="Script" uid="uid://ddf65fgyd437n" path="res://scenes/main.gd" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://w60be57ca6ml" path="res://assets/art/stadium/clouds/CloudSprite-1.png" id="3_dp3eg"]
@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bgnn0ubbsmhw1" path="res://assets/art/stadium/StadiumInFrontOfPeople.png" id="5_85g3d"]
 [ext_resource type="Texture2D" uid="uid://cle2v1bwo2g3k" path="res://assets/art/stadium/clouds/CloudSprite-3.png" id="5_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://jf051ov1rwtn" path="res://scenes/ui/start_button_animated_texture.tres" id="6_o6xl0"]
-[ext_resource type="Texture2D" path="res://scenes/ui/game_title_animated_text.tres" id="7_jscy8"]
+[ext_resource type="Texture2D" uid="uid://doxfnkwsv6oew" path="res://scenes/ui/game_title_animated_text.tres" id="7_jscy8"]
 [ext_resource type="Texture2D" uid="uid://b6c1x0tqb2smy" path="res://scenes/ui/settings_button_animated_texture.tres" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://cnmf4ghisg08r" path="res://scenes/ui/pause_menu.tscn" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://cjv2un42alb7m" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton1.png" id="12_y6deb"]
@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bsivclqgcee2i" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton3.png" id="14_2wyq8"]
 [ext_resource type="Texture2D" uid="uid://sjx3paba3xxv" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton4.png" id="15_vxglm"]
 [ext_resource type="Texture2D" uid="uid://dqhkyypmc6362" path="res://assets/art/ui/Button_HowToPlay/HowToPlayMenuButton5.png" id="16_2f3dj"]
-[ext_resource type="PackedScene" path="res://scenes/ui/leaderboard_popup.tscn" id="16_jbj1t"]
+[ext_resource type="PackedScene" uid="uid://b6fwghryb8gr6" path="res://scenes/ui/leaderboard_popup.tscn" id="16_jbj1t"]
 [ext_resource type="PackedScene" uid="uid://5sj7yhcl7bgn" path="res://scenes/ui/tutorial_popup.tscn" id="17_muem4"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_yq6so"]
@@ -123,6 +123,12 @@ repeat_size = Vector2(1152, 0)
 
 [node name="StadiumBackRailings" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
 z_index = 15
+position = Vector2(535, 432)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_85g3d")
+
+[node name="StadiumBackRailings2" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingForeground/FrontRails"]
+z_index = 15
 position = Vector2(535, 392)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("5_85g3d")
@@ -132,7 +138,7 @@ scroll_scale = Vector2(0.99, 1)
 repeat_size = Vector2(1152, 0)
 
 [node name="StadiumPitch" type="Sprite2D" parent="EndlessRunnerScreenView/ScrollingForeground/Pitch"]
-position = Vector2(1152, 324)
+position = Vector2(1152, 344)
 texture = SubResource("CompressedTexture2D_yq6so")
 
 [node name="Title" type="TextureRect" parent="."]
@@ -191,43 +197,109 @@ text = "Leaderboard"
 
 [node name="Credits" type="Node2D" parent="."]
 
-[node name="ProgrammingHeader" type="Label" parent="Credits"]
+[node name="CreditsHeader" type="Label" parent="Credits"]
 z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 144.0
-offset_top = 488.0
-offset_right = 568.0
-offset_bottom = 552.0
+offset_left = 152.0
+offset_top = 496.0
+offset_right = 560.0
+offset_bottom = 584.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.92156863, 0.9529412, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 20
+text = "GitHub GameOff 2025"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CreditsHeader2" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 616.0
+offset_top = 498.0
+offset_right = 832.0
+offset_bottom = 538.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
 theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
 theme_override_constants/line_spacing = 0
-text = "PROGRAMMING: 
-
-"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 20
+text = "CREATED BY"
 vertical_alignment = 1
+
+[node name="ProgrammingHeader" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 840.0
+offset_top = 504.0
+offset_right = 960.0
+offset_bottom = 528.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 10
+text = "PROGRAMMING:"
 
 [node name="ProgrammingNames" type="Label" parent="Credits"]
 z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 144.0
-offset_top = 488.0
-offset_right = 568.0
-offset_bottom = 552.0
+offset_left = 840.0
+offset_top = 520.0
+offset_right = 952.0
+offset_bottom = 544.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
 theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
 theme_override_constants/line_spacing = 0
-text = "
-Conor Wilson    Emmet Winter    Sankha Peiris"
-horizontal_alignment = 1
+text = "Conor Wilson"
+vertical_alignment = 1
+
+[node name="ProgrammingNames2" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 840.0
+offset_top = 552.0
+offset_right = 992.0
+offset_bottom = 576.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_constants/line_spacing = 0
+text = "Emmet Winter"
+vertical_alignment = 1
+
+[node name="ProgrammingNames3" type="Label" parent="Credits"]
+z_index = 20
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 840.0
+offset_top = 536.0
+offset_right = 992.0
+offset_bottom = 560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_jscy8")
+theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
+theme_override_constants/line_spacing = 0
+text = "Sankha Peiris"
 vertical_alignment = 1
 
 [node name="ArtHeader" type="Label" parent="Credits"]
@@ -235,19 +307,16 @@ z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 752.0
-offset_top = 488.0
-offset_right = 960.0
-offset_bottom = 552.0
+offset_left = 616.0
+offset_top = 552.0
+offset_right = 744.0
+offset_bottom = 576.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
 theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
 theme_override_constants/line_spacing = 0
-text = "ART:
-
-"
-horizontal_alignment = 1
+text = "ART:"
 vertical_alignment = 1
 
 [node name="ArtName" type="Label" parent="Credits"]
@@ -255,18 +324,16 @@ z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 752.0
-offset_top = 488.0
-offset_right = 960.0
-offset_bottom = 552.0
+offset_left = 712.0
+offset_top = 552.0
+offset_right = 840.0
+offset_bottom = 576.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
 theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
 theme_override_constants/line_spacing = 0
-text = "
-Evie Winter"
-horizontal_alignment = 1
+text = "Evie Winter"
 vertical_alignment = 1
 
 [node name="ProductionHeader" type="Label" parent="Credits"]
@@ -274,19 +341,16 @@ z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 624.0
-offset_top = 488.0
-offset_right = 832.0
-offset_bottom = 552.0
+offset_left = 616.0
+offset_top = 536.0
+offset_right = 720.0
+offset_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
 theme_override_colors/font_color = Color(0.91764706, 0.9529412, 1, 1)
 theme_override_constants/line_spacing = 0
-text = "  PRODUCTION:
-
-"
-horizontal_alignment = 1
+text = "PRODUCTION:"
 vertical_alignment = 1
 
 [node name="ProductionName" type="Label" parent="Credits"]
@@ -294,18 +358,16 @@ z_index = 20
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 624.0
-offset_top = 488.0
-offset_right = 832.0
-offset_bottom = 552.0
+offset_left = 712.0
+offset_top = 536.0
+offset_right = 840.0
+offset_bottom = 560.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_jscy8")
 theme_override_colors/font_color = Color(0.6156863, 0.8156863, 0.972549, 1)
 theme_override_constants/line_spacing = 0
-text = "
- Jay Arbuthnot"
-horizontal_alignment = 1
+text = "Jay Arbuthnot"
 vertical_alignment = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("8_tipki")]
@@ -329,7 +391,13 @@ offset_right = -266.0
 offset_bottom = 77.565
 scale = Vector2(2, 2)
 
-[node name="VBoxContainer" parent="PauseMenu" index="2"]
+[node name="HeaderTextureRect" parent="PauseMenu" index="2"]
+offset_left = -212.60974
+offset_top = -124.0
+offset_right = 52.39026
+offset_bottom = 5.0
+
+[node name="VBoxContainer" parent="PauseMenu" index="3"]
 offset_left = -296.5
 offset_top = 18.5
 offset_right = 22.99585
@@ -340,12 +408,6 @@ visible = false
 
 [node name="RestartButton" parent="PauseMenu/VBoxContainer/HBoxContainer2" index="1"]
 visible = false
-
-[node name="HeaderTextureRect" parent="PauseMenu" index="3"]
-offset_left = -212.60974
-offset_top = -124.0
-offset_right = 52.39026
-offset_bottom = 5.0
 
 [node name="ClosePopupButton" parent="PauseMenu" index="4"]
 offset_left = -26.0
