@@ -8,6 +8,7 @@ extends CanvasLayer
 @export var pause_menu: PauseMenu
 @export var _popups: Array[Node] = []
 @export var _pause_button: TextureButton
+@export var _score_label: Label
 
 var _game_controller:GameController
 
@@ -35,8 +36,7 @@ func _setup_all():
 ## Shows the in-game HUD screen.
 func start():
 	_setup_all()
-	_hide_all()
-	_hud.show()
+	show_hud()
 
 ## Shows the ready screen
 func show_ready_screen():
@@ -46,8 +46,12 @@ func show_ready_screen():
 ## Shows the in-game HUD
 func show_hud():
 	_hide_all()
+	_score_label.text = "0"
 	_hud.show()
 
 func _on_pause_button_pressed():
 	_game_controller.pause()
 	pause_menu.open_popup(_game_controller)
+
+func set_score(new_score:int):
+	_score_label.text = str(new_score)
